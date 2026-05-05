@@ -1,0 +1,248 @@
+%% ============================================================
+%% Metodi Diagnostici Avanzati e di Ricerca:
+%% Patologia Digitale e Analisi delle Immagini
+%% Dispensa del Corso — Documento Principale
+%% ============================================================
+\documentclass[12pt, a4paper, twoside]{book}
+
+%% --- Codifica e Lingua ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+%% --- Colori (deve precedere tcolorbox e hyperref) ---
+\usepackage[dvipsnames, table, x11names]{xcolor}
+\definecolor{pathblue}{RGB}{30, 90, 160}
+\definecolor{pathgray}{RGB}{245, 245, 245}
+\definecolor{pathorange}{RGB}{220, 100, 30}
+
+%% --- Tipografia ---
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%% --- Impaginazione ---
+\usepackage[
+  a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  inner=3cm,
+  outer=2.5cm,
+  headheight=14pt
+]{geometry}
+
+%% --- Matematica ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%% --- Grafica e Figure ---
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows, shapes, shapes.geometric,
+                positioning, fit, calc,
+                decorations.pathreplacing, arrows.meta, backgrounds}
+
+%% --- Tabelle ---
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+%% --- Elenchi ---
+\usepackage{enumitem}
+
+%% --- Riquadri e Callout (dopo xcolor) ---
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{obiettiviapprendimento}{
+  colback=pathgray,
+  colframe=pathblue,
+  fonttitle=\bfseries,
+  title=Obiettivi di Apprendimento,
+  breakable
+}
+
+\newtcolorbox{terminechave}[1]{
+  colback=blue!5,
+  colframe=pathblue!60,
+  fonttitle=\bfseries\small,
+  title=Termine Chiave: #1,
+  breakable
+}
+
+\newtcolorbox{notaclinica}{
+  colback=orange!8,
+  colframe=pathorange,
+  fonttitle=\bfseries,
+  title=Nota Clinica,
+  breakable
+}
+
+%% --- Hyperlink (dopo xcolor e tcolorbox) ---
+\usepackage[
+  colorlinks=true,
+  linkcolor=pathblue,
+  citecolor=pathblue,
+  urlcolor=pathorange,
+  bookmarks=true,
+  bookmarksnumbered=true,
+  pdftitle={Metodi Diagnostici Avanzati e di Ricerca: Patologia Digitale e Analisi delle Immagini},
+  pdfauthor={Dispensa del Corso},
+  pdfsubject={Patologia Digitale},
+  pdfkeywords={patologia digitale, whole slide imaging, intelligenza artificiale, apprendimento profondo}
+]{hyperref}
+
+%% --- Bibliografia ---
+\usepackage[round, authoryear, sort&compress]{natbib}
+\bibliographystyle{plainnat}
+
+%% --- Didascalie ---
+\usepackage[font=small, labelfont=bf, margin=10pt]{caption}
+
+%% --- Intestazioni e Piè di Pagina ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\leftmark}
+\fancyhead[RO]{\small\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%% --- Stile dei Capitoli ---
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{pathblue}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{30pt}{20pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{pathblue!80!black}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+
+%% --- Varie ---
+\usepackage{csquotes}
+\usepackage{setspace}
+\onehalfspacing
+
+%% ============================================================
+\begin{document}
+
+%% ---- FRONTESPIZIO ----
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+
+  {\color{pathblue}\rule{\linewidth}{1.5pt}}
+  \vspace{0.5cm}
+
+  {\Huge\bfseries\color{pathblue}
+    Patologia Digitale\\[0.3em]
+    e Analisi delle Immagini}
+
+  \vspace{0.4cm}
+  {\LARGE\bfseries\color{pathblue!70!black}
+    Diagnostica avanzata e metodologie della ricerca}
+
+  \vspace{0.3cm}
+  {\color{pathblue}\rule{\linewidth}{1.5pt}}
+
+  \vspace{1.5cm}
+
+  {\Large\itshape Dispensa del Corso}
+
+  \vspace{0.5cm}
+  {\large a cura di Salvatore Lorenzo Renne*}
+
+  \vfill
+
+  \begin{tcolorbox}[colback=pathgray, colframe=pathblue, width=0.85\linewidth]
+    \centering
+    \textbf{Panoramica del Corso}\\[0.5em]
+    \small
+    Questa dispensa accompagna il corso di cinque lezioni sulla patologia digitale e
+    l'analisi delle immagini. Tratta la transizione dalla patologia tradizionale a quella
+    digitale, i flussi di lavoro per il controllo qualità, i fondamenti dell'intelligenza
+    artificiale, le applicazioni dell'apprendimento profondo e multimodale, e le sfide
+    etiche della diagnosi assistita dall'IA. Ogni capitolo include obiettivi di
+    apprendimento, contenuti teorici, attività pratiche e domande di autovalutazione.
+  \end{tcolorbox}
+
+  \vspace{1.5cm}
+
+  {\large Anno Accademico 2025--2026}
+
+  \vspace{0.5cm}
+  {\small\color{gray}
+    *\textit{Professore Associato di Anatomia Patologica, Humanitas University, Milano. \\
+    Email: \href{mailto:salvatore.renne@hunimed.eu}{salvatore.renne@hunimed.eu}}}
+
+\end{titlepage}
+
+%% ---- MATERIALE PRELIMINARE ----
+\frontmatter
+
+%% Prefazione
+\chapter*{Prefazione}
+\addcontentsline{toc}{chapter}{Prefazione}
+
+La patologia digitale sta trasformando la pratica dell'istopatologia. La digitalizzazione dei
+vetrini istologici in immagini di vetrini interi (\emph{whole slide images}, WSI), combinata con
+i progressi dell'intelligenza artificiale e dell'analisi delle immagini, sta creando nuove
+opportunità per una valutazione dei campioni tissutali più efficiente, riproducibile e
+quantitativa. Per gli specializzandi in patologia e i tecnici di laboratorio, la comprensione di
+queste tecnologie non è più facoltativa: è una componente essenziale della pratica professionale
+moderna.
+
+Questa dispensa accompagna un corso di cinque lezioni progettato per introdurre i principi e la
+pratica della patologia digitale e dell'analisi delle immagini a studenti e specializzandi in
+ambito biomedico e medico. Il corso è strutturato in modo da costruire le conoscenze in modo
+progressivo: dai fondamenti dell'imaging digitale e della scansione di vetrini interi, attraverso
+il controllo qualità e la gestione del flusso di lavoro, fino ai principi dell'intelligenza
+artificiale, dell'apprendimento profondo e dell'integrazione multimodale dei dati. Il capitolo
+conclusivo affronta le sfide critiche legate al bias, all'interpretabilità, all'etica e al ruolo
+futuro del professionista della patologia in un contesto sempre più assistito dall'IA.
+
+Ogni capitolo è concepito per essere letto in abbinamento alla lezione e alla sessione pratica
+corrispondenti. Le domande di revisione al termine di ogni capitolo sono destinate
+all'autovalutazione; la chiave delle risposte con le relative spiegazioni è fornita nella sezione
+finale di questa dispensa.
+
+Il campo della patologia digitale è in rapida evoluzione. Pur avendo compiuto ogni sforzo per
+garantire l'accuratezza e l'aggiornamento dei contenuti, gli studenti sono incoraggiati a
+consultare la letteratura primaria e le linee guida correnti per le informazioni più aggiornate.
+I riferimenti bibliografici principali sono citati nel testo e raccolti nella bibliografia.
+
+\vspace{1em}
+\noindent\textit{Ci auguriamo che questa dispensa costituisca una risorsa utile e duratura nel
+corso della vostra formazione e della vostra carriera professionale.}
+
+%% Indice
+\tableofcontents
+\listoffigures
+
+%% ---- TESTO PRINCIPALE ----
+\mainmatter
+
+%% Capitoli
+\input{handbook/manuscript/chapter1}
+\input{handbook/manuscript/chapter2}
+\input{handbook/manuscript/chapter3}
+\input{handbook/manuscript/chapter4}
+\input{handbook/manuscript/chapter5}
+
+%% ---- MATERIALE FINALE ----
+\backmatter
+
+%% Bibliografia
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Bibliografia}
+\bibliography{main}
+
+%% Soluzioni
+\cleardoublepage
+\setcounter{chapter}{5}
+\input{handbook/manuscript/solution}
+
+\end{document}

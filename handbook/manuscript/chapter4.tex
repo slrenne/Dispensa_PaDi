@@ -1,0 +1,373 @@
+% ============================================================
+%  Capitolo 4 – Apprendimento Profondo e Applicazioni Multimodali in Patologia
+%  Postgraduate Pathology Course Handbook
+%  This file is \input{} from the main document; do NOT add
+%  \documentclass, \begin{document}, or \end{document} here.
+% ============================================================
+
+\chapter{Apprendimento Profondo e Applicazioni Multimodali in Patologia}
+\label{ch:4}
+
+% ============================================================
+\section{Introduzione}
+\label{sec:ch4_intro}
+% ============================================================
+
+L'ultimo decennio ha testimoniato una profonda trasformazione nella patologia computazionale, guidata in larga misura dalla rapida maturazione dell'apprendimento profondo---una famiglia di metodi di apprendimento automatico che apprendono rappresentazioni gerarchiche direttamente dai dati grezzi. A differenza delle pipeline classiche di analisi delle immagini, che richiedevano a esperti del dominio di costruire manualmente caratteristiche come descrittori della forma nucleare o istogrammi di colore, i modelli di apprendimento profondo scoprono autonomamente rappresentazioni discriminative da grandi dataset annotati. Questo cambiamento di paradigma ha consentito agli algoritmi di eguagliare o superare l'accuratezza diagnostica di patologi esperti su un numero crescente di compiti, dal rilevamento delle metastasi linfonodali nel cancro al seno alla classificazione dell'adenocarcinoma prostatico \cite{ehteshami2017,bulten2022}.
+
+La convergenza di tre fattori abilitanti ha accelerato questo progresso. In primo luogo, l'adozione diffusa degli scanner per immagini di vetrini interi (WSI) ha generato enormi archivi di sezioni tissutali digitalizzate, fornendo i dati di addestramento richiesti dalle reti profonde. In secondo luogo, i progressi nell'hardware delle unità di elaborazione grafica (GPU) hanno reso computazionalmente fattibile addestrare modelli con centinaia di milioni di parametri in ore anziché settimane. In terzo luogo, il movimento per la scienza aperta ha prodotto dataset benchmark pubblicamente disponibili---come CAMELYON, PANDA e TCGA---che consentono un confronto rigoroso e riproducibile tra metodi concorrenti \cite{campanella2019,song2023}.
+
+Questo capitolo fornisce un'introduzione sistematica alle architetture di apprendimento profondo che sono alla base della moderna patologia computazionale. Iniziamo con le reti neurali convoluzionali (CNN), il pilastro del riconoscimento delle immagini, e spieghiamo come i loro componenti architetturali---strati convoluzionali, pooling, batch normalisation e dropout---consentano un apprendimento robusto delle caratteristiche dalle immagini istopatologiche. Affrontiamo poi la sfida unica posta dalle WSI gigapixel e descriviamo come i framework di apprendimento multi-istanza (MIL) aggirino i vincoli di memoria GPU sfruttando solo la supervisione a livello di vetrino. Il capitolo prosegue con le architetture basate su transformer e i meccanismi di auto-attenzione, che hanno recentemente soppiantato le CNN come stato dell'arte in molti benchmark di patologia, e con i modelli linguistici di grandi dimensioni (LLM) che automatizzano la generazione di referti strutturati. Esaminiamo successivamente i modelli multimodali che fondono dati di immagini con informazioni genomiche, cliniche e radiologiche per produrre predizioni prognostiche più ricche. Il capitolo si conclude con una discussione sul ruolo del biologo nei flussi di lavoro assistiti dall'IA, due attività pratiche, una sintesi e dieci domande di revisione.
+
+In tutto il capitolo, l'enfasi è sulla comprensione concettuale piuttosto che sulla derivazione matematica. I lettori che desiderano approfondire la matematica sottostante sono indirizzati alla letteratura primaria citata in ogni fase. Al termine di questo capitolo, gli studenti dovrebbero essere in grado di descrivere le principali architetture di apprendimento profondo utilizzate in patologia, spiegarne i punti di forza e le limitazioni, e articolare le considerazioni pratiche ed etiche che governano il loro impiego clinico.
+
+% ============================================================
+\section{Reti Neurali Convoluzionali per l'Analisi delle Immagini Istopatologiche}
+\label{sec:ch4_cnn}
+% ============================================================
+
+\subsection{Architettura delle Reti Neurali Convoluzionali}
+
+Una rete neurale convoluzionale è una rete neurale feed-forward specificamente progettata per elaborare dati con una topologia a griglia, come le immagini. La sua caratteristica distintiva è lo \emph{strato convoluzionale}, in cui un insieme di filtri apprendibili---chiamati anche \emph{kernel}---viene convolutato con l'input per produrre \emph{mappe delle caratteristiche}. Ogni kernel è una piccola matrice di pesi (tipicamente $3 \times 3$ o $5 \times 5$ pixel) che scorre sull'immagine di input con uno \emph{stride} definito (il numero di pixel di cui il kernel avanza ad ogni passo). Quando lo stride è uguale a uno, il kernel si sposta di un pixel alla volta, producendo una mappa delle caratteristiche di dimensioni spaziali approssimativamente uguali all'input; stride maggiori producono mappe delle caratteristiche più piccole e introducono un certo grado di sottocampionamento spaziale. Il \emph{padding}---l'aggiunta di zeri attorno al bordo dell'immagine---viene comunemente applicato per preservare le dimensioni spaziali e garantire che i pixel ai bordi ricevano la stessa copertura dei pixel centrali.
+
+L'output di ogni operazione convoluzionale viene passato attraverso una \emph{funzione di attivazione} non lineare. L'Unità Lineare Rettificata (ReLU), definita come $f(x) = \max(0, x)$, è la funzione di attivazione più ampiamente utilizzata nelle CNN moderne. La ReLU introduce non-linearità evitando il problema del gradiente che svanisce, che affligge le attivazioni sigmoide e tangente iperbolica nelle reti profonde, poiché il suo gradiente è zero (per input negativi) o uno (per input positivi). Dopo le operazioni convoluzionali e di attivazione, gli \emph{strati di pooling} riducono le dimensioni spaziali delle mappe delle caratteristiche, diminuendo così il costo computazionale e conferendo un certo grado di invarianza alla traslazione. Il max-pooling, che conserva il valore massimo all'interno di ogni finestra di pooling, è la variante più comune; l'average-pooling, che calcola la media, è utilizzato anche in alcune architetture.
+
+La \emph{batch normalisation} è una tecnica che normalizza le attivazioni di ogni strato su un mini-batch di esempi di addestramento, ricentrandole e ridimensionandole per avere media zero e varianza unitaria prima di applicare parametri di scala e traslazione apprendibili. La batch normalisation accelera l'addestramento, riduce la sensibilità alla scelta del tasso di apprendimento e agisce come un lieve regolarizzatore. Il \emph{dropout} è una strategia di regolarizzazione complementare in cui una frazione casuale di neuroni viene impostata a zero durante ogni passo di addestramento, prevenendo la co-adattazione delle caratteristiche e riducendo l'overfitting. Il dropout viene tipicamente applicato agli strati completamente connessi alla fine della rete, dove il rischio di overfitting è maggiore.
+
+Gli strati finali di una CNN sono gli \emph{strati completamente connessi} (chiamati anche strati densi), in cui ogni neurone è connesso a ogni neurone dello strato precedente. Questi strati integrano le caratteristiche distribuite spazialmente estratte dallo stack convoluzionale in una rappresentazione globale adatta alla classificazione o alla regressione. Lo strato di output applica una funzione \emph{softmax} per la classificazione multi-classe, convertendo i punteggi grezzi (logit) in una distribuzione di probabilità sulle classi target. Uno schema dell'architettura CNN è mostrato nella Figura~\ref{fig:cnn_arch}.
+
+\begin{figure}[htbp]
+  \centering
+  \input{handbook/figures/figure4.tex}
+  \caption{Architettura schematica di una rete neurale convoluzionale (CNN) applicata alla classificazione di immagini istopatologiche. Un patch dell'immagine di input viene elaborato attraverso successivi strati convoluzionali e di pooling che estraggono caratteristiche gerarchiche di crescente astrazione. Il vettore di caratteristiche risultante viene passato a strati completamente connessi e a uno strato di output softmax che produce le probabilità di classe. Conv: strato convoluzionale; Pool: strato di pooling; FC: strato completamente connesso.}
+  \label{fig:cnn_arch}
+\end{figure}
+
+\subsection{Apprendimento Gerarchico delle Caratteristiche}
+
+Un'intuizione fondamentale alla base del successo delle CNN è che esse apprendono rappresentazioni \emph{gerarchiche}. Negli strati iniziali, i kernel rispondono a caratteristiche di basso livello come bordi, gradienti di colore e texture semplici. Negli strati intermedi, le combinazioni di caratteristiche di basso livello danno origine a pattern più complessi---nuclei, lumi ghiandolari, fibre stromali. Negli strati più profondi, la rete codifica concetti semantici di alto livello come ``carcinoma invasivo'' o ``ghiandola benigna''. Questa gerarchia rispecchia il modo in cui un patologo costruisce una diagnosi: percependo prima le singole cellule, poi l'architettura tissutale, e infine integrando queste osservazioni in una categoria diagnostica. La natura gerarchica delle rappresentazioni CNN è stata confermata da tecniche di visualizzazione come la mappatura dell'attivazione di classe ponderata per gradiente (Grad-CAM), che evidenzia le regioni dell'immagine più influenti per una data predizione, fornendo un grado di interpretabilità essenziale per la fiducia clinica \cite{song2023}.
+
+La profondità di una CNN---il numero di strati impilati---è un determinante critico della sua capacità rappresentativa. Architetture di riferimento come AlexNet (8 strati), VGG-16 (16 strati), ResNet-50 (50 strati) ed EfficientNet hanno progressivamente aumentato la profondità introducendo innovazioni architetturali---in particolare le \emph{connessioni residuali} in ResNet, che consentono ai gradienti di fluire direttamente attraverso connessioni di salto, permettendo così l'addestramento di reti molto profonde senza degradazione. Queste architetture, originariamente sviluppate per il riconoscimento di immagini naturali sul dataset ImageNet, sono state ampiamente adattate per l'istopatologia.
+
+Il processo di apprendimento delle caratteristiche gerarchiche è guidato dalla \emph{backpropagation}---l'algoritmo con cui il gradiente della funzione di perdita rispetto a ciascun parametro della rete viene calcolato e utilizzato per aggiornare i pesi tramite discesa del gradiente. Durante l'addestramento, alla rete vengono presentati patch di immagini etichettati in mini-batch; le probabilità di classe predette vengono confrontate con le etichette vere utilizzando una funzione di perdita (tipicamente l'entropia incrociata), e il segnale di errore risultante viene propagato all'indietro attraverso la rete per aggiornare tutti i pesi. Nel corso di molte iterazioni di addestramento, i kernel in ogni strato convergono per rilevare le caratteristiche più discriminative per il compito target. Il numero di iterazioni di addestramento, il tasso di apprendimento e la dimensione del batch sono \emph{iperparametri} che devono essere attentamente regolati per ottenere buone prestazioni di generalizzazione.
+
+\subsection{Transfer Learning e Fine-Tuning}
+
+Addestrare una CNN profonda da zero richiede milioni di esempi etichettati e risorse computazionali sostanziali. In patologia, i grandi dataset annotati sono costosi da produrre perché l'annotazione da parte di esperti richiede molto tempo ed è soggetta a variabilità inter-osservatore. Il \emph{transfer learning} affronta questo vincolo inizializzando una CNN con pesi pre-addestrati su un grande dataset di uso generale---più comunemente ImageNet, che contiene 1,2 milioni di immagini naturali in 1.000 categorie---e adattando poi la rete al compito di patologia target. La logica è che le caratteristiche di basso e medio livello apprese da immagini naturali (bordi, texture, gradienti di colore) sono ampiamente trasferibili alle immagini istopatologiche, anche se i due domini differiscono sostanzialmente nell'aspetto.
+
+Il \emph{fine-tuning} si riferisce al processo di continuazione dell'ottimizzazione basata sul gradiente sulla rete pre-addestrata utilizzando il dataset target. Due strategie sono comuni. Nell'\emph{estrazione di caratteristiche}, gli strati convoluzionali vengono congelati e solo gli strati completamente connessi finali vengono riaddestrati; questo è appropriato quando il dataset target è piccolo e i domini sorgente e target sono dissimili. Nel \emph{fine-tuning completo}, tutti gli strati vengono aggiornati con un piccolo tasso di apprendimento, consentendo alla rete di adattare le sue rappresentazioni al dominio target; questo è preferito quando il dataset target è sufficientemente grande. Strategie intermedie---congelare gli strati iniziali mentre si esegue il fine-tuning di quelli successivi---sono anch'esse ampiamente utilizzate. Il transfer learning ha dimostrato di migliorare sostanzialmente le prestazioni e ridurre i tempi di addestramento in istopatologia, in particolare per i tipi di tumore rari dove i dati annotati sono scarsi \cite{coudray2018}.
+
+\subsection{Applicazioni in Patologia}
+
+\paragraph{Classificazione del Cancro al Seno.}
+Una delle prime e più clinicamente rilevanti applicazioni delle CNN in patologia è la classificazione dell'istologia del cancro al seno in carcinoma invasivo e carcinoma duttale \emph{in situ} (DCIS). Le CNN addestrate su sezioni colorate con ematossilina ed eosina (E\&E) hanno dimostrato prestazioni comparabili a quelle di patologi specialisti del seno in questo compito, con valori dell'area sotto la curva caratteristica operativa del ricevitore (AUC) superiori a 0,95 in diversi studi di validazione indipendenti. La capacità di automatizzare questa distinzione è clinicamente significativa perché influenza direttamente la gestione chirurgica: il carcinoma invasivo richiede la biopsia del linfonodo sentinella, mentre il DCIS no \cite{coudray2018}.
+
+\paragraph{Rilevamento delle Metastasi Linfonodali: La Sfida CAMELYON.}
+Le grandi sfide CAMELYON16 e CAMELYON17, organizzate sotto gli auspici del Gruppo di Analisi delle Immagini Diagnostiche del Centro Medico Universitario di Radboud, hanno fornito un benchmark di riferimento per il rilevamento basato su CNN delle metastasi del cancro al seno nelle sezioni dei linfonodi sentinella \cite{ehteshami2017}. I team partecipanti hanno addestrato CNN per classificare i patch di immagini come tumore o non-tumore, aggregando poi le predizioni a livello di patch per generare mappe di probabilità a livello di vetrino. L'algoritmo vincitore in CAMELYON16 ha raggiunto un AUC di 0,994 sul set di test, superando le prestazioni di un patologo che lavora sotto vincoli di tempo. L'analisi successiva ha rivelato che l'algoritmo era particolarmente abile nel rilevare cellule tumorali isolate e micrometastasi---lesioni facilmente trascurate nell'esame di routine---evidenziando il potenziale dell'IA come rete di sicurezza per i reperti a bassa prevalenza ma clinicamente importanti.
+
+\paragraph{Classificazione di Gleason del Cancro alla Prostata: La Sfida PANDA.}
+La sfida PANDA (Prostate cANcer graDe Assessment), riportata da Bulten e colleghi su \emph{Nature Medicine}, ha valutato gli algoritmi di apprendimento profondo per la classificazione di Gleason delle biopsie prostatiche con ago sottile \cite{bulten2022}. La classificazione di Gleason---l'assegnazione di un punteggio da 1 a 5 basato sull'architettura ghiandolare---è il fattore prognostico più importante nel cancro alla prostata, ma è soggetta a sostanziale variabilità inter-osservatore anche tra uropatologi esperti. La sfida PANDA ha dimostrato che gli algoritmi con le migliori prestazioni hanno raggiunto un accordo con uno standard di riferimento derivato da più patologi esperti comparabile all'accordo tra singoli patologi esperti, con valori di kappa ponderato quadratico superiori a 0,87. Questo risultato ha stabilito che l'apprendimento profondo può raggiungere prestazioni di livello clinico in un compito di classificazione complesso e multi-classe con conseguenze cliniche dirette.
+
+% ============================================================
+\section{Apprendimento Multi-Istanza per Immagini di Vetrini Interi}
+\label{sec:ch4_mil}
+% ============================================================
+
+\subsection{La Sfida delle Immagini di Vetrini Interi Gigapixel}
+
+Un'immagine di vetrino intero digitalizzata a ingrandimento $20\times$ contiene tipicamente tra $10^8$ e $10^9$ pixel, corrispondenti a una dimensione di file di diversi gigabyte in formato non compresso. Questa scala presenta una sfida computazionale fondamentale: nessuna GPU attuale dispone di memoria sufficiente per elaborare un'intera WSI come singolo tensore di input. La soluzione ingenua---sottocampionare l'immagine a una risoluzione compatibile con la memoria GPU---scarta il dettaglio a livello cellulare essenziale per molti compiti diagnostici. Un approccio alternativo, e quello più ampiamente adottato nel settore, è decomporre la WSI in un gran numero di \emph{patch} non sovrapposti o sovrapposti (chiamati anche \emph{tile}), tipicamente di dimensione $256 \times 256$ o $512 \times 512$ pixel, ed elaborare ogni patch indipendentemente attraverso un estrattore di caratteristiche CNN \cite{campanella2019}.
+
+L'estrazione dei patch è preceduta dalla segmentazione del tessuto---l'identificazione delle regioni contenenti tessuto e l'esclusione del vetro di sfondo, degli artefatti e dei segni di penna. La segmentazione del tessuto viene comunemente eseguita utilizzando la sogliatura di Otsu nello spazio colore HSV o, sempre più spesso, utilizzando una CNN leggera addestrata a questo scopo. Il numero di patch estratti da una singola WSI può variare da poche centinaia a diverse decine di migliaia, a seconda dell'area del tessuto e della dimensione del patch. Ogni patch viene poi codificato in un vettore di caratteristiche compatto da un encoder CNN pre-addestrato, producendo un \emph{bag di caratteristiche} che rappresenta l'intero vetrino.
+
+Una considerazione critica nell'analisi basata su patch è la scelta del livello di ingrandimento. Diverse caratteristiche diagnostiche sono meglio apprezzate a diversi ingrandimenti: la morfologia nucleare è più chiaramente visibile a $40\times$, l'architettura ghiandolare a $10\times$, e l'organizzazione a livello tissutale a $5\times$ o inferiore. Gli approcci multi-scala che estraggono patch a più livelli di ingrandimento e combinano le caratteristiche risultanti hanno dimostrato di superare gli approcci a scala singola nei compiti che richiedono l'integrazione di informazioni attraverso scale spaziali, come la classificazione di Gleason e la caratterizzazione del microambiente tumorale \cite{bulten2022}.
+
+\subsection{Il Framework dell'Apprendimento Multi-Istanza}
+
+L'\emph{apprendimento multi-istanza} (MIL) è un paradigma di apprendimento debolmente supervisionato idealmente adatto al problema dell'analisi WSI \cite{lu2020}. Nel framework MIL, ogni WSI viene trattata come un \emph{bag} di istanze (patch), e al bag viene assegnata una singola etichetta (ad esempio, tumore-positivo o tumore-negativo) senza specificare quali singole istanze siano responsabili dell'etichetta. Questo corrisponde precisamente alla realtà clinica: un patologo assegna una diagnosi all'intero vetrino, non ai singoli patch, e l'annotazione dei singoli patch su larga scala è proibitivamente costosa.
+
+L'assunzione standard del MIL è che un bag sia positivo se e solo se almeno una delle sue istanze è positiva. Sotto questa assunzione, il problema di apprendimento consiste nell'addestrare un modello che possa classificare correttamente i bag utilizzando solo etichette a livello di bag. I primi approcci MIL aggregavano le predizioni a livello di patch utilizzando semplici operazioni di pooling---max-pooling (che assegna l'etichetta del bag in base al patch più sospetto) o mean-pooling (che media le predizioni su tutti i patch). Sebbene computazionalmente efficienti, questi approcci trattano i patch come indipendenti e ignorano le relazioni spaziali e contestuali tra di essi.
+
+Il framework MIL è particolarmente potente perché consente l'\emph{apprendimento debolmente supervisionato} dagli archivi clinici di routine. Invece di richiedere l'annotazione esperta dei singoli patch---un processo che richiederebbe migliaia di ore per un grande dataset---i modelli MIL possono essere addestrati utilizzando solo le etichette diagnostiche registrate di routine nel sistema informativo di laboratorio. Questo riduce drasticamente l'onere di annotazione e consente la costruzione di dataset di addestramento di ordini di grandezza più grandi di quelli ottenibili con approcci completamente supervisionati. Campanella e colleghi hanno dimostrato questo principio su larga scala, addestrando un modello MIL su oltre 44.000 WSI del Memorial Sloan Kettering Cancer Center utilizzando solo etichette diagnostiche di routine \cite{campanella2019}.
+
+\subsection{MIL Basato sull'Attenzione e CLAM}
+
+Un significativo progresso nel MIL per la patologia è stato l'introduzione dell'\emph{aggregazione basata sull'attenzione} da parte di Lu e colleghi nel loro framework CLAM (Clustering-constrained Attention Multiple instance learning) \cite{lu2020}. Nel MIL basato sull'attenzione, una rete di attenzione apprendibile assegna un peso scalare a ogni patch, riflettendo la sua rilevanza stimata per la predizione a livello di vetrino. La rappresentazione del bag viene poi calcolata come la somma ponderata dei vettori di caratteristiche dei patch, con i patch ad alta attenzione che contribuiscono maggiormente alla predizione finale. Questo meccanismo è interpretabile: i pesi di attenzione possono essere visualizzati come una mappa di calore sovrapposta alla WSI, evidenziando le regioni che il modello considera più diagnosticamente informative.
+
+CLAM estende il MIL basato sull'attenzione con due componenti aggiuntive. In primo luogo, impiega una perdita di clustering a livello di istanza che incoraggia i patch all'interno dello stesso cluster di attenzione ad avere rappresentazioni di caratteristiche simili, migliorando la qualità dei pesi di attenzione appresi. In secondo luogo, supporta la classificazione multi-classe attraverso una strategia uno-contro-tutti, consentendo la predizione simultanea di più categorie diagnostiche. CLAM è stato validato su grandi coorti del Cancer Genome Atlas (TCGA) e ha dimostrato forti prestazioni nei compiti di classificazione dei sottotipi attraverso più tipi di cancro, incluso adenocarcinoma polmonare versus carcinoma a cellule squamose, e sottotipi di carcinoma a cellule renali \cite{lu2020}.
+
+\subsection{Applicazioni di Livello Clinico}
+
+Il potenziale clinico dell'analisi WSI basata su MIL è stato dimostrato in una gamma di tipi di cancro e compiti diagnostici. Oltre al fondamentale studio di Campanella, i modelli MIL sono stati applicati al rilevamento dell'instabilità dei microsatelliti nel cancro colorettale, alla predizione dello stato di mutazione BRCA1/2 nel cancro al seno, e all'identificazione di alterazioni genomiche azionabili da immagini E\&E---compiti che tradizionalmente richiedono costosi test molecolari. Consentendo la profilazione molecolare virtuale da vetrini E\&E di routine, i modelli basati su MIL hanno il potenziale per triaggiare i pazienti per i test molecolari, riducendo i costi e i tempi di risposta \cite{song2023}.
+
+Il paradigma MIL consente anche la \emph{predizione della sopravvivenza} e la \emph{classificazione dei sottotipi molecolari} direttamente da immagini E\&E, compiti che sarebbero impossibili con la sola supervisione a livello di patch. Aggregando le caratteristiche dei patch attraverso l'intero microambiente tumorale, i modelli MIL possono catturare caratteristiche globali dell'architettura tissutale---come il rapporto tra tumore e stroma, la densità dei linfociti infiltranti il tumore e l'organizzazione spaziale della necrosi---che sono predittive degli esiti clinici. Queste capacità posizionano il MIL come framework fondamentale per la prossima generazione di strumenti prognostici basati sull'IA in patologia.
+
+% ============================================================
+\section{Modelli Transformer e Auto-Attenzione in Patologia}
+\label{sec:ch4_transformer}
+% ============================================================
+
+\subsection{L'Architettura Transformer}
+
+L'architettura transformer, introdotta da Vaswani e colleghi nel 2017 per l'elaborazione del linguaggio naturale, è diventata da allora il paradigma dominante nell'apprendimento automatico attraverso le modalità. L'innovazione centrale del transformer è il \emph{meccanismo di auto-attenzione}, che consente a ogni elemento di una sequenza di input di prestare attenzione---ed essere influenzato da---ogni altro elemento, indipendentemente dalla loro distanza nella sequenza. Questo è in netto contrasto con le CNN, i cui kernel convoluzionali hanno un campo recettivo fisso e locale: un kernel $3 \times 3$ può osservare direttamente solo un vicinato $3 \times 3$, e le dipendenze a lungo raggio devono essere costruite gradualmente attraverso molti strati impilati.
+
+Nel meccanismo di auto-attenzione, ogni elemento di input viene proiettato in tre vettori: una \emph{query} ($Q$), una \emph{chiave} ($K$) e un \emph{valore} ($V$). Il peso di attenzione tra due elementi viene calcolato come il prodotto scalare scalato dei loro vettori query e chiave, normalizzato da una funzione softmax. L'output per ogni elemento è la somma ponderata di tutti i vettori valore, dove i pesi sono i punteggi di attenzione. Formalmente:
+\[
+  \text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V,
+\]
+dove $d_k$ è la dimensionalità dei vettori chiave. Il fattore di scala $1/\sqrt{d_k}$ impedisce ai prodotti scalari di crescere in magnitudine, il che spingerebbe il softmax in regioni di gradiente molto piccolo.
+
+L'\emph{attenzione multi-testa} estende questo meccanismo eseguendo $h$ operazioni di attenzione parallele (``teste'') con diverse proiezioni apprese, concatenando poi e proiettando linearmente gli output. Ogni testa può prestare attenzione a diversi aspetti dell'input---per esempio, una testa potrebbe catturare le relazioni di morfologia nucleare mentre un'altra cattura l'organizzazione stromale. La \emph{codifica posizionale} viene aggiunta agli embedding di input per iniettare informazioni sulla posizione spaziale di ogni elemento, poiché il meccanismo di auto-attenzione è intrinsecamente invariante alla permutazione e sarebbe altrimenti cieco all'ordine spaziale. Nel transformer originale vengono utilizzate codifiche posizionali sinusoidali; nei Vision Transformer, gli embedding posizionali apprendibili sono più comuni.
+
+\subsection{Vision Transformer}
+
+Il \emph{Vision Transformer} (ViT), introdotto da Dosovitskiy e colleghi, adatta l'architettura transformer ai dati di immagini dividendo un'immagine in una griglia di patch non sovrapposti (tipicamente $16 \times 16$ pixel), incorporando linearmente ogni patch in un vettore ed elaborando la sequenza risultante di embedding di patch con un encoder transformer standard. Un token \texttt{[CLS]} apprendibile viene preposto alla sequenza; la sua rappresentazione finale viene utilizzata per la classificazione. Il ViT ha dimostrato che, con dati di addestramento sufficienti, un'architettura transformer pura può eguagliare o superare le prestazioni delle CNN sui benchmark di classificazione delle immagini, senza alcun bias induttivo convoluzionale.
+
+Il vantaggio chiave del ViT rispetto alla CNN per la patologia è il suo \emph{campo recettivo globale}: fin dal primo strato, ogni patch può prestare attenzione a ogni altro patch nell'immagine. Questo è particolarmente prezioso in istopatologia, dove le caratteristiche diagnostiche spesso coinvolgono relazioni spaziali a lungo raggio---per esempio, la distribuzione spaziale dei linfociti infiltranti il tumore rispetto al fronte invasivo, o la relazione tra architettura ghiandolare e desmoplasia stromale. Studi comparativi hanno confermato che i modelli basati su ViT superano i modelli basati su CNN su diversi benchmark di patologia, in particolare quando pre-addestrati su grandi dataset specifici per la patologia \cite{deininger2022}.
+
+Una limitazione pratica del ViT è la sua complessità computazionale quadratica rispetto alla lunghezza della sequenza: l'operazione di auto-attenzione richiede il calcolo dei punteggi di attenzione a coppie tra tutte le coppie di patch, il che diventa proibitivamente costoso per sequenze molto lunghe. Per l'analisi a livello di WSI, dove il numero di patch può raggiungere decine di migliaia, questa limitazione è significativa. Le architetture transformer gerarchiche---come Swin Transformer, che calcola l'attenzione all'interno di finestre locali e sposta le finestre tra gli strati---affrontano questa limitazione riducendo la lunghezza effettiva della sequenza ad ogni strato di attenzione, consentendo comunque il flusso di informazioni a lungo raggio attraverso la struttura gerarchica \cite{xu2024}.
+
+\subsection{Modelli Fondazionali Specifici per la Patologia}
+
+Un \emph{modello fondazionale} è una grande rete neurale pre-addestrata su un dataset ampio e diversificato utilizzando l'apprendimento auto-supervisionato, che può poi essere sottoposta a fine-tuning o utilizzata come estrattore di caratteristiche per un'ampia gamma di compiti a valle. Il concetto, originariamente sviluppato nell'elaborazione del linguaggio naturale (ad esempio, BERT, GPT), è stato applicato con grande successo all'imaging patologico.
+
+\textbf{UNI} è un modello fondazionale visivo pre-addestrato su oltre 100.000 WSI di diversi tipi di tessuto e protocolli di colorazione utilizzando il framework di apprendimento auto-supervisionato DINOv2. UNI produce embedding di caratteristiche a livello di patch che si generalizzano su un'ampia gamma di compiti a valle---inclusa la classificazione dei sottotipi di cancro, la predizione della sopravvivenza e la predizione delle mutazioni---senza fine-tuning specifico per il compito, raggiungendo prestazioni all'avanguardia su più benchmark \cite{wang2024}.
+
+\textbf{CONCH} (CONtrastive learning from Captions for Histopathology) è un modello fondazionale visione-linguaggio addestrato su dati immagine-testo accoppiati provenienti da referti patologici e risorse educative. Allineando le rappresentazioni visive e testuali in uno spazio di embedding condiviso, CONCH consente la classificazione zero-shot utilizzando prompt in linguaggio naturale (ad esempio, ``carcinoma duttale invasivo, grado 3'') e supporta compiti di recupero cross-modale \cite{wang2024}.
+
+\textbf{Prov-GigaPath} è un modello fondazionale per vetrini interi sviluppato da Microsoft Research e Providence Health, pre-addestrato su oltre 1,3 miliardi di tile di immagini patologiche provenienti da 171.189 WSI \cite{xu2024}. Prov-GigaPath impiega un'architettura gerarchica che elabora i tile a livello di patch utilizzando un encoder ViT e poi aggrega le rappresentazioni dei patch a livello di vetrino utilizzando un transformer basato su LongNet, consentendogli di modellare le dipendenze a lungo raggio attraverso l'intero vetrino. Prov-GigaPath ha raggiunto prestazioni all'avanguardia in 26 su 39 compiti di sottotipizzazione del cancro e pathomics, dimostrando il valore della scala nel pre-addestramento dei modelli fondazionali per la patologia.
+
+Questi modelli fondazionali rappresentano un cambiamento di paradigma nella patologia computazionale: invece di addestrare modelli specifici per il compito da zero, i professionisti possono sfruttare potenti rappresentazioni pre-addestrate e adattarle a nuovi compiti con dati etichettati minimi---una capacità di particolare valore nei tipi di tumore rari e negli ambienti con risorse limitate \cite{song2023}.
+
+% ============================================================
+\section{Modelli Linguistici di Grandi Dimensioni per la Generazione di Referti Patologici}
+\label{sec:ch4_llm}
+% ============================================================
+
+\subsection{Architettura e Capacità dei Modelli Linguistici di Grandi Dimensioni}
+
+I modelli linguistici di grandi dimensioni (LLM) sono reti neurali basate su transformer addestrate su vasti corpus di testo---tipicamente centinaia di miliardi di token tratti da libri, letteratura scientifica, cartelle cliniche e internet---utilizzando un obiettivo auto-supervisionato come la predizione del token successivo (come nei modelli in stile GPT) o la modellazione del linguaggio mascherato (come nei modelli in stile BERT). La scala di questi modelli---che va da centinaia di milioni a centinaia di miliardi di parametri---li dota di capacità straordinarie: possono generare testo fluente e contestualmente appropriato, rispondere a domande, riassumere documenti, tradurre tra lingue ed eseguire ragionamenti in più fasi, tutto senza addestramento specifico per il compito.
+
+Nei modelli in stile GPT (generative pre-trained transformer), la rete viene addestrata a predire il token successivo in una sequenza dati tutti i token precedenti. Durante l'inferenza, il testo viene generato in modo autoregressivo: il modello produce un token alla volta, aggiungendo ogni token generato al contesto di input prima di predire il successivo. La qualità del testo generato è controllata da un parametro di \emph{temperatura} che modula la nitidezza della distribuzione di probabilità dell'output: temperature basse producono output più deterministici e conservativi, mentre temperature elevate introducono maggiore diversità e creatività. Il \emph{fine-tuning con istruzioni} e l'\emph{apprendimento per rinforzo dal feedback umano} (RLHF) vengono utilizzati per allineare il comportamento degli LLM alle preferenze umane, producendo modelli che seguono le istruzioni in modo affidabile ed evitano output dannosi.
+
+L'architettura transformer che è alla base degli LLM è identica in linea di principio a quella descritta nella sezione precedente, con la differenza fondamentale che gli LLM operano su sequenze di token di testo piuttosto che su patch di immagini. Ogni token viene mappato in un vettore di embedding ad alta dimensione, e l'encoder o decoder transformer elabora la sequenza di embedding utilizzando l'auto-attenzione multi-testa e strati feed-forward. L'enorme scala dell'addestramento degli LLM---sia in termini di parametri del modello che di dati di addestramento---consente \emph{capacità emergenti} non presenti nei modelli più piccoli, tra cui l'apprendimento nel contesto (la capacità di eseguire nuovi compiti da pochi esempi forniti nel prompt) e il ragionamento a catena di pensiero (la capacità di risolvere problemi complessi generando passaggi di ragionamento intermedi).
+
+\subsection{Applicazioni nella Generazione di Referti Patologici}
+
+I referti patologici sono documenti strutturati che comunicano i risultati diagnostici, le informazioni prognostiche e le raccomandazioni cliniche ai medici curanti. La generazione di referti di alta qualità, completi e formattati in modo coerente è una componente che richiede molto tempo del carico di lavoro del patologo, e gli errori o le omissioni nei referti possono avere conseguenze dirette sulla sicurezza del paziente. Gli LLM offrono il potenziale per automatizzare o semi-automatizzare diversi aspetti della generazione di referti, inclusa la trascrizione dei risultati dettati, la compilazione di modelli di referto \emph{sinottico} (strutturato, basato su checklist) e la sintesi di riassunti narrativi da dati strutturati.
+
+La \emph{refertazione sinottica}---l'uso di modelli standardizzati e itemizzati che catturano tutti gli elementi di dati richiesti per un dato tipo di campione---è stata sostenuta da organismi professionali come il Royal College of Pathologists e il College of American Pathologists come mezzo per migliorare la completezza e la coerenza dei referti. Gli LLM possono essere sottoposti a fine-tuning per estrarre elementi di dati strutturati da dettature in testo libero e compilare automaticamente i modelli sinotici, riducendo lo sforzo manuale richiesto e diminuendo il tasso di elementi di dati mancanti. Gli studi hanno dimostrato che gli LLM possono raggiungere un'elevata accuratezza nei compiti di estrazione di informazioni dai referti patologici, inclusi tipo di tumore, grado, stadio, stato dei margini e invasione linfovascolare \cite{bankhead2022}.
+
+L'\emph{elaborazione del linguaggio naturale} (NLP) degli archivi di referti patologici esistenti consente studi retrospettivi su larga scala che sarebbero impraticabili con l'estrazione manuale dei dati. Gli LLM possono essere utilizzati per identificare coorti di pazienti con diagnosi specifiche, estrarre elementi di dati quantitativi e segnalare referti che richiedono una revisione---per esempio, referti che menzionano un reperto inatteso o che mancano di un elemento di dati richiesto. Questa capacità è sempre più importante per la garanzia della qualità, l'audit e la ricerca nei dipartimenti di patologia. Inoltre, gli LLM possono assistere nell'armonizzazione della terminologia tra le istituzioni, mappando i termini diagnostici locali su ontologie standardizzate come SNOMED-CT, facilitando così la condivisione dei dati e la ricerca multicentrica.
+
+\subsection{LLM Multimodali e Modelli Visione-Linguaggio}
+
+Un'estensione naturale degli LLM alla patologia è lo sviluppo di \emph{modelli visione-linguaggio} (VLM) che possono elaborare sia immagini che testo. Modelli come GPT-4V, LLaVA e varianti specifiche per la patologia possono accettare un'immagine istopatologica come input insieme a un prompt testuale e generare una risposta testuale---per esempio, descrivendo le caratteristiche morfologiche visibili nell'immagine, suggerendo una diagnosi differenziale o rispondendo a una specifica domanda clinica. Questi modelli vengono addestrati allineando le rappresentazioni visive e testuali, tipicamente utilizzando obiettivi di apprendimento contrastivo simili a quelli utilizzati in CONCH \cite{wang2024}. Il modello CONCH, per esempio, può essere sollecitato con una descrizione in linguaggio naturale di un tipo di tessuto e recupererà i patch visivamente più simili da un grande database, consentendo la ricerca basata su immagini e la classificazione zero-shot.
+
+\subsection{Limitazioni e Necessità di Validazione}
+
+Nonostante le loro impressionanti capacità, gli LLM presentano diverse importanti limitazioni che devono essere attentamente considerate prima dell'impiego clinico. La più significativa è l'\emph{allucinazione}: la tendenza degli LLM a generare affermazioni plausibili ma fattualmente errate. In un contesto clinico, una diagnosi allucinata, un grado tumorale errato o un riferimento fabbricato a una linea guida clinica potrebbero avere gravi conseguenze per la sicurezza del paziente. L'allucinazione si verifica perché gli LLM sono addestrati a produrre testo fluente e contestualmente coerente, non a verificare l'accuratezza fattuale; non hanno alcun meccanismo per distinguere tra informazioni che hanno appreso in modo affidabile e informazioni che stanno confabulando.
+
+Le limitazioni aggiuntive includono il \emph{limite di conoscenza}---gli LLM sono addestrati su dataset statici e potrebbero non riflettere i criteri diagnostici o le linee guida cliniche più recenti---e lo \emph{spostamento della distribuzione}, per cui un modello addestrato su referti di un'istituzione potrebbe avere prestazioni scadenti su referti di un'altra a causa di differenze nella terminologia, nella formattazione e nella pratica clinica. Il \emph{bias} è anche una preoccupazione: se il corpus di addestramento sovra-rappresenta certi gruppi demografici, tipi di tumore o contesti clinici, le prestazioni del modello potrebbero essere diseguali tra le popolazioni di pazienti. Per queste ragioni, una rigorosa validazione prospettica nell'ambiente clinico target è un prerequisito essenziale per l'impiego degli LLM in patologia, e la supervisione umana deve essere mantenuta in tutte le fasi del flusso di lavoro di refertazione \cite{song2023}.
+
+% ============================================================
+\section{Modelli Multimodali: Combinazione di Immagini e Dati Clinici}
+\label{sec:ch4_multimodal}
+% ============================================================
+
+\subsection{Razionale per l'Integrazione Multimodale}
+
+Una limitazione fondamentale dei modelli di IA basati solo su immagini è che accedono solo a una frazione delle informazioni disponibili per il processo decisionale clinico. Nella pratica oncologica di routine, il referto del patologo viene interpretato nel contesto della storia clinica, dei risultati radiologici, degli esami di laboratorio e---sempre più---dei dati di profilazione molecolare. I modelli di IA multimodali che integrano informazioni da più modalità di dati hanno il potenziale per produrre predizioni più accurate e clinicamente azionabili rispetto ai modelli unimodali, sfruttando informazioni complementari non disponibili in nessuna singola modalità \cite{song2023}.
+
+L'integrazione delle caratteristiche delle immagini istopatologiche con i dati genomici è di particolare interesse a causa della relazione ben consolidata tra morfologia tumorale e biologia molecolare. La morfologia tumorale riflette le alterazioni genetiche ed epigenetiche sottostanti che guidano l'oncogenesi, e viceversa, i profili molecolari influenzano l'aspetto istologico dei tumori. I modelli multimodali che modellano congiuntamente queste relazioni possono, in linea di principio, predire le caratteristiche molecolari dalla morfologia (consentendo la profilazione molecolare virtuale), predire gli esiti clinici con maggiore accuratezza rispetto a entrambe le modalità singolarmente, e identificare nuovi correlati morfologici delle alterazioni molecolari che potrebbero non essere evidenti all'occhio umano.
+
+\subsection{Predizione dei Sottotipi Molecolari da Immagini E\&E}
+
+Diversi studi hanno dimostrato che i modelli di apprendimento profondo addestrati su immagini E\&E possono predire le caratteristiche molecolari dei tumori con un'accuratezza clinicamente utile. Coudray e colleghi hanno dimostrato che una CNN addestrata su immagini E\&E di adenocarcinoma polmonare da TCGA poteva predire lo stato di mutazione di sei geni---inclusi \emph{STK11}, \emph{EGFR} e \emph{KRAS}---con valori AUC compresi tra 0,73 e 0,85 \cite{coudray2018}. Questo risultato suggerisce che le conseguenze morfologiche di queste mutazioni sono rilevabili dall'apprendimento profondo, anche se non sono immediatamente evidenti all'osservatore umano. Risultati simili sono stati riportati per la predizione dell'instabilità dei microsatelliti (MSI) da immagini E\&E di cancro colorettale, con implicazioni per la valutazione dell'idoneità all'immunoterapia.
+
+La predizione dei sottotipi molecolari---come i sottotipi intrinseci PAM50 del cancro al seno (Luminale A, Luminale B, HER2-arricchito, Basale) o i sottotipi molecolari di consenso del cancro colorettale---da immagini E\&E è un compito più complesso che richiede al modello di integrare più caratteristiche morfologiche attraverso l'intero tumore. I modelli basati su MIL con meccanismi di attenzione sono ben adatti a questo compito, poiché possono aggregare le caratteristiche a livello di patch da tutta la WSI concentrando l'attenzione sulle regioni più informative. I modelli multimodali che combinano le caratteristiche E\&E con variabili cliniche (età, stadio, storia del trattamento) superano costantemente i modelli basati solo su immagini nei compiti di predizione dei sottotipi \cite{lu2020}.
+
+\subsection{Predizione della Sopravvivenza Combinando Istologia e Genomica}
+
+La predizione della sopravvivenza---la stima del tempo alla morte o alla recidiva della malattia di un paziente dai dati clinici e patologici di base---è una delle applicazioni clinicamente più importanti dell'IA multimodale in oncologia. I modelli unimodali basati sull'istologia o sulla genomica da soli hanno dimostrato valore prognostico, ma i modelli multimodali che combinano entrambi i tipi di dati raggiungono costantemente prestazioni superiori. Gli studi che integrano le caratteristiche WSI (estratte utilizzando un framework MIL) con i dati di sequenziamento dell'RNA in bulk hanno raggiunto valori dell'indice di concordanza (C-index) significativamente migliori per la predizione della sopravvivenza globale attraverso più tipi di cancro TCGA rispetto a entrambi i modelli unimodali \cite{song2023}.
+
+La logica biologica di questo miglioramento è che l'istologia e la genomica catturano aspetti complementari della biologia tumorale: l'istologia riflette l'organizzazione spaziale del microambiente tumorale---inclusa la densità e la distribuzione dei linfociti infiltranti il tumore, l'entità della necrosi e il grado di desmoplasia stromale---mentre la genomica cattura i driver molecolari della crescita tumorale e della resistenza al trattamento. Modellando congiuntamente questi segnali complementari, i modelli multimodali possono identificare sottogruppi di pazienti con prognosi distinte che non sono separabili da nessuna delle due modalità singolarmente. L'integrazione dei dati di imaging radiologico---come le caratteristiche CT o MRI estratte da un modello di apprendimento profondo separato---come terza modalità ha dimostrato di fornire informazioni prognostiche aggiuntive oltre all'istologia e alla genomica in diversi tipi di cancro.
+
+\subsection{Strategie di Fusione delle Caratteristiche}
+
+L'integrazione delle caratteristiche da più modalità può essere ottenuta attraverso tre strategie principali, che differiscono nella fase in cui le rappresentazioni specifiche della modalità vengono combinate.
+
+La \emph{fusione precoce} (chiamata anche \emph{fusione a livello di dati}) concatena le caratteristiche grezze o minimamente elaborate da tutte le modalità in un singolo vettore di input prima di qualsiasi elaborazione specifica della modalità. Questo approccio è semplice da implementare ma richiede che tutte le modalità siano rappresentate in uno spazio di caratteristiche comune, il che potrebbe non essere semplice quando le modalità differiscono sostanzialmente in dimensionalità e struttura (ad esempio, un'immagine gigapixel rispetto a un vettore di espressione genica a 20.000 dimensioni).
+
+La \emph{fusione tardiva} (chiamata anche \emph{fusione a livello di decisione}) addestra modelli separati per ogni modalità e combina le loro predizioni---tipicamente tramite media, votazione o una combinazione appresa---nella fase di output. La fusione tardiva è robusta alle modalità mancanti (un modello può ancora produrre una predizione se una modalità non è disponibile) e consente alle architetture specifiche della modalità di essere ottimizzate indipendentemente. Tuttavia, non consente al modello di apprendere le interazioni cross-modali.
+
+La \emph{fusione intermedia} (chiamata anche \emph{fusione a livello di caratteristiche}) combina le rappresentazioni specifiche della modalità in uno strato intermedio della rete, consentendo al modello di apprendere le interazioni cross-modali beneficiando comunque dell'estrazione di caratteristiche specifica della modalità. I meccanismi basati sull'attenzione---come l'attenzione cross-modale, in cui i vettori query di una modalità prestano attenzione alle coppie chiave-valore di un'altra---sono particolarmente efficaci per la fusione intermedia e sono stati adottati in diversi modelli di patologia multimodale all'avanguardia \cite{song2023,xu2024}. La scelta della strategia di fusione dovrebbe essere guidata dalla dimensione del dataset disponibile, dal grado di complementarità delle modalità e dal requisito clinico di robustezza ai dati mancanti.
+
+% ============================================================
+\section{Supporto Tecnico nei Flussi di Lavoro Assistiti dall'IA}
+\label{sec:ch4_technical}
+% ============================================================
+
+\subsection{Il Ruolo del Biologo nelle Pipeline di IA}
+
+L'impiego di strumenti di IA in un laboratorio di patologia clinica non diminuisce l'importanza del biologo (BMS); piuttosto, trasforma ed estende il ruolo del BMS in modi che richiedono nuove competenze tecniche. Man mano che i sistemi di IA passano da prototipi di ricerca a strumenti clinici validati, il BMS è sempre più chiamato ad agire come interfaccia tra il sistema di IA e il flusso di lavoro clinico---garantendo che i dati siano preparati correttamente, che gli output dell'IA siano interpretati in modo appropriato e che il patologo riceva le informazioni necessarie per prendere una decisione diagnostica sicura e informata \cite{bankhead2022}.
+
+Il BMS deve sviluppare una comprensione operativa dei sistemi di IA impiegati nel proprio laboratorio, inclusi i compiti per cui sono progettati, le popolazioni su cui sono stati validati, le loro caratteristiche di prestazione note (sensibilità, specificità, AUC) e le loro modalità di fallimento note. Questa comprensione è essenziale per l'interpretazione appropriata degli output dell'IA e per l'identificazione dei casi in cui l'output dell'IA dovrebbe essere trattato con cautela. Non richiede che il BMS abbia competenze in apprendimento automatico o ingegneria del software, ma richiede l'impegno con la documentazione tecnica e i rapporti di validazione forniti dallo sviluppatore del sistema di IA.
+
+\subsection{Preparazione dei Dati per le Pipeline di IA}
+
+La qualità degli output dell'IA dipende fondamentalmente dalla qualità dei dati di input. Per i sistemi di IA basati su WSI, ciò significa che i vetrini devono essere scansionati al corretto ingrandimento, con la messa a fuoco appropriata e senza artefatti come pieghe del tessuto, bolle d'aria o eterogeneità di colorazione. Il BMS è responsabile dell'implementazione e del monitoraggio delle procedure di controllo della qualità nelle fasi pre-analitiche e analitiche---incluso il processamento del tessuto, il sezionamento, la colorazione e la scansione---per garantire che i vetrini soddisfino gli standard di qualità richiesti dal sistema di IA. Molti sistemi di IA includono moduli di controllo della qualità automatizzati che segnalano i vetrini con area tissutale insufficiente, regioni fuori fuoco o artefatti di colorazione; il BMS deve comprendere i criteri utilizzati da questi moduli e adottare misure correttive quando i vetrini vengono rifiutati.
+
+La preparazione dei dati comprende anche la gestione dei metadati---identificatori del paziente, tipo di campione, indicazione clinica, protocollo di colorazione---che devono essere correttamente associati a ogni WSI nel sistema informativo di laboratorio (LIS). Gli errori nei metadati possono portare a una classificazione errata dei campioni, all'applicazione errata dei modelli di IA (ad esempio, applicare un modello di classificazione del cancro alla prostata a una biopsia del seno) o al mancato recupero dei risultati dell'IA al momento della refertazione. Il BMS deve quindi mantenere pratiche rigorose di governance dei dati e garantire che il LIS sia correttamente configurato per supportare i flussi di lavoro assistiti dall'IA.
+
+\subsection{Esecuzione dell'Inferenza e Interpretazione degli Output dell'IA}
+
+Una volta che un vetrino è stato scansionato e sottoposto a controllo di qualità, il BMS può essere responsabile dell'avvio della pipeline di inferenza dell'IA---inviando la WSI al sistema di IA, monitorando il progresso dell'analisi e recuperando i risultati. In alcune configurazioni di laboratorio, questo processo è completamente automatizzato e integrato nel LIS; in altri, richiede un intervento manuale. Il BMS deve comprendere gli output prodotti dal sistema di IA---inclusi i punteggi di probabilità, le mappe di calore di attenzione e gli elementi di dati strutturati---ed essere in grado di comunicare questi output chiaramente al patologo refertante.
+
+La \emph{segnalazione dei casi discordanti} è una responsabilità particolarmente importante. Un caso discordante è quello in cui la predizione dell'IA è incoerente con la valutazione clinica o morfologica preliminare---per esempio, un vetrino di un paziente con un forte sospetto clinico di malignità che l'IA classifica come benigno, o viceversa. Il BMS dovrebbe essere formato per riconoscere tali discordanze e per segnalarle al patologo per la revisione, piuttosto che accettare acriticamente l'output dell'IA. Ciò richiede una comprensione di base delle caratteristiche di prestazione del sistema di IA---la sua sensibilità, specificità e modalità di fallimento note---nonché il contesto clinico di ogni caso.
+
+\subsection{Tracce di Audit e Governance}
+
+I framework di governance clinica richiedono che tutte le decisioni diagnostiche assistite dall'IA siano documentate in modo da supportare l'audit, la revisione e la responsabilità. Il BMS è responsabile del mantenimento di registrazioni accurate su quale sistema di IA è stato utilizzato per ogni caso, la versione del modello, la data e l'ora dell'analisi, l'output dell'IA e la decisione finale del patologo. Questi registri devono essere conservati in modo sicuro, in conformità con la legislazione sulla protezione dei dati, e devono essere accessibili per l'audit retrospettivo. In caso di errore diagnostico, la traccia di audit consente di indagare se il sistema di IA ha contribuito all'errore e se l'errore era prevedibile date le caratteristiche di prestazione note del sistema.
+
+Il BMS svolge anche un ruolo nel monitoraggio continuo delle prestazioni del sistema di IA nell'ambiente di impiego. I modelli di IA possono degradare nel tempo a causa dello \emph{spostamento della distribuzione}---cambiamenti nella popolazione di pazienti, nei protocolli di colorazione o nelle apparecchiature di scansione che causano la divergenza della distribuzione dei dati di input dalla distribuzione di addestramento. Il monitoraggio regolare delle prestazioni, utilizzando un campione rappresentativo di casi con esiti noti, è essenziale per rilevare tale degradazione e per attivare il riaddestramento o la ricalibrazione del modello quando necessario \cite{song2023}. Il BMS dovrebbe avere familiarità con le metriche di prestazione chiave utilizzate per monitorare i sistemi di IA e dovrebbe partecipare a riunioni di revisione regolari in cui vengono discussi i dati di monitoraggio.
+
+% ============================================================
+\section{Attività Pratiche}
+\label{sec:ch4_practical}
+% ============================================================
+
+\subsection{Attività A: Classificazione Tissutale Basata su CNN in QuPath}
+
+\textbf{Obiettivo:} Acquisire esperienza pratica con una rete neurale convoluzionale per la classificazione automatizzata del tessuto in un'immagine di vetrino intero, utilizzando la piattaforma di patologia digitale open-source QuPath \cite{bankhead2022}.
+
+\textbf{Contesto:} QuPath fornisce un'interfaccia intuitiva per l'addestramento e l'applicazione di classificatori di pixel e classificatori di oggetti basati sull'apprendimento automatico, inclusi i classificatori basati su CNN tramite la sua estensione di apprendimento profondo. Questa attività utilizza una WSI colorata con E\&E di tessuto di cancro colorettale disponibile pubblicamente per addestrare un classificatore CNN che distingue l'epitelio tumorale, la mucosa normale, lo stroma e lo sfondo.
+
+\textbf{Procedura:}
+\begin{enumerate}
+  \item Scaricare e installare QuPath (versione 0.5 o successiva) da \url{https://qupath.github.io}. Scaricare la WSI dimostrativa dal sito di documentazione di QuPath.
+  \item Aprire la WSI in QuPath e utilizzare lo strumento \textit{Pixel Classifier} (\textit{Classify} $\rightarrow$ \textit{Pixel classification} $\rightarrow$ \textit{Train pixel classifier}) per creare un nuovo classificatore.
+  \item Selezionare un'architettura di classificatore basata su CNN (ad esempio, una ResNet leggera) e definire quattro classi tissutali: \textit{Tumore}, \textit{Mucosa normale}, \textit{Stroma} e \textit{Sfondo}.
+  \item Annotare regioni rappresentative di ogni classe disegnando poligoni sulla WSI utilizzando gli strumenti di annotazione. Puntare ad almeno 10 annotazioni per classe, distribuite in diverse regioni del vetrino per catturare la variabilità morfologica.
+  \item Addestrare il classificatore e valutarne le prestazioni su una regione del vetrino tenuta da parte. Esaminare la sovrapposizione di classificazione e identificare le regioni in cui il classificatore funziona bene e le regioni in cui commette errori.
+  \item Esportare i risultati della classificazione come file GeoJSON e calcolare la percentuale di area tissutale occupata da ogni classe. Discutere come queste misurazioni potrebbero essere utilizzate come biomarcatori quantitativi in un contesto di ricerca o clinico.
+  \item Riflettere sulle seguenti domande: In che modo la scelta delle annotazioni di addestramento influisce sulle prestazioni del classificatore? Quali tipi di artefatti o caratteristiche morfologiche causano errori di classificazione? Come si validerebbe questo classificatore per l'uso clinico?
+\end{enumerate}
+
+\textbf{Risultati attesi:} Gli studenti dovrebbero essere in grado di addestrare un classificatore CNN di base in QuPath, interpretare l'output della classificazione e valutare criticamente le prestazioni e le limitazioni del classificatore.
+
+\subsection{Attività B: Generazione di Referti Patologici Assistita da LLM}
+
+\textbf{Obiettivo:} Esplorare le capacità e le limitazioni di un modello linguistico di grandi dimensioni per la generazione strutturata di referti patologici e l'elaborazione del linguaggio naturale delle note cliniche.
+
+\textbf{Contesto:} Questa attività utilizza un'interfaccia LLM accessibile pubblicamente (ad esempio, un sistema basato su GPT-4 o un equivalente open-source come Llama 3) per dimostrare come gli LLM possano assistere nella generazione di referti sinotici e nell'estrazione di informazioni da referti patologici in testo libero. Gli studenti valuteranno l'accuratezza, la completezza e le potenziali modalità di fallimento degli output generati dagli LLM.
+
+\textbf{Procedura:}
+\begin{enumerate}
+  \item Accedere all'interfaccia LLM fornita dalla propria istituzione o utilizzare un'API disponibile pubblicamente. Preparare tre estratti di referti patologici in testo libero anonimizzati e de-identificati (forniti dal coordinatore del corso) che rappresentano: (a) una resezione di adenocarcinoma colorettale, (b) una biopsia con ago sottile del seno e (c) una biopsia prostatica con ago.
+  \item Per ogni referto, sollecitare l'LLM a estrarre i seguenti elementi di dati strutturati e compilare un modello sinotico: tipo di tumore, grado istologico, dimensione del tumore, stato dei margini, invasione linfovascolare, invasione perineurale, stato dei linfonodi (ove applicabile) e stadio patologico (pTNM).
+  \item Confrontare gli elementi di dati estratti dall'LLM con i valori di riferimento forniti dal coordinatore del corso. Calcolare l'accuratezza dell'estrazione per ogni elemento di dati e identificare quali elementi sono estratti in modo più e meno affidabile.
+  \item Sollecitare l'LLM a generare un referto sinotico completo per un nuovo caso, fornendo solo la descrizione macroscopica e una breve storia clinica. Valutare il referto generato per accuratezza, completezza e presenza di informazioni allucinatorie.
+  \item Discutere le seguenti domande in gruppo: In quali circostanze ci si fiderebbe di un elemento di referto generato dall'LLM senza verifica? Quali salvaguardie dovrebbero essere in atto prima che la refertazione assistita da LLM possa essere utilizzata in un contesto clinico? Come dovrebbero essere documentate e gestite le discrepanze tra gli output dell'LLM e i risultati del patologo?
+\end{enumerate}
+
+\textbf{Risultati attesi:} Gli studenti dovrebbero essere in grado di descrivere le capacità e le limitazioni degli LLM per la generazione di referti patologici, identificare le modalità di fallimento comuni inclusa l'allucinazione, e articolare i requisiti di governance per l'impiego clinico.
+
+% ============================================================
+\section{Sintesi}
+\label{sec:ch4_summary}
+% ============================================================
+
+Questo capitolo ha fornito un'introduzione completa alle architetture di apprendimento profondo che stanno trasformando la patologia computazionale. Le reti neurali convoluzionali, con le loro capacità di apprendimento gerarchico delle caratteristiche e di transfer learning, hanno raggiunto prestazioni di livello clinico su benchmark di patologia di riferimento inclusi CAMELYON (rilevamento delle metastasi linfonodali) e PANDA (classificazione di Gleason del cancro alla prostata). Il framework di apprendimento multi-istanza affronta la sfida fondamentale dell'analisi WSI gigapixel decomponendo i vetrini in patch e aggregando le caratteristiche a livello di patch utilizzando meccanismi di attenzione, consentendo l'apprendimento debolmente supervisionato dalle sole etichette a livello di vetrino. Le architetture basate su transformer, con il loro meccanismo di auto-attenzione globale, hanno soppiantato le CNN come stato dell'arte in molti compiti di patologia, e i modelli fondazionali specifici per la patologia---inclusi UNI, CONCH e Prov-GigaPath---forniscono potenti rappresentazioni pre-addestrate che si generalizzano su un'ampia gamma di compiti a valle.
+
+I modelli linguistici di grandi dimensioni offrono il potenziale per automatizzare la generazione di referti strutturati, la refertazione sinottica e l'NLP degli archivi clinici, ma il loro impiego richiede un'attenta attenzione ai rischi di allucinazione, limite di conoscenza e spostamento della distribuzione. I modelli multimodali che integrano le caratteristiche delle immagini istopatologiche con dati genomici, clinici e radiologici superano costantemente i modelli unimodali nei compiti di predizione della sopravvivenza e classificazione dei sottotipi molecolari, sfruttando informazioni complementari tra le modalità attraverso strategie di fusione delle caratteristiche precoce, tardiva o intermedia.
+
+Il biologo svolge un ruolo indispensabile nei flussi di lavoro di patologia assistiti dall'IA, che comprende la preparazione dei dati, il controllo della qualità, la gestione dell'inferenza, l'interpretazione degli output, la segnalazione delle discordanze e il mantenimento della traccia di audit. Man mano che gli strumenti di IA diventano integrati nella pratica clinica di routine, il BMS deve sviluppare nuove competenze tecniche mantenendo le capacità di valutazione critica necessarie per identificare e segnalare i casi in cui gli output dell'IA potrebbero essere inaffidabili. Le attività pratiche in questo capitolo forniscono un'introduzione a queste competenze attraverso l'esperienza pratica con la classificazione tissutale basata su CNN in QuPath e la generazione di referti assistita da LLM.
+
+% ============================================================
+\section{Domande di Revisione}
+\label{sec:ch4_questions}
+% ============================================================
+
+\begin{enumerate}
+
+  \item \label{ch4:q1} Quale componente di una rete neurale convoluzionale è principalmente responsabile dell'introduzione della non-linearità nel modello?
+  \begin{enumerate}[label=\Alph*.]
+    \item Strato di pooling
+    \item Kernel convoluzionale
+    \item Funzione di attivazione (ReLU)
+    \item Strato completamente connesso
+  \end{enumerate}
+
+  \item \label{ch4:q2} Nel contesto dell'architettura CNN, qual è lo scopo principale del max-pooling?
+  \begin{enumerate}[label=\Alph*.]
+    \item Aumentare la risoluzione spaziale delle mappe delle caratteristiche
+    \item Ridurre le dimensioni spaziali e conferire invarianza alla traslazione
+    \item Normalizzare le attivazioni su un mini-batch
+    \item Prevenire la co-adattazione dei neuroni durante l'addestramento
+  \end{enumerate}
+
+  \item \label{ch4:q3} La sfida CAMELYON è stata progettata per valutare gli algoritmi di apprendimento profondo per quale compito diagnostico?
+  \begin{enumerate}[label=\Alph*.]
+    \item Classificazione di Gleason del cancro alla prostata
+    \item Rilevamento delle metastasi del cancro al seno nei linfonodi sentinella
+    \item Classificazione dei sottotipi di cancro polmonare
+    \item Predizione dell'instabilità dei microsatelliti da immagini E\&E di cancro colorettale
+  \end{enumerate}
+
+  \item \label{ch4:q4} Qual è la sfida fondamentale che motiva l'uso dell'apprendimento multi-istanza (MIL) per l'analisi delle immagini di vetrini interi?
+  \begin{enumerate}[label=\Alph*.]
+    \item Le WSI sono memorizzate in formati proprietari incompatibili con i framework standard di apprendimento profondo
+    \item Le WSI gigapixel non possono essere contenute nella memoria GPU e richiedono l'elaborazione basata su patch con etichette a livello di vetrino
+    \item Le WSI contengono troppo pochi pixel per addestrare efficacemente una rete neurale convoluzionale
+    \item Il MIL è necessario perché i patologi annotano le singole cellule piuttosto che interi vetrini
+  \end{enumerate}
+
+  \item \label{ch4:q5} Nel framework CLAM (Clustering-constrained Attention Multiple instance learning), qual è il ruolo della rete di attenzione?
+  \begin{enumerate}[label=\Alph*.]
+    \item Segmentare le regioni tissutali dal vetro di sfondo
+    \item Assegnare un peso scalare a ogni patch che riflette la sua rilevanza per la predizione a livello di vetrino
+    \item Eseguire l'aumento dei dati durante l'addestramento
+    \item Convertire i vettori di caratteristiche dei patch in immagini RGB per la visualizzazione
+  \end{enumerate}
+
+  \item \label{ch4:q6} Quale delle seguenti descrive meglio la differenza architetturale chiave tra i Vision Transformer (ViT) e le reti neurali convoluzionali (CNN)?
+  \begin{enumerate}[label=\Alph*.]
+    \item Il ViT utilizza connessioni ricorrenti, mentre le CNN utilizzano connessioni feed-forward
+    \item Il ViT ha un campo recettivo globale tramite auto-attenzione, mentre le CNN hanno un campo recettivo locale tramite kernel convoluzionali
+    \item Il ViT richiede più dati di addestramento delle CNN in tutte le circostanze
+    \item Il ViT non può elaborare immagini a colori, mentre le CNN possono
+  \end{enumerate}
+
+  \item \label{ch4:q7} Prov-GigaPath è meglio descritto come quale tipo di modello?
+  \begin{enumerate}[label=\Alph*.]
+    \item Una rete neurale ricorrente per la generazione di referti patologici
+    \item Un modello fondazionale per vetrini interi pre-addestrato su oltre 1,3 miliardi di tile di immagini patologiche
+    \item Un modello classico di apprendimento automatico basato su caratteristiche morfologiche costruite manualmente
+    \item Una rete generativa avversariale per la sintesi di immagini E\&E sintetiche
+  \end{enumerate}
+
+  \item \label{ch4:q8} Quale delle seguenti è la preoccupazione di sicurezza più significativa associata all'uso dei modelli linguistici di grandi dimensioni per la generazione di referti patologici?
+  \begin{enumerate}[label=\Alph*.]
+    \item Gli LLM sono troppo lenti per essere utilizzati in un contesto clinico
+    \item Gli LLM possono generare informazioni plausibili ma fattualmente errate (allucinazione)
+    \item Gli LLM non possono elaborare testo più lungo di una singola frase
+    \item Gli LLM richiedono l'accesso ai dati genomici del paziente per generare un referto
+  \end{enumerate}
+
+  \item \label{ch4:q9} Nei modelli di IA multimodali per la predizione della sopravvivenza, quale strategia di fusione addestra modelli separati per ogni modalità e combina le loro predizioni nella fase di output?
+  \begin{enumerate}[label=\Alph*.]
+    \item Fusione precoce
+    \item Fusione intermedia
+    \item Fusione tardiva
+    \item Fusione con attenzione cross-modale
+  \end{enumerate}
+
+  \item \label{ch4:q10} Quale delle seguenti descrive meglio la responsabilità del biologo quando un sistema di IA produce una predizione incoerente con la valutazione clinica preliminare?
+  \begin{enumerate}[label=\Alph*.]
+    \item Accettare la predizione dell'IA, poiché si basa su più dati rispetto alla valutazione clinica
+    \item Scartare la predizione dell'IA e procedere con la sola valutazione clinica
+    \item Segnalare il caso discordante e segnalarlo al patologo per la revisione
+    \item Ripetere l'analisi dell'IA fino a quando la predizione è coerente con la valutazione clinica
+  \end{enumerate}
+
+\end{enumerate}

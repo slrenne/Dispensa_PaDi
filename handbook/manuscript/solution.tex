@@ -1,0 +1,392 @@
+%% ============================================================
+%%  Soluzioni alle Domande di Revisione
+%%  Dispensa del Corso di Patologia Post-Laurea
+%%  Questo file è incluso con \input{} da main.tex; NON aggiungere il preambolo qui.
+%% ============================================================
+
+\chapter*{Soluzioni alle Domande di Revisione}
+\addcontentsline{toc}{chapter}{Soluzioni alle Domande di Revisione}
+\label{ch:solutions}
+
+Le seguenti soluzioni forniscono la risposta corretta e una breve spiegazione per ciascuna delle
+domande a scelta multipla presentate alla fine di ogni capitolo. Le spiegazioni sono concepite
+per rinforzare i concetti chiave e chiarire i motivi per cui le risposte errate sono scorrette.
+
+% ─────────────────────────────────────────────────────────────
+\section*{Capitolo 1: Introduzione alla Patologia Digitale}
+\addcontentsline{toc}{section}{Capitolo 1}
+
+\begin{enumerate}
+
+    \item \textbf{Risposta: C --- Immagini di vetrini interi (WSI) ad alta risoluzione.}\\
+    La patologia digitale si basa sulla digitalizzazione dei vetrini istologici in immagini di
+    vetrini interi (WSI) ad alta risoluzione, che possono essere archiviate, trasmesse e
+    analizzate computazionalmente. Le opzioni A, B e D descrivono tecnologie o approcci non
+    specifici della patologia digitale o non pertinenti alla sua definizione fondamentale.
+
+    \item \textbf{Risposta: B --- Hamamatsu NanoZoomer, Leica Aperio, Philips IntelliSite.}\\
+    Questi sono i principali produttori commerciali di scanner per vetrini interi (WSI) utilizzati
+    nella patologia digitale. Le altre opzioni elencano strumenti di microscopia convenzionale,
+    sistemi di imaging non correlati o combinazioni non corrette.
+
+    \item \textbf{Risposta: C --- Circa 0,25 \textmu m per pixel.}\\
+    Alla scansione a 40$\times$, la dimensione del pixel è tipicamente di circa 0,25~\textmu m,
+    sufficiente a risolvere i dettagli subcellulari fini come la cromatina nucleare e le membrane
+    cellulari. La scansione a 20$\times$ produce pixel di circa 0,5~\textmu m.
+
+    \item \textbf{Risposta: B --- TIFF piramidale con tessere (ad es., SVS, NDPI, MRXS).}\\
+    I formati WSI sono implementazioni proprietarie o aperte del TIFF piramidale con tessere, che
+    consente la visualizzazione efficiente a diverse risoluzioni senza caricare l'intera immagine
+    in memoria. I formati JPEG e PNG non supportano la struttura piramidale necessaria per le WSI.
+
+    \item \textbf{Risposta: C --- OpenSlide.}\\
+    OpenSlide è la libreria open source standard per la lettura di file WSI in formati proprietari
+    (SVS, NDPI, MRXS, ecc.) in Python e altri linguaggi di programmazione. Le altre opzioni non
+    sono librerie per la lettura di WSI.
+
+    \item \textbf{Risposta: B --- Consente la visualizzazione efficiente a diverse risoluzioni
+    senza caricare l'intera immagine in memoria.}\\
+    La struttura piramidale delle WSI memorizza l'immagine a più livelli di risoluzione (livelli
+    di zoom), consentendo ai visualizzatori di caricare solo le tessere necessarie per il livello
+    di zoom corrente. Questo è essenziale per la gestione di file WSI che possono superare i
+    100.000 $\times$ 100.000 pixel.
+
+    \item \textbf{Risposta: C --- QuPath.}\\
+    QuPath è la piattaforma open source più ampiamente utilizzata per l'analisi delle immagini di
+    patologia digitale. Supporta la visualizzazione di WSI, l'annotazione, la segmentazione
+    cellulare e tissutale, e l'integrazione con script Groovy e Python per l'analisi
+    personalizzata.
+
+    \item \textbf{Risposta: B --- Ematossilina ed eosina (E\&E).}\\
+    La colorazione E\&E è il cardine della diagnosi istopatologica. L'ematossilina colora i nuclei
+    di blu-viola e l'eosina colora il citoplasma e la matrice extracellulare di rosa. Tutte le
+    altre colorazioni elencate sono colorazioni speciali o immunoistochimiche utilizzate per scopi
+    diagnostici specifici.
+
+    \item \textbf{Risposta: C --- Ridurre la variabilità cromatica inter-laboratorio per migliorare
+    la generalizzabilità dei modelli di IA.}\\
+    La normalizzazione della colorazione è una fase di pre-elaborazione che trasforma i colori
+    delle WSI verso uno standard di riferimento comune, riducendo il \emph{domain shift} cromatico
+    che può degradare le prestazioni dei modelli di IA quando applicati a dati di laboratori
+    diversi da quelli di addestramento.
+
+    \item \textbf{Risposta: B --- Apprendimento profondo, in particolare le reti neurali
+    convoluzionali (CNN).}\\
+    Le reti neurali convoluzionali (CNN) e le loro varianti (ResNet, EfficientNet, Vision
+    Transformer) sono i metodi di apprendimento automatico dominanti nella patologia computazionale
+    per compiti come la classificazione dei tumori, la segmentazione cellulare e la predizione
+    degli esiti. I metodi tradizionali di apprendimento automatico (SVM, foreste casuali) sono
+    stati in gran parte superati dall'apprendimento profondo per i compiti di analisi delle
+    immagini.
+
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────
+\section*{Capitolo 2: Flusso di Lavoro Digitale e Controllo Qualità}
+\addcontentsline{toc}{section}{Capitolo 2}
+
+\begin{enumerate}
+
+    \item \textbf{Risposta: C --- Formalina neutra tamponata al 10\%.}\\
+    La formalina neutra tamponata al 10\% (FNT) è il fissativo standard per la processazione
+    tissutale istologica di routine. Reticola le proteine preservando l'architettura cellulare e
+    prevenendo l'autolisi. La glutaraldeide è utilizzata per la microscopia elettronica; l'alcool
+    etilico è usato per alcuni campioni citologici; la soluzione di Bouin è un fissativo
+    alternativo usato raramente nella pratica di routine moderna.
+
+    \item \textbf{Risposta: B --- Ridurre la variazione nell'aspetto della colorazione causata da
+    laboratori, protocolli e scanner diversi.}\\
+    La normalizzazione della colorazione è una fase di pre-elaborazione computazionale che
+    trasforma la distribuzione cromatica di un'immagine sorgente per farla corrispondere a quella
+    di un'immagine di riferimento, riducendo la variabilità cromatica inter-laboratorio. Non
+    aumenta la risoluzione, non elimina la necessità di IIC e non converte le immagini in scala
+    di grigi.
+
+    \item \textbf{Risposta: C --- Spessore tissutale non uniforme.}\\
+    Lo spessore tissutale non uniforme --- causato da pieghe tissutali, bolle d'aria sotto il
+    coprioggetto o un coprioggetto non uniforme --- impedisce all'algoritmo di messa a fuoco
+    automatica dello scanner di mantenere la messa a fuoco sull'intera superficie del vetrino,
+    producendo regioni sfocate nell'immagine. La sovra-colorazione e la contaminazione batterica
+    non causano sfocatura; l'uso di un obiettivo a basso ingrandimento riduce la risoluzione ma
+    non produce sfocatura nel senso tecnico.
+
+    \item \textbf{Risposta: B --- Separare i contributi dei singoli coloranti (ad es., ematossilina
+    e DAB) da un'immagine RGB.}\\
+    La deconvoluzione cromatica di Ruifrok e Johnston utilizza la legge di Beer-Lambert per
+    separare matematicamente i contributi dei singoli coloranti al colore di ogni pixel in
+    un'immagine RGB. Questo consente l'analisi quantitativa separata dei canali dell'ematossilina
+    (nucleare) e dell'eosina o DAB (citoplasmatico/membranoso).
+
+    \item \textbf{Risposta: B --- Uno strumento open source per la valutazione automatizzata della
+    qualità delle immagini di vetrini interi.}\\
+    HistoQC è una pipeline open source e configurabile per il controllo qualità delle WSI,
+    sviluppata da Janowczyk et al. Calcola metriche di qualità dell'immagine (messa a fuoco,
+    intensità della colorazione, copertura tissutale, artefatti) e genera rapporti di qualità per
+    vetrino. Non è un sistema commerciale, un protocollo di colorazione o un formato di file.
+
+    \item \textbf{Risposta: C --- Tutte le fasi dalla ricezione del campione alla scansione del
+    vetrino.}\\
+    La fase pre-analitica comprende tutte le fasi che precedono la scansione: ricezione del
+    campione, descrizione macroscopica, fissazione, processazione tissutale, inclusione,
+    sezionamento, colorazione e coprioggetto. Queste fasi esercitano la maggiore influenza sulla
+    qualità finale dell'immagine.
+
+    \item \textbf{Risposta: B --- Il tempo di fissazione influenza la morfologia tissutale, la
+    preservazione degli antigeni e le analisi IIC e molecolari successive.}\\
+    Il tempo di fissazione è critico perché determina il grado di reticolazione proteica. La
+    sotto-fissazione porta a scarso dettaglio nucleare e IIC inaffidabile; la sovra-fissazione
+    causa una reticolazione eccessiva che può mascherare gli epitopi antigenici. Il tempo di
+    fissazione non influenza la dimensione del file WSI, il numero di livelli della piramide o
+    la velocità di scansione.
+
+    \item \textbf{Risposta: C --- Riscansionare il vetrino dopo aver verificato la calibrazione
+    della messa a fuoco dello scanner.}\\
+    Il primo passo appropriato quando si scopre che una WSI presenta significative regioni sfocate
+    è riscansionare il vetrino, dopo aver verificato la calibrazione della messa a fuoco dello
+    scanner e ispezionato il vetrino per eventuali problemi fisici (pieghe, bolle d'aria). Accettare
+    l'immagine sfocata per la diagnosi è inappropriato; eliminare l'immagine senza tentare la
+    rimediazione è prematuro; applicare un filtro di nitidezza computazionale non recupera le
+    informazioni perse a causa della sfocatura.
+
+    \item \textbf{Risposta: B --- Garantire la tracciabilità dei campioni e dei vetrini attraverso
+    il flusso di lavoro.}\\
+    La documentazione della catena di custodia garantisce che ogni campione, cassetta, vetrino e
+    immagine digitale possa essere tracciato attraverso il flusso di lavoro, dalla ricezione alla
+    diagnosi. Questo è un requisito legale ed etico che protegge i pazienti dagli errori di
+    identificazione del campione.
+
+    \item \textbf{Risposta: B --- ISO 15189.}\\
+    ISO 15189 è lo standard internazionale specifico per i laboratori medici, che specifica i
+    requisiti per la qualità e la competenza nei test di laboratorio medico. ISO 9001 è uno
+    standard generico per i sistemi di gestione della qualità; ISO 27001 riguarda la sicurezza
+    delle informazioni; ISO 13485 riguarda i dispositivi medici.
+
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────
+\section*{Capitolo 3: Fondamenti dell'Intelligenza Artificiale nella Patologia}
+\addcontentsline{toc}{section}{Capitolo 3}
+
+\begin{enumerate}
+
+    \item \textbf{Risposta: C --- Una rete neurale con molti strati nascosti che apprende
+    rappresentazioni gerarchiche dei dati.}\\
+    L'apprendimento profondo si riferisce alle reti neurali con molti strati nascosti (da qui
+    ``profondo''), che apprendono rappresentazioni gerarchiche dei dati di input. Ogni strato
+    apprende caratteristiche di complessità crescente, dalle caratteristiche di basso livello
+    (bordi, texture) alle caratteristiche di alto livello (strutture cellulari, pattern tissutali).
+
+    \item \textbf{Risposta: B --- Reti neurali convoluzionali (CNN).}\\
+    Le CNN sono l'architettura di apprendimento profondo dominante per l'analisi delle immagini
+    nella patologia computazionale. Utilizzano filtri convoluzionali per estrarre caratteristiche
+    spaziali locali dalle immagini, rendendole particolarmente adatte all'analisi di immagini
+    istologiche.
+
+    \item \textbf{Risposta: C --- Apprendimento debolmente supervisionato con etichette a livello
+    di vetrino.}\\
+    L'apprendimento debolmente supervisionato (o apprendimento con supervisione debole) utilizza
+    etichette a livello di vetrino (ad es., diagnosi del caso) anziché annotazioni pixel per pixel,
+    riducendo il carico di annotazione. Questo è particolarmente rilevante nella patologia, dove
+    le annotazioni dettagliate richiedono molto tempo da parte di patologi esperti.
+
+    \item \textbf{Risposta: B --- Apprendimento per istanze multiple (MIL).}\\
+    Il MIL è un paradigma di apprendimento debolmente supervisionato in cui un vetrino è
+    rappresentato come un ``sacchetto'' di tessere (istanze), e l'etichetta del sacchetto (diagnosi
+    del vetrino) è nota ma le etichette delle singole tessere non lo sono. Il modello apprende a
+    identificare le tessere diagnosticamente rilevanti (istanze positive) all'interno del sacchetto.
+
+    \item \textbf{Risposta: C --- Trasferimento dell'apprendimento da modelli pre-addestrati su
+    grandi dataset di immagini naturali.}\\
+    Il trasferimento dell'apprendimento (transfer learning) è la tecnica più comune per affrontare
+    la scarsità di dati annotati nella patologia computazionale. I modelli pre-addestrati su
+    ImageNet o altri grandi dataset vengono adattati (fine-tuned) su dataset di patologia più
+    piccoli, sfruttando le rappresentazioni di caratteristiche apprese durante il pre-addestramento.
+
+    \item \textbf{Risposta: B --- La capacità di un modello di generalizzare a nuovi dati non visti
+    durante l'addestramento.}\\
+    La generalizzazione si riferisce alla capacità di un modello di apprendimento automatico di
+    applicare le conoscenze acquisite durante l'addestramento a nuovi dati non visti. Un modello
+    con scarsa generalizzazione può avere prestazioni eccellenti sui dati di addestramento ma
+    scarse sui dati di test, un fenomeno noto come overfitting.
+
+    \item \textbf{Risposta: C --- Aumentazione dei dati.}\\
+    L'aumentazione dei dati (data augmentation) è la tecnica di generare artificialmente nuovi
+    esempi di addestramento applicando trasformazioni casuali (rotazione, riflessione, variazione
+    del colore, ecc.) alle immagini esistenti. Questo aumenta la dimensione effettiva del dataset
+    di addestramento e migliora la robustezza del modello.
+
+    \item \textbf{Risposta: B --- Mappe di attivazione di classe (CAM) e metodi di attribuzione
+    del gradiente (Grad-CAM).}\\
+    Le CAM e i metodi basati sul gradiente come Grad-CAM sono le tecniche di interpretabilità più
+    comunemente utilizzate nella patologia computazionale. Producono mappe di calore che
+    evidenziano le regioni dell'immagine che hanno contribuito maggiormente alla decisione del
+    modello, consentendo ai patologi di verificare se il modello si concentra sulle caratteristiche
+    morfologiche corrette.
+
+    \item \textbf{Risposta: C --- Bias nei dati di addestramento che riflette disparità nella
+    raccolta dei dati o nelle pratiche di annotazione.}\\
+    Il bias nei modelli di IA per la patologia deriva spesso da bias nei dati di addestramento,
+    che possono riflettere disparità nella raccolta dei dati (ad es., sottorappresentazione di
+    certi gruppi demografici), nelle pratiche di annotazione (ad es., variabilità inter-osservatore)
+    o nelle pratiche di laboratorio (ad es., variabilità della colorazione).
+
+    \item \textbf{Risposta: B --- Validazione esterna su dataset indipendenti di laboratori
+    diversi.}\\
+    La validazione esterna su dataset indipendenti di laboratori diversi è il gold standard per
+    valutare la generalizzabilità di un modello di IA per la patologia. La validazione interna
+    (su dati dello stesso laboratorio) può sovrastimare le prestazioni del modello a causa del
+    \emph{domain shift} tra laboratori.
+
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────
+\section*{Capitolo 4: Apprendimento Profondo e Analisi Multimodale}
+\addcontentsline{toc}{section}{Capitolo 4}
+
+\begin{enumerate}
+
+    \item \textbf{Risposta: C --- Vision Transformer (ViT).}\\
+    I Vision Transformer (ViT) applicano il meccanismo di attenzione dei Transformer, originalmente
+    sviluppato per il linguaggio naturale, alle immagini suddividendole in patch. Hanno dimostrato
+    prestazioni competitive o superiori alle CNN su molti compiti di analisi delle immagini,
+    inclusa la patologia computazionale.
+
+    \item \textbf{Risposta: B --- Segmentazione semantica.}\\
+    La segmentazione semantica assegna un'etichetta di classe a ogni pixel dell'immagine,
+    consentendo la delineazione precisa di strutture tissutali (ad es., ghiandole, stroma, tumore)
+    nelle WSI. Questo è distinto dalla classificazione (etichetta a livello di immagine) e dal
+    rilevamento di oggetti (bounding box).
+
+    \item \textbf{Risposta: C --- Integrazione di dati di imaging con dati genomici, clinici o
+    di altra natura per migliorare la predizione degli esiti.}\\
+    L'analisi multimodale nella patologia computazionale si riferisce all'integrazione di dati di
+    imaging (WSI) con altri tipi di dati --- genomici, trascrittomici, clinici, radiologici ---
+    per migliorare la predizione degli esiti rispetto a quanto possibile con un singolo tipo di
+    dato.
+
+    \item \textbf{Risposta: B --- Reti generative avversariali (GAN).}\\
+    Le GAN sono il metodo di apprendimento profondo più comunemente utilizzato per la
+    normalizzazione della colorazione e l'aumentazione dei dati nella patologia computazionale.
+    Le CycleGAN, in particolare, consentono la traduzione di immagini non appaiata tra domini
+    (ad es., da un laboratorio a un altro) senza richiedere coppie di immagini corrispondenti.
+
+    \item \textbf{Risposta: C --- Predizione della sopravvivenza e degli esiti clinici da WSI.}\\
+    La predizione della sopravvivenza e degli esiti clinici da WSI è uno dei compiti più
+    clinicamente rilevanti nella patologia computazionale. I modelli di apprendimento profondo
+    possono estrarre caratteristiche morfologiche prognostiche dalle WSI che non sono facilmente
+    quantificabili dall'osservazione umana.
+
+    \item \textbf{Risposta: B --- Modelli fondazionali pre-addestrati su grandi dataset di
+    patologia (ad es., UNI, CONCH, Prov-GigaPath).}\\
+    I modelli fondazionali per la patologia, pre-addestrati su milioni di tessere WSI mediante
+    apprendimento auto-supervisionato, hanno dimostrato prestazioni superiori ai modelli
+    pre-addestrati su ImageNet per molti compiti di patologia computazionale. Esempi includono
+    UNI, CONCH e Prov-GigaPath.
+
+    \item \textbf{Risposta: C --- Apprendimento auto-supervisionato su grandi dataset non
+    etichettati.}\\
+    L'apprendimento auto-supervisionato (self-supervised learning) consente ai modelli di
+    apprendere rappresentazioni utili da grandi dataset non etichettati, senza richiedere
+    annotazioni manuali costose. Questo è particolarmente vantaggioso nella patologia, dove le
+    annotazioni richiedono molto tempo da parte di patologi esperti.
+
+    \item \textbf{Risposta: B --- Attenzione multi-testa che modella le relazioni a lungo raggio
+    tra le tessere WSI.}\\
+    Il meccanismo di attenzione multi-testa dei Transformer consente di modellare le relazioni
+    a lungo raggio tra le tessere WSI, catturando il contesto spaziale globale che le CNN con
+    campi recettivi locali non possono facilmente catturare. Questo è particolarmente utile per
+    compiti che richiedono la comprensione dell'architettura tissutale a scala multipla.
+
+    \item \textbf{Risposta: C --- Fusione di caratteristiche estratte da WSI con dati genomici
+    o clinici mediante reti neurali multimodali.}\\
+    La fusione multimodale nella patologia computazionale combina caratteristiche estratte da
+    diverse modalità di dati (WSI, genomica, clinica) mediante architetture di rete neurale
+    progettate per integrare rappresentazioni eterogenee. Questo approccio ha dimostrato di
+    migliorare la predizione degli esiti rispetto ai modelli unimodali.
+
+    \item \textbf{Risposta: B --- Modelli linguistici di grandi dimensioni (LLM) e modelli
+    visione-linguaggio (VLM) per la generazione di referti e il ragionamento diagnostico.}\\
+    I modelli linguistici di grandi dimensioni (LLM) e i modelli visione-linguaggio (VLM) stanno
+    emergendo come strumenti promettenti per la generazione automatica di referti patologici, il
+    ragionamento diagnostico e l'interazione in linguaggio naturale con i sistemi di patologia
+    digitale. Esempi includono GPT-4V, LLaVA e modelli specifici per la patologia come PathChat.
+
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────
+\section*{Capitolo 5: Etica, Bias e il Futuro della Patologia Digitale}
+\addcontentsline{toc}{section}{Capitolo 5}
+
+\begin{enumerate}
+
+    \item \textbf{Risposta: C --- Bias algoritmico che porta a prestazioni diseguali tra gruppi
+    demografici.}\\
+    Il bias algoritmico nella patologia digitale si riferisce alla tendenza dei modelli di IA a
+    avere prestazioni diseguali tra gruppi demografici (ad es., per razza, sesso, età), spesso
+    a causa di una rappresentazione non equilibrata di questi gruppi nei dati di addestramento.
+    Questo può portare a disparità nelle cure sanitarie se i modelli vengono implementati
+    clinicamente senza un'adeguata valutazione dell'equità.
+
+    \item \textbf{Risposta: B --- Interpretabilità e spiegabilità dei modelli di IA.}\\
+    L'interpretabilità e la spiegabilità dei modelli di IA sono requisiti fondamentali per
+    l'implementazione clinica sicura. I patologi devono essere in grado di comprendere e
+    verificare le basi delle decisioni del modello per poterle integrare nella loro pratica
+    diagnostica in modo responsabile.
+
+    \item \textbf{Risposta: C --- Consenso informato, privacy dei dati e proprietà dei dati.}\\
+    Le questioni etiche relative all'uso dei dati dei pazienti nella patologia digitale includono
+    il consenso informato (i pazienti devono essere informati su come vengono utilizzati i loro
+    dati), la privacy dei dati (protezione delle informazioni identificabili) e la proprietà dei
+    dati (chi possiede i dati dei pazienti e chi può trarne beneficio economico).
+
+    \item \textbf{Risposta: B --- Validazione prospettica in studi clinici controllati.}\\
+    La validazione prospettica in studi clinici controllati è il gold standard per dimostrare
+    l'utilità clinica di un sistema di IA per la patologia. La validazione retrospettiva su
+    dataset storici, sebbene necessaria, non è sufficiente per dimostrare che il sistema migliora
+    gli esiti clinici nella pratica reale.
+
+    \item \textbf{Risposta: C --- Supervisione umana e responsabilità professionale del patologo.}\\
+    Nonostante i progressi dell'IA, la supervisione umana e la responsabilità professionale del
+    patologo rimangono fondamentali. I sistemi di IA sono strumenti di supporto decisionale, non
+    sostituti del giudizio clinico del patologo. La responsabilità legale e professionale della
+    diagnosi rimane con il patologo.
+
+    \item \textbf{Risposta: B --- Regolamento sui Dispositivi Medici (MDR) e Regolamento sui
+    Dispositivi Medico-Diagnostici In Vitro (IVDR).}\\
+    Nell'Unione Europea, i sistemi di IA per la patologia digitale utilizzati per la diagnosi
+    primaria sono regolamentati come dispositivi medici ai sensi del MDR (UE 2017/745) o come
+    dispositivi medico-diagnostici in vitro ai sensi dell'IVDR (UE 2017/746), a seconda della
+    loro funzione specifica.
+
+    \item \textbf{Risposta: C --- Federated learning per l'addestramento di modelli su dati
+    distribuiti senza condivisione dei dati grezzi.}\\
+    Il federated learning consente l'addestramento di modelli di IA su dati distribuiti in più
+    istituzioni senza condividere i dati grezzi dei pazienti, affrontando le preoccupazioni sulla
+    privacy e sulla sovranità dei dati. I modelli vengono addestrati localmente in ogni istituzione
+    e solo i parametri del modello (non i dati) vengono condivisi con un server centrale.
+
+    \item \textbf{Risposta: B --- Integrazione dell'IA come strumento di supporto decisionale
+    nella pratica diagnostica di routine.}\\
+    Il ruolo più probabile dell'IA nella patologia nel prossimo futuro è come strumento di
+    supporto decisionale che assiste il patologo nella diagnosi di routine, piuttosto che come
+    sostituto del patologo. L'IA può aumentare l'efficienza, la riproducibilità e la sensibilità
+    diagnostica, ma la responsabilità finale della diagnosi rimane con il patologo.
+
+    \item \textbf{Risposta: C --- Disparità nell'accesso alle tecnologie di patologia digitale
+    tra paesi ad alto e basso reddito.}\\
+    Le disparità nell'accesso alle tecnologie di patologia digitale tra paesi ad alto e basso
+    reddito sono una preoccupazione etica significativa. Sebbene la patologia digitale abbia il
+    potenziale di migliorare l'accesso alla diagnosi esperta attraverso la telemedicina, i costi
+    dell'infrastruttura tecnologica possono esacerbare le disparità esistenti se non vengono
+    affrontate deliberatamente.
+
+    \item \textbf{Risposta: B --- Collaborazione interdisciplinare tra patologi, informatici,
+    bioinformatici e clinici.}\\
+    Lo sviluppo e l'implementazione responsabile dell'IA nella patologia richiedono una
+    collaborazione interdisciplinare tra patologi (che forniscono competenza di dominio e
+    annotazioni), informatici e bioinformatici (che sviluppano e validano i modelli) e clinici
+    (che definiscono le esigenze cliniche e valutano l'utilità). Nessuna singola disciplina può
+    affrontare da sola le sfide tecniche, cliniche ed etiche della patologia digitale basata
+    sull'IA.
+
+\end{enumerate}
