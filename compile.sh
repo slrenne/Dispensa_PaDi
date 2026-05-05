@@ -2,7 +2,7 @@
 FILENAME="main"
 
 pdflatex "$FILENAME.tex" &&
-biber "$FILENAME" &&
+bibtex "$FILENAME" &&
 pdflatex "$FILENAME.tex" &&
 pdflatex "$FILENAME.tex"
 
