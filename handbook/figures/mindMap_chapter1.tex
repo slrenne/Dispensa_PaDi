@@ -1,0 +1,118 @@
+%% ============================================================
+%%  mindMap_chapter1.tex
+%%  Mind-map -- Capitolo 1: Introduzione alla Patologia Digitale
+%%  Compile with: pdflatex mindMap_chapter1.tex
+%% ============================================================
+\documentclass[a4paper]{article}
+
+\usepackage[
+  landscape,
+  top    = 0.5cm,
+  bottom = 0.5cm,
+  left   = 0.8cm,
+  right  = 0.8cm
+]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+
+\usepackage{tikz}
+\usetikzlibrary{mindmap, trees}
+
+\pagestyle{empty}
+
+%% -- Palette -------------------------------------------------
+\definecolor{cRoot}{RGB}{ 20,  60, 110}
+\definecolor{cDef} {RGB}{  0, 120, 110}
+\definecolor{cWSI} {RGB}{180,  70,  10}
+\definecolor{cFmt} {RGB}{100,  40, 140}
+\definecolor{cIT}  {RGB}{160,  20,  30}
+\definecolor{cOSS} {RGB}{ 30, 120,  50}
+\definecolor{cTech}{RGB}{140, 100,   0}
+
+\begin{document}
+
+\begin{center}
+  {\large\bfseries Mind-map ---
+   Capitolo~1: Introduzione alla Patologia Digitale}
+\end{center}
+
+\vspace{-2pt}
+
+\begin{center}
+\begin{tikzpicture}[
+  mindmap,
+  grow cyclic,
+  every node/.style = concept,
+  concept color     = cRoot,
+  text              = white,
+  level 1/.append style = {
+    level distance = 5.5cm,
+    sibling angle  = 60,
+    font           = \small\bfseries,
+  },
+  level 2/.append style = {
+    level distance = 2.9cm,
+    sibling angle  = 42,
+    font           = \scriptsize,
+    text width     = 1.75cm,
+    align          = center,
+  },
+]
+
+% ROOT
+\node [font=\small\bfseries, text width=2.2cm, align=center]
+      {Introduzione\\alla\\Patologia\\Digitale}
+% BRANCH 1 -- Definizioni & Concetti (teal)
+  child [concept color=cDef] {
+    node [text width=2.0cm, align=center] {Definizioni \& Concetti}
+    child { node {Patologia\\Digitale} }
+    child { node {Patologia\\Computazionale} }
+    child { node {Telepatologia\\e refertazione\\remota} }
+    child { node {Ambiti Clinici\\chir., neuro,\\dermo, cito} }
+  }
+% BRANCH 2 -- Whole Slide Imaging (burnt-orange)
+  child [concept color=cWSI] {
+    node [text width=2.0cm, align=center] {Whole Slide Imaging}
+    child { node {Scanner\\Brightfield\\lin. / tessere} }
+    child { node {Scanner\\Fluorescenza\\multi-canale} }
+    child { node {Risoluzione\\20x e 40x\\dim. del file} }
+    child { node {Produttori\\Aperio, Hamamatsu\\Philips, 3DHIST} }
+  }
+% BRANCH 3 -- Formati & Metadati (violet)
+  child [concept color=cFmt] {
+    node [text width=2.0cm, align=center] {Formati \& Metadati}
+    child { node {Pixel RGB 8-bit\\campo chiaro\\16-bit fluor.} }
+    child { node {Piramidi\\a Tessere\\256 / 512 px} }
+    child { node {Micron per\\Pixel (um/px)\\scala fisica} }
+    child { node {OME-TIFF\\standard aperto\\interoperabile} }
+  }
+% BRANCH 4 -- Integrazione IT (crimson)
+  child [concept color=cIT] {
+    node [text width=2.0cm, align=center] {Integrazione IT}
+    child { node {LIS / LIMS\\gestione camp.\\e referti} }
+    child { node {DICOM\\archiv. e\\trasmissione} }
+    child { node {HL7 v2 / FHIR\\messaggistica\\clinica} }
+    child { node {PACS / VNA\\infrastrutt.\\ospedaliera} }
+  }
+% BRANCH 5 -- Software Open-Source (forest-green)
+  child [concept color=cOSS] {
+    node [text width=2.0cm, align=center] {Software Open-Source}
+    child { node {QuPath\\analisi e annot.\\Groovy API} }
+    child { node {OpenSlide\\lib. C / Python\\multi-formato} }
+    child { node {Bio-Formats\\formati propr.\\(OME)} }
+  }
+% BRANCH 6 -- Ruolo del Tecnico (dark-amber)
+  child [concept color=cTech] {
+    node [text width=2.0cm, align=center] {Ruolo del Tecnico TLB}
+    child { node {Preparazione\\Vetrini\\fiss. e color.} }
+    child { node {Operazioni\\Scansione\\caric. e fuoco} }
+    child { node {Controllo\\Qualita WSI\\protoc. QC} }
+    child { node {Governance\\GDPR, NHS\\conserv. 30 a.} }
+  };
+
+\end{tikzpicture}
+\end{center}
+
+\end{document}

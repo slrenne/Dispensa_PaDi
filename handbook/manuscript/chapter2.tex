@@ -20,7 +20,7 @@ nuove categorie di rischio. Una diagnosi errata derivante da una scansione sfoca
 sezione mal colorata o da un campione mal etichettato non è meno grave di una diagnosi errata su
 un vetrino tradizionale; nel dominio digitale, tuttavia, tali errori possono propagarsi
 silenziosamente attraverso un intero lotto di casi prima di essere rilevati. Il controllo qualità
-(CQ) non è quindi un complemento facoltativo della patologia digitale --- è la disciplina
+(CQ) non è quindi un complemento facoltativo della patologia digitale -- è la disciplina
 fondamentale che rende l'intera attività clinicamente sicura e scientificamente riproducibile
 \cite{bankhead2022}.
 
@@ -28,15 +28,15 @@ Il flusso di lavoro della patologia digitale può essere concettualizzato come u
 con diverse fasi discrete: ricezione del campione e descrizione macroscopica, processazione
 tissutale e preparazione del vetrino, scansione, CQ dell'immagine, gestione delle immagini e,
 infine, refertazione diagnostica o analisi computazionale. Ogni fase introduce potenziali fonti
-di variabilità ed errore. I fattori pre-analitici --- le condizioni in cui il tessuto viene
-fissato, processato, sezionato e colorato --- esercitano la maggiore influenza sulla qualità
+di variabilità ed errore. I fattori pre-analitici -- le condizioni in cui il tessuto viene
+fissato, processato, sezionato e colorato -- esercitano la maggiore influenza sulla qualità
 finale dell'immagine, eppure sono spesso i meno suscettibili di correzione automatizzata. I
 fattori post-analitici, come la deriva della calibrazione dello scanner e le differenze di resa
 cromatica tra dispositivi, possono essere affrontati computazionalmente, ma solo se vengono prima
 identificati attraverso procedure sistematiche di CQ.
 
-Per gli specializzandi in patologia, una comprensione approfondita del flusso di lavoro digitale
-è essenziale per due ragioni. In primo luogo, come futuri patologi diagnostici, saranno
+Per il tecnico di laboratorio biomedico, una comprensione approfondita del flusso di lavoro digitale
+è essenziale per due ragioni. In primo luogo, saranno
 responsabili dell'accettazione o del rifiuto delle immagini digitali come idonee alla diagnosi, e
 devono essere in grado di articolare le basi tecniche di tale giudizio. In secondo luogo, con il
 progredire del campo verso la diagnosi assistita dall'intelligenza artificiale (IA), la qualità
@@ -49,8 +49,8 @@ diagnostica in ogni fase.
 
 L'importanza di un solido sistema di CQ è sottolineata dal crescente corpus di evidenze che
 collega la qualità dell'immagine all'accuratezza diagnostica e alle prestazioni dei modelli di
-IA. Studi hanno dimostrato che anche una lieve degradazione della messa a fuoco --- impercettibile
-all'osservatore umano in un'ispezione superficiale --- può ridurre significativamente la
+IA. Studi hanno dimostrato che anche una lieve degradazione della messa a fuoco -- impercettibile
+all'osservatore umano in un'ispezione superficiale -- può ridurre significativamente la
 sensibilità degli algoritmi di apprendimento profondo per il rilevamento e la classificazione dei
 tumori \cite{bankhead2022}. Un approccio sistematico alla gestione della qualità, integrato nelle
 procedure operative standard del laboratorio e supportato da tecnologie appropriate, è quindi un
@@ -68,7 +68,7 @@ Il fissativo standard in anatomia patologica chirurgica è la formalina neutra t
 (FNT), una soluzione di formaldeide al 3,7--4\% in soluzione salina tamponata con fosfati a
 pH~7,0. La formalina reticola le proteine attraverso ponti metilenici, preservando l'architettura
 cellulare e prevenendo l'autolisi. Il tempo di fissazione raccomandato per la maggior parte dei
-campioni chirurgici è di 6--72 ore; la sotto-fissazione porta a scarso dettaglio nucleare e a
+campioni chirurgici è di 6--48 ore; la sotto-fissazione porta a scarso dettaglio nucleare e a
 immunoistochimica (IIC) inaffidabile, mentre la sovra-fissazione causa una reticolazione eccessiva
 che può mascherare gli epitopi antigenici e ridurre la sensibilità dei saggi molecolari. Per le
 biopsie con ago-cannula, il College of American Pathologists (CAP) e il Royal College of
@@ -80,10 +80,10 @@ fusa sotto vuoto. Questo processo, eseguito in un processore tissutale automatiz
 8--12 ore, rende il tessuto sufficientemente rigido per il sezionamento sottile. La qualità della
 processazione dipende in modo critico dalla completezza della disidratazione; l'acqua residua nel
 blocco tissutale causa una scarsa infiltrazione della paraffina, con conseguenti sezioni che si
-sbriciolano o si lacerano durante la microtomia. L'inclusione --- l'orientamento del tessuto
-processato in uno stampo di paraffina fresca --- richiede competenza tecnica, poiché il piano di
+sbriciolano o si lacerano durante la microtomia. L'inclusione -- l'orientamento del tessuto
+processato in uno stampo di paraffina fresca -- richiede competenza tecnica, poiché il piano di
 sezione deve essere scelto per massimizzare le informazioni diagnostiche. Un orientamento errato
-è un errore pre-analitico che non può essere corretto in nessuna fase successiva.
+è un errore pre-analitico che a volte non può essere corretto in nessuna fase successiva.
 
 La scelta del programma del processatore tissutale è una variabile di qualità importante. I
 programmi di processazione rapida, che utilizzano temperature elevate ed energia a microonde per
@@ -96,21 +96,23 @@ qualità delle sezioni e delle prestazioni dell'IIC.
 
 \subsection{Sezionamento, Colorazione e Vetrino Coprioggetto}
 
-La microtomia è il processo di taglio di sezioni sottili (tipicamente 3--5~\textmu m) dal blocco
+La microtomia è il processo di taglio di sezioni sottili (tipicamente 2--4~\textmu m) dal blocco
 di paraffina mediante un microtomo rotativo. Lo spessore della sezione è una variabile critica:
 le sezioni troppo spesse producono nuclei sovrapposti e scarso dettaglio della cromatina, mentre
-le sezioni troppo sottili possono non contenere tessuto sufficiente per la diagnosi. Le sezioni
+le sezioni troppo sottili possono non contenere tessuto sufficiente per la diagnosi (ad esempio in esami 
+di ibridazione in situ a fluorescenzauno spessore inferiore a 4~\textmu m rende più difficile 
+la conta dei segnali per la ricerca del amplificazione genica). Le sezioni
 vengono distese su un bagno d'acqua tiepida per eliminare le pieghe, montate su vetrini di vetro
 a carica positiva e asciugate in forno a 60\textdegree C per favorire l'adesione. Le macchine
 coprivetri automatizzate applicano uno strato sottile di mezzo di montaggio e un vetrino
-coprioggetto; la qualità del coprioggetto influisce direttamente sulla qualità della scansione,
+coprioggetto; la qualità dell'apposizione del coprioggetto influisce direttamente sulla qualità della scansione,
 poiché le bolle d'aria o lo spessore non uniforme del mezzo di montaggio creano artefatti ottici
 che degradano la messa a fuoco.
 
 La colorazione con ematossilina ed eosina (E\&E) rimane il cardine della diagnosi istopatologica.
 L'ematossilina, un colorante basico, colora gli acidi nucleici di blu-viola; l'eosina, un
 colorante acido, colora le proteine citoplasmatiche e la matrice extracellulare di rosa. Il
-preciso equilibrio tra questi due coloranti --- il rapporto E\&E --- varia tra i laboratori e
+preciso equilibrio tra questi due coloranti -- il rapporto E\&E -- varia tra i laboratori e
 persino tra lotti di reagenti, producendo la variabilità di colorazione inter-laboratorio che
 rappresenta una sfida importante per la patologia computazionale. La colorazione IIC utilizza
 anticorpi coniugati a enzimi o fluorofori per rilevare proteine specifiche nelle sezioni tissutali.
@@ -178,8 +180,8 @@ dimensioni. I parametri di scansione principali sono:
     le dimensioni del file.
 \end{itemize}
 
-La calibrazione dello scanner --- inclusi il bilanciamento del bianco, l'uniformità
-dell'illuminazione e il profilo colore --- deve essere eseguita regolarmente secondo il programma
+La calibrazione dello scanner -- inclusi il bilanciamento del bianco, l'uniformità
+dell'illuminazione e il profilo colore -- deve essere eseguita regolarmente secondo il programma
 del produttore e verificata con vetrini di riferimento. La deriva della calibrazione è una fonte
 sottile ma importante di variabilità cromatica inter-scansione che può confondere sia
 l'interpretazione umana sia gli algoritmi di IA \cite{bankhead2022}. I laboratori devono
@@ -205,8 +207,8 @@ La descrizione macroscopica deve seguire un modulo standardizzato appropriato al
 I moduli standardizzati, come quelli pubblicati dal Royal College of Pathologists o dal College
 of American Pathologists, garantiscono che tutte le caratteristiche diagnosticamente rilevanti
 siano registrate e che la descrizione sia riproducibile tra osservatori diversi. Nel contesto
-della patologia digitale, le immagini macroscopiche --- fotografie della superficie di taglio del
-campione --- sono sempre più incorporate nel fascicolo digitale del caso, fornendo un riferimento
+della patologia digitale, le immagini macroscopiche -- fotografie della superficie di taglio del
+campione -- sono sempre più incorporate nel fascicolo digitale del caso, fornendo un riferimento
 visivo che integra le immagini microscopiche e facilita la correlazione tra i reperti macroscopici
 e microscopici.
 
@@ -219,8 +221,8 @@ che potrebbe fornire un riferimento volumetrico per il campionamento microscopic
 
 \subsection{Strategie di Campionamento per Diversi Tipi di Campione}
 
-\paragraph{Biopsie con ago-cannula.}
-Le biopsie con ago-cannula sono piccoli cilindri tissutali, tipicamente lunghi 1--2~cm e con un
+\paragraph{Biopsie con ago-tranciante.}
+Le biopsie con ago-tranciante sono piccoli cilindri tissutali, tipicamente lunghi 1--2~cm e con un
 diametro di 1--2~mm, ottenuti mediante biopsia percutanea con ago di organi solidi (mammella,
 prostata, rene, fegato). Poiché il volume tissutale è limitato, tutti i cilindri vengono
 solitamente inviati per l'esame istologico. I cilindri vengono inclusi in un unico blocco e si
@@ -229,18 +231,18 @@ Nel flusso di lavoro digitale, la piccola area tissutale significa che la scansi
 è solitamente sufficiente e i tempi di scansione sono brevi.
 
 \paragraph{Campioni da escissione e resezione.}
-I campioni da resezione (ad es., colectomia, mastectomia, nefrectomia) sono di grandi dimensioni
-e richiedono un campionamento selettivo. Il patologo deve identificare le aree diagnosticamente
-più informative --- il centro del tumore, il fronte invasivo, i margini chirurgici e le aree
-macroscopicamente anomale --- e inviare blocchi rappresentativi. I protocolli di campionamento
+I campioni da resezione (ad es., colectomia, mastectomia, lobectomia) sono di grandi dimensioni
+e richiedono un campionamento selettivo. Il patologo -- o il tecnico campionatore -- deve identificare le aree diagnosticamente
+più informative -- il centro del tumore, il fronte invasivo, i margini chirurgici e le aree
+macroscopicamente anomale -- e inviare blocchi rappresentativi. I protocolli di campionamento
 sono definiti da linee guida nazionali e internazionali e devono essere documentati nella
 descrizione macroscopica. Il sotto-campionamento è una fonte significativa di errore diagnostico;
-ad esempio, il mancato campionamento del punto più profondo di un tumore colorettale può portare
+ad esempio, ad il mancato campionamento del punto più profondo di un tumore colorettale può portare
 a una sottostadiazione della categoria T.
 
 \paragraph{Campioni citologici.}
-I preparati citologici --- inclusi gli strisci da agoaspirato con ago sottile (FNAC), i preparati
-citologici in fase liquida (LBC) e i campioni di espettorato o urina --- presentano sfide di
+I preparati citologici -- inclusi gli strisci da agoaspirato con ago sottile (FNAC), i preparati
+citologici in fase liquida (LBC) e i campioni di espettorato o urina -- presentano sfide di
 campionamento uniche. La cellularità del preparato è molto variabile e le cellule diagnostiche
 possono essere scarsamente distribuite. Nel flusso di lavoro digitale, i vetrini citologici
 vengono tipicamente scansionati a 40$\times$ per catturare il dettaglio nucleare fine, e l'intera
@@ -250,7 +252,7 @@ superficie del vetrino deve essere scansionata anziché una regione selezionata.
 
 La relazione tra reperti macroscopici e microscopici è bidirezionale. I reperti macroscopici
 guidano la selezione dei blocchi tissutali, come descritto sopra. Al contrario, i reperti
-microscopici possono richiedere un campionamento aggiuntivo del campione macroscopico --- ad
+microscopici possono richiedere un campionamento aggiuntivo del campione macroscopico -- ad
 esempio, se le sezioni iniziali mostrano tumore a un margine, devono essere inviati blocchi
 aggiuntivi da quel margine. Nel flusso di lavoro della patologia digitale, questo processo
 iterativo è facilitato dalla possibilità di annotare le immagini digitali e collegare le
@@ -296,8 +298,8 @@ di messa a fuoco a livello di vetrino.
 
 La valutazione automatizzata della messa a fuoco è implementata in diversi strumenti di CQ
 commerciali e open source. La pipeline HistoQC, sviluppata da Janowczyk e colleghi, calcola una
-serie di metriche di qualità dell'immagine --- incluse messa a fuoco, intensità della colorazione,
-copertura tissutale e presenza di artefatti --- e genera un rapporto di qualità per ogni vetrino
+serie di metriche di qualità dell'immagine -- incluse messa a fuoco, intensità della colorazione,
+copertura tissutale e presenza di artefatti -- e genera un rapporto di qualità per ogni vetrino
 \cite{janowczyk2019}. HistoQC utilizza una pipeline configurabile di moduli di elaborazione delle
 immagini, consentendo ai laboratori di personalizzare i criteri di CQ per i loro specifici tipi
 di tessuto e protocolli di colorazione. I vetrini che non superano il CQ vengono segnalati per
@@ -419,8 +421,8 @@ Questa variabilità ha importanti conseguenze pratiche. Per gli osservatori uman
 patologi devono ricalibrare mentalmente la loro percezione cromatica quando esaminano vetrini di
 laboratori non familiari. Per gli algoritmi di IA, significa che un modello addestrato su vetrini
 di un laboratorio può avere prestazioni scarse quando applicato a vetrini di un altro, un
-fenomeno noto come \emph{domain shift}. La normalizzazione della colorazione --- la trasformazione
-computazionale dei colori del vetrino verso uno standard di riferimento comune --- è la strategia
+fenomeno noto come \emph{domain shift}. La normalizzazione della colorazione -- la trasformazione
+computazionale dei colori del vetrino verso uno standard di riferimento comune -- è la strategia
 principale per affrontare questo problema \cite{tellez2019}.
 
 \subsection{Deconvoluzione Cromatica: Il Metodo di Ruifrok e Johnston}
@@ -493,8 +495,8 @@ laboratori e scanner \cite{tellez2019}.
 
 Il laboratorio di patologia digitale è un ambiente collaborativo in cui i tecnici di laboratorio
 e i patologi svolgono ruoli complementari e interdipendenti. I tecnici sono responsabili della
-preparazione fisica dei vetrini --- fissazione, processazione, inclusione, sezionamento,
-colorazione e coprioggetto --- e del funzionamento delle apparecchiature di scansione. Sono la
+preparazione fisica dei vetrini -- fissazione, processazione, inclusione, sezionamento,
+colorazione e coprioggetto -- e del funzionamento delle apparecchiature di scansione. Sono la
 prima linea del controllo qualità, eseguendo l'ispezione visiva dei vetrini prima della
 scansione e monitorando la qualità della scansione in tempo reale. I patologi sono responsabili
 dell'interpretazione diagnostica delle immagini digitali e dell'accettazione o del rifiuto finale
@@ -511,11 +513,11 @@ prima della scansione.
 \subsection{Flusso di Comunicazione e Segnalazione dei Problemi di Qualità}
 
 Il flusso di comunicazione in un laboratorio di patologia digitale segue tipicamente un percorso
-strutturato. Quando un tecnico identifica un problema di qualità --- ad esempio, un vetrino con
-una piega tissutale, una bolla d'aria o un artefatto di colorazione --- segnala il problema nel
-SIL e, se necessario, contatta direttamente il patologo responsabile. La segnalazione deve
-includere una descrizione del problema, i vetrini interessati e la valutazione del tecnico sulla
-probabilità che il problema influenzi l'interpretazione diagnostica.
+strutturato. Quando un tecnico identifica un problema di qualità non risolvibile nella fase attuale 
+-- ad esempio, un vetrino con una piega tissutale, una bolla d'aria o un artefatto di colorazione -- 
+segnala il problema nel SIL e, se necessario, contatta direttamente il patologo responsabile. La 
+segnalazione deve includere una descrizione del problema, i vetrini interessati e la valutazione del 
+tecnico sulla probabilità che il problema influenzi l'interpretazione diagnostica.
 
 Gli strumenti di CQ automatizzati come HistoQC \cite{janowczyk2019} possono pre-filtrare i
 vetrini e indirizzare solo quelli con problemi di qualità significativi alla revisione umana,
@@ -527,10 +529,10 @@ diagnostica di un vetrino deve sempre spettare al patologo responsabile.
 
 Le procedure di escalation definiscono il percorso per la gestione dei problemi di qualità che
 non possono essere risolti a livello del tecnico. Un tipico percorso di escalation potrebbe
-essere: (1) il tecnico identifica il problema di qualità e tenta la rimediazione (ad es., nuova
-scansione, nuovo montaggio); (2) se la rimediazione non ha successo, il tecnico segnala il
-problema al biologo senior o al responsabile del laboratorio; (3) se il problema non può essere
-risolto a livello del biologo senior, viene escalato al patologo responsabile; (4) se il patologo
+essere: (1) il tecnico identifica il problema di qualità e cerca di porvi rimedio (ad es., nuova
+scansione, nuovo montaggio); (2) se il rimedio non ha successo, il tecnico segnala il
+problema al responsabile del laboratorio; (3) se il problema non può essere
+risolto a livello del resposabile del laboratorio, viene escalato al patologo responsabile; (4) se il patologo
 determina che il problema di qualità influisce sull'interpretazione diagnostica e non può essere
 risolto, il caso viene escalato al team clinico con un referto che indica la limitazione di
 qualità.
@@ -538,8 +540,8 @@ qualità.
 \subsection{Standard di Documentazione}
 
 La documentazione è la spina dorsale della gestione della qualità nel laboratorio di patologia
-digitale. Ogni azione correlata alla qualità --- dall'ispezione visiva pre-scansione alla
-decisione del patologo di accettare un'immagine non ottimale --- deve essere registrata in un
+digitale. Ogni azione correlata alla qualità -- dall'ispezione visiva pre-scansione alla
+decisione del patologo di accettare un'immagine non ottimale -- deve essere registrata in un
 formato standardizzato recuperabile per scopi di audit. Gli standard di documentazione devono
 specificare: le informazioni da registrare (identificatore del vetrino, data e ora, natura del
 problema, azione intrapresa, esito); il formato del registro (inserimento dati strutturato nel
@@ -583,7 +585,7 @@ il rischio di errori di trascrizione manuale.
 \subsection{Audit Trail Digitali}
 
 Un audit trail digitale è un registro cronologico di tutte le azioni eseguite su un oggetto
-digitale --- in questo contesto, un file WSI. L'audit trail registra chi ha avuto accesso
+digitale -- in questo contesto, un file WSI. L'audit trail registra chi ha avuto accesso
 all'immagine, quando, da quale dispositivo e quale azione è stata intrapresa (visualizzazione,
 annotazione, refertazione, esportazione, eliminazione). Gli audit trail digitali sono essenziali
 per la conformità normativa, per scopi medicolegali e per l'indagine di incidenti di qualità.
@@ -652,7 +654,7 @@ essere in grado di identificare e classificare i principali tipi di artefatti ne
 patologia digitale, valutarne la rilevanza diagnostica e applicare strumenti di CQ automatizzati
 a supporto della valutazione della qualità.
 
-\subsection{Attività B: Studio di Caso --- Flusso di Lavoro Digitale dalla Biopsia alla Diagnosi}
+\subsection{Attività B: Studio di Caso -- Flusso di Lavoro Digitale dalla Biopsia alla Diagnosi}
 
 \textbf{Obiettivo:} Tracciare il flusso di lavoro completo della patologia digitale per un caso
 clinico, dalla ricezione del campione alla refertazione diagnostica, identificando i punti di
@@ -700,8 +702,8 @@ ricordati:
     discrete, ognuna delle quali introduce potenziali fonti di variabilità ed errore. Il controllo
     qualità deve operare a ogni fase per garantire l'integrità diagnostica.
 
-    \item I fattori pre-analitici --- fissazione, processazione, sezionamento, colorazione e
-    coprioggetto --- esercitano la maggiore influenza sulla qualità finale dell'immagine e non
+    \item I fattori pre-analitici -- fissazione, processazione, sezionamento, colorazione e
+    coprioggetto -- esercitano la maggiore influenza sulla qualità finale dell'immagine e non
     possono essere corretti computazionalmente dopo la scansione.
 
     \item La valutazione della qualità della messa a fuoco, dell'uniformità della colorazione e
@@ -709,8 +711,8 @@ ricordati:
     all'analisi computazionale. Strumenti automatizzati come HistoQC \cite{janowczyk2019}
     supportano ma non sostituiscono il giudizio umano.
 
-    \item La normalizzazione della colorazione --- mediante metodi come Macenko, Vahadane o
-    Reinhard --- riduce la variabilità cromatica inter-laboratorio e migliora la
+    \item La normalizzazione della colorazione -- mediante metodi come Macenko, Vahadane o
+    Reinhard -- riduce la variabilità cromatica inter-laboratorio e migliora la
     generalizzabilità dei modelli di IA \cite{tellez2019}. La deconvoluzione cromatica secondo
     Ruifrok e Johnston \cite{ruifrok2001} consente l'analisi quantitativa dei singoli coloranti.
 
@@ -718,9 +720,9 @@ ricordati:
     digitale di alta qualità. I tecnici sono la prima linea del controllo qualità; i patologi
     sono responsabili dell'accettazione finale delle immagini come idonee alla diagnosi.
 
-    \item La documentazione e la tracciabilità --- incluse la catena di custodia, i codici a
+    \item La documentazione e la tracciabilità -- incluse la catena di custodia, i codici a
     barre, gli audit trail digitali e la conformità agli standard normativi (ISO 15189, CAP,
-    IVDR) --- sono requisiti non negoziabili per un servizio di patologia digitale clinicamente
+    IVDR) -- sono requisiti non negoziabili per un servizio di patologia digitale clinicamente
     sicuro e legalmente conforme.
 \end{itemize}
 
