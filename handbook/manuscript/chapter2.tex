@@ -618,7 +618,171 @@ standard più rilevanti sono:
 \section{Attività Pratiche}
 \label{sec:ch2-practical}
 
-\subsection{Attività A: Esercizio di Riconoscimento degli Artefatti}
+
+\subsection{Attività A: Deconvoluzione Cromatica Interattiva in QuPath}
+
+\textbf{Obiettivo:} Comprendere in modo operativo il principio della deconvoluzione cromatica
+secondo Ruifrok e Johnston applicandolo direttamente a una WSI in campo chiaro colorata con
+ematossilina ed eosina (E\&E). Al termine dell'attività lo studente sarà in grado di stimare i
+vettori di colorante automaticamente, modificarli manualmente e confrontare visivamente le
+immagini di densità ottica risultanti, apprezzando come variazioni nei vettori si traducano in
+artefatti quantificabili nelle immagini separate per canale.
+
+\textbf{Materiali:}
+\begin{itemize}
+    \item QuPath (versione 0.5 o successiva), liberamente scaricabile da
+    \texttt{https://qupath.github.io}.
+    \item Un file WSI in formato \texttt{.svs} o equivalente: si raccomanda la diapositiva
+    campione \texttt{CMU-1.svs} distribuita dal progetto OpenSlide
+    (\texttt{https://openslide.cs.cmu.edu/download/openslide-testdata/Aperio/}), poiché
+    liberamente disponibile e ben documentata.
+    \item Un foglio di registrazione dati (fornito dal coordinatore del corso) per annotare i
+    vettori di colorante stimati e manuali e le metriche di confronto.
+\end{itemize}
+
+\medskip
+\textbf{Contesto teorico sintetico.}
+QuPath rappresenta ogni immagine E\&E come una sovrapposizione di due assorbitori: ematossilina
+(H) ed eosina (E). Seguendo la legge di Beer-Lambert, la densità ottica (OD) di ogni pixel è la
+somma vettoriale dei contributi dei singoli coloranti pesati per le rispettive concentrazioni.
+La matrice di colorante $\mathbf{M}$ (dimensioni $3 \times 3$ nel caso di due coloranti più il
+residuo) codifica i vettori di assorbimento di ciascun colorante nello spazio RGB. La
+deconvoluzione $\mathbf{C} = \mathbf{M}^{-1} \cdot \mathbf{OD}$ separa i contributi e produce
+un'immagine per canale. QuPath esegue questa operazione in tempo reale, consentendo di
+confrontare visivamente la stima automatica dei vettori con una definizione manuale.
+
+\bigskip
+\textbf{Procedura:}
+\begin{enumerate}
+
+    \item \textbf{Apertura della WSI e configurazione del tipo di immagine.}
+    Avviare QuPath e creare un nuovo progetto (\textit{File} $\to$ \textit{Project\ldots} $\to$
+    \textit{Create project}). Trascinare il file \texttt{CMU-1.svs} nell'area del progetto per
+    importarlo. Fare doppio clic sull'immagine per aprirla nel visualizzatore. Verificare che
+    QuPath abbia riconosciuto correttamente il tipo di immagine: nel pannello
+    \textit{Image} (in basso a sinistra) la voce \textit{Image type} deve essere
+    \textbf{Brightfield (H\&E)}. In caso contrario, selezionare manualmente \textit{Edit}
+    $\to$ \textit{Image type} $\to$ \textit{Brightfield (H\&E)} e confermare. Questo passaggio
+    è indispensabile perché QuPath carica i vettori di colorante predefiniti per l'E\&E solo
+    quando il tipo di immagine è corretto.
+
+    \item \textbf{Navigazione e selezione di una regione rappresentativa.}
+    Navigare la WSI utilizzando la rotella del mouse per lo zoom e il tasto sinistro (con la
+    mano) per la traslazione. Individuare una regione con tessuto ben colorato che includa
+    chiaramente sia nuclei basofili (blu-viola, ad alta densità di ematossilina) sia citoplasma
+    eosinofilo (rosa, ad alta densità di eosina), preferibilmente senza artefatti visibili
+    (pieghe, bolle d'aria o aree sfocate). Una regione parenchimale densa, evitando il fronte
+    necrotico o le aree di stroma lasso, è in genere la scelta ottimale.
+
+    \item \textbf{Creazione di un'annotazione rettangolare.}
+    Selezionare lo strumento rettangolo nella barra degli strumenti (tasto rapido: \texttt{R}).
+    Tracciare un rettangolo di circa $500 \times 500$\,\textmu m nella regione selezionata al
+    punto precedente: questa dimensione è sufficiente a campionare migliaia di pixel e a
+    fornire una stima robusta dei vettori, senza richiedere tempi di calcolo elevati.
+    L'annotazione creata apparirà nel pannello \textit{Annotations}; assegnarle l'etichetta
+    \texttt{ROI\_stima} tramite clic destro $\to$ \textit{Set properties}.
+
+    \item \textbf{Stima automatica dei vettori di colorante.}
+    Con l'annotazione \texttt{ROI\_stima} selezionata nel pannello \textit{Annotations},
+    eseguire \textit{Analyze} $\to$ \textit{Preprocessing} $\to$
+    \textit{Estimate stain vectors}. QuPath campiona i pixel all'interno dell'annotazione,
+    calcola la matrice di densità ottica e applica la decomposizione ai valori singolari (SVD)
+    per ricavare i vettori di colorante dominanti, seguendo il metodo di Macenko. Il dialogo
+    visualizza i due vettori stimati nella forma $(r,\,g,\,b)_\text{OD}$ normalizzati a
+    lunghezza unitaria, insieme ai valori di residuo. Registrare sul foglio dati i valori
+    numerici di entrambi i vettori stimati (\textbf{Vettori A}: stima automatica).
+
+    \item \textbf{Visualizzazione dei canali deconvoluti con i vettori automatici.}
+    Chiudere il dialogo di stima confermando l'applicazione dei vettori stimati. Aprire il
+    pannello \textit{Brightness/Contrast} (\textit{View} $\to$ \textit{Brightness/Contrast}
+    oppure tasto rapido \texttt{Shift+C}). Nel selettore dei canali, scegliere
+    \textbf{Color deconvolution} come modalità di visualizzazione: QuPath mostrerà
+    alternativamente i canali \textit{Hematoxylin}, \textit{Eosin} e \textit{Residual}.
+    Ciclare tra i canali con i tasti freccia e osservare:
+    \begin{itemize}
+        \item nel canale \textit{Hematoxylin}: i nuclei devono apparire scuri su sfondo chiaro,
+        con strutture citoplasmatiche a contrasto minimo;
+        \item nel canale \textit{Eosin}: il citoplasma e la matrice extracellulare devono essere
+        scuri, con i nuclei a basso segnale;
+        \item nel canale \textit{Residual}: segnale idealmente vicino a zero; un residuo elevato
+        indica la presenza di un terzo assorbitore o un errore nella stima dei vettori.
+    \end{itemize}
+    Acquisire uno screenshot per ciascun canale e allegarlo al foglio dati.
+
+    \item \textbf{Definizione manuale dei vettori di colorante.}
+    Aprire nuovamente il dialogo dei vettori di colorante tramite \textit{Edit}
+    $\to$ \textit{Color deconvolution stains} $\to$ \textit{Edit stains}. Il dialogo espone
+    le tre componenti $(r,\,g,\,b)$ di ciascun vettore come campi numerici editabili.
+    Eseguire le seguenti modifiche in sequenza, una alla volta, registrando i risultati prima
+    di procedere alla successiva:
+
+    \begin{enumerate}[label=\alph*.]
+        \item \textbf{Vettore H traslato verso il rosso:} aumentare la componente $r$ del
+        vettore ematossilina di $+0{,}15$ e diminuire la componente $b$ di $-0{,}15$, quindi
+        rinormalizzare manualmente a lunghezza unitaria (dividere ciascuna componente per la
+        norma euclidea). Confermare e osservare il canale \textit{Hematoxylin}.
+
+        \item \textbf{Vettore H traslato verso il blu puro:} reimpostare il vettore H al valore
+        di riferimento bibliografico di Ruifrok e Johnston
+        ($r=0{,}650,\;g=0{,}704,\;b=0{,}286$) e il vettore E a
+        ($r=0{,}072,\;g=0{,}990,\;b=0{,}105$). Questi sono i vettori ``di laboratorio''
+        pubblicati per un protocollo standard. Confrontare l'immagine ottenuta con quella della
+        stima automatica al punto~5.
+
+        \item \textbf{Vettori invertiti:} scambiare i vettori H ed E (assegnare al canale H
+        il vettore precedentemente assegnato a E e viceversa) e osservare l'effetto sulla
+        separazione cromatica.
+    \end{enumerate}
+    Per ciascuna configurazione, acquisire uno screenshot del canale \textit{Hematoxylin} e del
+    canale \textit{Eosin} e completare la colonna corrispondente del foglio dati.
+
+    \item \textbf{Confronto quantitativo delle configurazioni.}
+    All'interno dell'annotazione \texttt{ROI\_stima}, eseguire
+    \textit{Analyze} $\to$ \textit{Compute image features} con la configurazione di vettori
+    corrente per misurare la media e la deviazione standard dell'intensità OD del canale
+    ematossilina sui pixel dell'annotazione. Ripetere per ciascuna delle quattro configurazioni
+    di vettori (automatica, vettore H traslato, Ruifrok-Johnston, vettori invertiti).
+    Inserire i valori nella tabella riassuntiva del foglio dati e rispondere alle domande
+    guidate:
+    \begin{itemize}
+        \item Quale configurazione produce la deviazione standard maggiore nel canale H?
+        Qual è l'interpretazione biologica?
+        \item Quale configurazione massimizza il rapporto segnale/rumore tra nuclei e
+        citoplasma nel canale H?
+        \item Il canale \textit{Residual} è sistematicamente più alto con i vettori di
+        Ruifrok-Johnston rispetto alla stima automatica? Come si spiega?
+    \end{itemize}
+
+    \item \textbf{Restituzione dei vettori automatici e discussione in plenaria.}
+    Reimpostare i vettori alla stima automatica (\textit{Edit} $\to$
+    \textit{Color deconvolution stains} $\to$ \textit{Reset to defaults}). In sessione
+    plenaria, ciascun gruppo presenta i propri vettori stimati e le metriche di confronto.
+    Il coordinatore del corso guida una discussione sui seguenti punti:
+    \begin{itemize}
+        \item Quanto differiscono i vettori stimati tra gruppi diversi che hanno utilizzato
+        regioni di interesse diverse? Quale fonte di variabilità biologica o tecnica potrebbe
+        spiegare le differenze osservate?
+        \item In quale scenario clinico o di ricerca la scelta dei vettori di colorante avrebbe
+        un impatto diretto sui risultati di un algoritmo di IA addestrato su immagini
+        deconvolute?
+        \item Come si collega questa attività al problema del \emph{domain shift} discusso
+        nella Sezione~\ref{sec:ch2-normalisation}?
+    \end{itemize}
+
+\end{enumerate}
+
+\textbf{Risultati di apprendimento:} Al termine di questa attività, gli studenti dovrebbero
+essere in grado di: (\textit{i}) aprire e configurare correttamente una WSI in campo chiaro in
+QuPath; (\textit{ii}) creare un'annotazione rettangolare come regione di campionamento per la
+stima dei vettori; (\textit{iii}) interpretare i vettori di colorante come rappresentazioni
+geometriche nello spazio di densità ottica; (\textit{iv}) stimare automaticamente e modificare
+manualmente i vettori di ematossilina ed eosina, comprendendo l'effetto delle loro variazioni
+sulla separazione cromatica; e (\textit{v}) collegare la variabilità dei vettori al problema
+della normalizzazione della colorazione e del \emph{domain shift} nei modelli di
+intelligenza artificiale per la patologia computazionale.
+
+
+\subsection{Attività B: Esercizio di Riconoscimento degli Artefatti}
 
 \textbf{Obiettivo:} Sviluppare la capacità di identificare e classificare gli artefatti comuni
 nelle immagini di patologia digitale e valutare il loro impatto sulla qualità diagnostica.
@@ -654,7 +818,7 @@ essere in grado di identificare e classificare i principali tipi di artefatti ne
 patologia digitale, valutarne la rilevanza diagnostica e applicare strumenti di CQ automatizzati
 a supporto della valutazione della qualità.
 
-\subsection{Attività B: Studio di Caso -- Flusso di Lavoro Digitale dalla Biopsia alla Diagnosi}
+\subsection{Attività C: Studio di Caso -- Flusso di Lavoro Digitale dalla Biopsia alla Diagnosi}
 
 \textbf{Obiettivo:} Tracciare il flusso di lavoro completo della patologia digitale per un caso
 clinico, dalla ricezione del campione alla refertazione diagnostica, identificando i punti di
