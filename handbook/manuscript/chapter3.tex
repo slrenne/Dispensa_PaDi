@@ -19,7 +19,7 @@ La storia dell'IA in patologia è più lunga di quanto spesso si riconosca. I pr
 
 Il ritmo del progresso è stato notevole. Studi fondamentali pubblicati tra il 2016 e il 2023 hanno dimostrato che i modelli di apprendimento profondo potevano eguagliare o superare le prestazioni diagnostiche di patologi certificati in compiti che spaziavano dal rilevamento di metastasi linfonodali nel cancro al seno alla classificazione dell'adenocarcinoma prostatico e alla predizione di sottotipi molecolari da sole sezioni colorate con ematossilina ed eosina (E\&E) \cite{song2023}. Questi risultati hanno catalizzato investimenti sostanziali sia dal settore pubblico sia dall'industria delle tecnologie mediche, e un numero crescente di strumenti diagnostici basati sull'IA ha ricevuto l'autorizzazione normativa da organismi come la Food and Drug Administration (FDA) degli Stati Uniti e l'Agenzia Europea per i Medicinali (EMA).
 
-Questo capitolo fornisce le basi concettuali e tecniche che gli specializzandi in patologia necessitano per interagire criticamente con gli strumenti basati sull'IA nella loro pratica professionale. Inizia con una precisa tassonomia dell'IA e delle sue sotto-discipline, poi traccia l'arco storico dai sistemi simbolici basati su regole attraverso l'apprendimento automatico classico fino all'apprendimento profondo moderno. Il ragionamento probabilistico bayesiano viene introdotto come quadro complementare per il supporto decisionale diagnostico. Il capitolo si conclude esaminando il ruolo specifico e indispensabile del tecnico di laboratorio biomedico nei flussi di lavoro assistiti dall'IA, e fornisce un'attività pratica utilizzando la piattaforma open source di analisi delle immagini QuPath \cite{bankhead2017} per illustrare l'IA simbolica in azione.
+Questo capitolo fornisce le basi concettuali e tecniche per interagire criticamente con gli strumenti basati sull'IA nella loro pratica professionale. Inizia con una precisa tassonomia dell'IA e delle sue sotto-discipline, poi traccia l'arco storico dai sistemi simbolici basati su regole attraverso l'apprendimento automatico classico fino all'apprendimento profondo moderno. Il ragionamento probabilistico bayesiano viene introdotto come quadro complementare per il supporto decisionale diagnostico. Il capitolo si conclude esaminando il ruolo specifico e indispensabile del tecnico di laboratorio biomedico nei flussi di lavoro assistiti dall'IA, e fornisce un'attività pratica utilizzando la piattaforma open source di analisi delle immagini QuPath \cite{bankhead2017} per illustrare l'IA simbolica in azione.
 
 % ============================================================
 \section{Definizioni e Tassonomia dell'Intelligenza Artificiale}
@@ -45,7 +45,7 @@ La relazione tra IA, apprendimento automatico e apprendimento profondo è meglio
 
 \subsection{Terminologia Chiave}
 
-Precise use of terminology is essential for critical engagement with the AI literature. The following definitions are used consistently throughout this handbook:
+Un uso preciso della terminologia è essenziale per un coinvolgimento critico con la letteratura sull'IA. Le seguenti definizioni vengono utilizzate in modo coerente in tutto questo manuale:
 
 \begin{description}
     \item[\textbf{Algoritmo}] Una sequenza finita e ordinata di istruzioni computazionali che trasforma un input in un output. Un algoritmo è la procedura; un modello è l'artefatto prodotto applicando tale procedura ai dati.
@@ -252,8 +252,7 @@ Una competenza critica per qualsiasi professionista che lavora con l'IA è la ca
 \textbf{Materiali Necessari:}
 \begin{itemize}
     \item Un computer con QuPath (versione 0.4 o successiva) installato (disponibile gratuitamente da \url{https://qupath.github.io}).
-    \item Un'immagine di vetrino intero di cancro al seno colorata con Ki-67 digitalizzata o una regione di interesse rappresentativa (fornita dal coordinatore del corso, o scaricabile dal repository di immagini campione di QuPath).
-    \item La guida utente di QuPath (disponibile online).
+    \item Un'immagine di vetrino intero colorata con Ki-67 digitalizzata scaricabile a \href{https://openslide.cs.cmu.edu/download/openslide-testdata/Hamamatsu/OS-2.ndpi}{questo link} (931.42 MB).
 \end{itemize}
 
 \textbf{Procedura:}
@@ -409,5 +408,9 @@ Le seguenti domande a risposta multipla sono progettate per consolidare la compr
 
 \end{enumerate}
 
-\bigskip
-\noindent\textit{Le risposte alle domande di revisione sono fornite nella Chiave delle Risposte alla fine del presente manuale.}
+
+\begin{figure}[htbp]
+  \centering
+  \input{handbook/figures/mindMap_chapter3.tex}
+  \label{fig:mindmap_ch3}
+\end{figure}

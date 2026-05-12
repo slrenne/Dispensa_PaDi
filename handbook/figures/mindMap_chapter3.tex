@@ -1,0 +1,102 @@
+%% ============================================================
+%%  mindMap_chapter3.tex
+%%  Mind-map -- Capitolo 3: Fondamenti dell'IA in Patologia
+%%  Compile with: pdflatex mindMap_chapter3.tex
+%% ============================================================
+
+
+%% -- Palette -------------------------------------------------
+\definecolor{cRoot}{RGB}{ 20,  60, 110}   %% deep navy
+\definecolor{cTax} {RGB}{  0, 130, 100}   %% teal-green  -- Tassonomia IA
+\definecolor{cSym} {RGB}{170,  60,  20}   %% burnt-sienna -- IA Simbolica
+\definecolor{cML}  {RGB}{110,  30, 130}   %% dark-violet  -- Apprendimento Automatico
+\definecolor{cBay} {RGB}{ 30,  90, 160}   %% steel-blue   -- Reti Bayesiane
+\definecolor{cDL}  {RGB}{ 20, 120,  60}   %% forest-green -- Apprendimento Profondo
+\definecolor{cTLB} {RGB}{150,  30,  30}   %% dark-crimson -- Ruolo del Tecnico
+
+
+\begin{center}
+  {\large\bfseries Mind-map ---
+   Capitolo~3: Fondamenti dell'Intelligenza Artificiale in Patologia}
+\end{center}
+
+\vspace{-2pt}
+
+\begin{center}
+\begin{tikzpicture}[
+  mindmap,
+  grow cyclic,
+  every node/.style = concept,
+  concept color     = cRoot,
+  text              = white,
+  level 1/.append style = {
+    level distance = 5.0cm,
+    sibling angle  = 60,
+    font           = \small\bfseries,
+  },
+  level 2/.append style = {
+    level distance = 2.7cm,
+    sibling angle  = 36,
+    font           = \scriptsize,
+    text width     = 1.75cm,
+    align          = center,
+  },
+]
+
+% ROOT
+\node [font=\small\bfseries, text width=2.2cm, align=center]
+      {Fondamenti\\dell'IA in\\Patologia}
+  % BRANCH 1 – Tassonomia dell'IA (teal-green, 4 children) ─────────────
+  child [concept color=cTax] {
+    node [text width=2.0cm, align=center] {Tassonomia dell'IA}
+    child { node {IA ristretta\\vs.\ AGI\\(IA forte)} }
+    child { node {IA $\supset$ ML\\$\supset$ DL\\discipline annidate} }
+    child { node {Terminologia\\algoritmo, modello\\addestram., inferenza} }
+    child { node {Etichetta \&\\Caratteristica\\superv. vs.\ appreso} }
+  }
+%% ─── BRANCH 2 – IA Simbolica & Regole (burnt-sienna, 5 children) ────────
+  child [concept color=cSym] {
+    node [text width=2.0cm, align=center] {IA Simbolica \& Regole}
+    child { node {Sistemi esperti\\SE\,$\to$\,ALLORA\\MYCIN (1970s)} }
+    child { node {Alberi decisionali\\nodi soglia\\percorso leggibile} }
+    child { node {Esempio Ki-67\\OD DAB, watershed\\indice proliferaz.} }
+    child { node {Punti di forza\\interpretabile\\deterministico} }
+    child { node {Limitazioni\\fragile, non gen.\\non apprende} }
+  }
+%% ─── BRANCH 3 – Apprendimento Automatico (dark-violet, 5 children) ──────
+  child [concept color=cML] {
+    node [text width=2.0cm, align=center] {Apprendimento Automatico}
+    child { node {Supervisionato\\classificazione\\regressione} }
+    child { node {Non superv.\\clustering\\PCA, UMAP} }
+    child { node {Semi-superv.\\dati etich. scarsi\\+ non etich.} }
+    child { node {Algoritmi classici\\Regressione Log.\\SVM, Rand. Forest} }
+    child { node {Overfitting\\regolarizz. L1/L2\\valid. incrociata} }
+  }
+%% ─── BRANCH 4 – Reti Bayesiane (steel-blue, 4 children) ─────────────────
+  child [concept color=cBay] {
+    node [text width=2.0cm, align=center] {Reti Bayesiane}
+    child { node {Teorema di Bayes\\priori, verosim.\\posteriori} }
+    child { node {Grafo aciclico\\diretto (DAG)\\indip. condiz.} }
+    child { node {Vantaggi\\incertezza quant.\\dati mancanti} }
+    child { node {Limitazioni\\scalabilit\`a\\inferenza approx.} }
+  }
+%% ─── BRANCH 5 – Apprendimento Profondo (forest-green, 5 children) ───────
+  child [concept color=cDL] {
+    node [text width=2.0cm, align=center] {Apprendimento Profondo}
+    child { node {ANN \& MLP\\neuroni, strati\\backpropag.} }
+    child { node {CNN\\convoluz., pooling\\gerarchia caratt.} }
+    child { node {Transfer learning\\ResNet, VGG\\ImageNet $\to$ path.} }
+    child { node {Vision Transformer\\auto-attenzione\\patch WSI} }
+    child { node {Modelli fondaz.\\UNI, CONCH, PLIP\\auto-superv.} }
+  }
+%% ─── BRANCH 6 – Ruolo del Tecnico TLB (dark-crimson, 4 children) ────────
+  child [concept color=cTLB] {
+    node [text width=2.0cm, align=center] {Ruolo del Tecnico TLB}
+    child { node {Annotazione dati\\linee guida\\variab. inter-ann.} }
+    child { node {Controllo qualit\`a\\dati addestram.\\output IA (HITL)} }
+    child { node {Validazione\\IVDR, FDA\\AI Act (UE)} }
+    child { node {Limit. IA\\domain shift\\scorciatoie, XAI} }
+  };
+
+\end{tikzpicture}
+\end{center}

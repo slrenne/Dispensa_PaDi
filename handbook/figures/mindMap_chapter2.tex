@@ -3,24 +3,7 @@
 %%  Mind-map -- Capitolo 2: Flusso di Lavoro Digitale e Controllo Qualità
 %%  Compile with: pdflatex mindMap_chapter2.tex
 %% ============================================================
-\documentclass[a4paper]{article}
 
-\usepackage[
-  landscape,
-  top    = 0.5cm,
-  bottom = 0.5cm,
-  left   = 0.8cm,
-  right  = 0.8cm
-]{geometry}
-
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{textcomp}
-
-\usepackage{tikz}
-\usetikzlibrary{mindmap, trees}
-
-\pagestyle{empty}
 
 %% -- Palette -------------------------------------------------
 \definecolor{cRoot}{RGB}{ 20,  60, 110}
@@ -31,7 +14,7 @@
 \definecolor{cColl}{RGB}{ 30, 120,  50}   %% forest-green  -- Collaborazione
 \definecolor{cDoc} {RGB}{140, 100,   0}   %% dark-amber    -- Documentazione & Tracciabilità
 
-\begin{document}
+
 
 \begin{center}
   {\large\bfseries Mind-map ---
@@ -65,7 +48,7 @@
 \node [font=\small\bfseries, text width=2.2cm, align=center]
       {Flusso di\\Lavoro \&\\Controllo\\Qualit\`a}
 % BRANCH 1 -- Fase Pre-analitica (burnt-orange)
-  child [concept color=cPre, level distance=7.2cm] {
+  child [concept color=cPre] {
     node [text width=2.0cm, align=center] {Fase Pre-analitica}
     child { node {Fissazione\\FNT 10\%\\6--72~h} }
     child { node {Processazione\\Disidrataz.\\Paraffina} }
@@ -83,7 +66,7 @@
     child { node {Calibrazione\\bianc. bianco\\vetrini rif.} }
   }
 % BRANCH 3 -- Controllo Qualità (crimson)
-  child [concept color=cCQ, level distance=7.2cm] {
+  child [concept color=cCQ] {
     node [text width=2.0cm, align=center] {Controllo Qualit\`a}
     child { node {CQ pre-scan\\ispezione\\barcode} }
     child { node {Messa a fuoco\\Var. Laplaciano\\Tenengrad} }
@@ -92,7 +75,7 @@
     child { node {Non conformi\\rimedio \&\\documentaz.} }
   }
 % BRANCH 4 -- Normalizzazione Colorazione (violet)
-  child [concept color=cNorm, level distance=7.2cm] {
+  child [concept color=cNorm] {
     node [text width=2.0cm, align=center] {Normalizzazione Colorazione}
     child { node {Variabilit\`a\\reagenti, scanner\\domain shift} }
     child { node {Deconvoluz.\\Ruifrok-Johnston\\Beer-Lambert} }
@@ -109,7 +92,7 @@
     child { node {Campion. macro\\biopsie, resez.\\citologici} }
   }
 % BRANCH 6 -- Documentazione & Tracciabilità (dark-amber)
-  child [concept color=cDoc, level distance=7.2cm] {
+  child [concept color=cDoc] {
     node [text width=2.0cm, align=center] {Documentaz. \& Tracciabilit\`a}
     child { node {Catena di\\custodia\\campione-WSI} }
     child { node {Codici a barre\\QR / DataMatrix\\lett. etichette} }
@@ -119,5 +102,3 @@
 
 \end{tikzpicture}
 \end{center}
-
-\end{document}
