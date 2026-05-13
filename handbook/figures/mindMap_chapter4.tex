@@ -1,0 +1,91 @@
+%% ============================================================
+%%  mindMap_chapter4.tex
+%%  Mind-map -- Capitolo 4: Apprendimento Profondo e
+%%              Applicazioni Multimodali in Patologia
+%%  Compile with: pdflatex mindMap_chapter4.tex
+%% ============================================================
+
+%% -- Palette -------------------------------------------------
+\definecolor{cRoot} {RGB}{ 20,  60, 110}
+\definecolor{cCNN}  {RGB}{  0, 100, 140}
+\definecolor{cMIL}  {RGB}{180,  70,  10}
+\definecolor{cTrans}{RGB}{100,  40, 140}
+\definecolor{cLLM}  {RGB}{160,  20,  30}
+\definecolor{cMulti}{RGB}{ 30, 120,  50}
+\definecolor{cBMS}  {RGB}{140, 100,   0}
+
+
+\begin{center}
+  {\large\bfseries Mind-map ---
+   Capitolo~4: Apprendimento Profondo e Applicazioni Multimodali}
+\end{center}
+
+\vspace{-2pt}
+
+\begin{center}
+\begin{tikzpicture}[
+  mindmap,
+  grow cyclic,
+  every node/.style = concept,
+  concept color     = cRoot,
+  text              = white,
+  level 1/.append style = {
+    level distance = 5.5cm,
+    sibling angle  = 72,
+    font           = \small\bfseries,
+  },
+  level 2/.append style = {
+    level distance = 2.9cm,
+    sibling angle  = 42,
+    font           = \scriptsize,
+    text width     = 1.75cm,
+    align          = center,
+  },
+]
+
+% ROOT
+\node [font=\small\bfseries, text width=2.2cm, align=center]
+      {Deep Learning\\in\\Patologia\\Digitale}
+% BRANCH 1 -- Reti Neurali Convoluzionali (steel-blue)
+  child [concept color=cCNN] {
+    node [text width=2.0cm, align=center] {Reti Neurali\\Convoluz. (CNN)}
+    child { node {Architettura\\conv, ReLU\\pooling, BN} }
+    child { node {Apprend.\\Gerarchico\\Grad-CAM} }
+    child { node {Transfer\\Learning\\fine-tuning} }
+    child { node {Applicazioni\\CAMELYON\\PANDA} }
+  }
+% BRANCH 2 -- Apprendimento Multi-Istanza (burnt-orange)
+  child [concept color=cMIL] {
+    node [text width=2.0cm, align=center] {Apprend.\\Multi-Istanza (MIL)}
+    child { node {WSI Gigapixel\\patch 256/512\\segm. tessuto} }
+    child { node {Framework MIL\\bag/istanze\\sup. debole} }
+    child { node {CLAM\\attenzione\\clustering} }
+    child { node {Applicazioni\\MSI, BRCA\\sopravvivenza} }
+  }
+% BRANCH 3 -- Transformer & Modelli Fondazionali (violet)
+  child [concept color=cTrans] {
+    node [text width=2.0cm, align=center] {Transformer \& Fondaz.}
+    child { node {Auto-Attenzione\\Q, K, V\\multi-testa} }
+    child { node {Vision\\Transformer\\ViT, patch} }
+    child { node {Swin Transf.\\finestre\\gerarchico} }
+    child { node {UNI, CONCH\\Prov-GigaPath\\zero-shot} }
+  }
+% BRANCH 4 -- LLM e Referti (crimson)
+  child [concept color=cLLM] {
+    node [text width=2.0cm, align=center] {LLM e Referti\\Patologici}
+    child { node {Architettura\\GPT / BERT\\RLHF} }
+    child { node {Refertazione\\Sinotica\\NLP archivi} }
+    child { node {VLM\\GPT-4V\\CONCH} }
+    child { node {Limitazioni\\allucinaz.\\bias, cutoff} }
+  }
+% BRANCH 5 -- Modelli Multimodali (forest-green)
+  child [concept color=cMulti] {
+    node [text width=2.0cm, align=center] {Modelli\\Multimodali}
+    child { node {Razionale\\genomica +\\istologia} }
+    child { node {Sottotipi\\Molecolari\\PAM50, MSI} }
+    child { node {Predizione\\Sopravvivenza\\C-index} }
+    child { node {Strategie\\Fusione\\prec./int./tard.} }
+  };
+
+\end{tikzpicture}
+\end{center}

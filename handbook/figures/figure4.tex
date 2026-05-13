@@ -95,20 +95,20 @@
 \draw[arrow] (fc2.east)    -- (out.west);
 
 %% ---- Brace annotations above ----
-\draw[decorate, decoration={brace, amplitude=5pt, raise=3pt}, thick, blue!60]
+\draw[decorate, decoration={brace, amplitude=5pt, raise=4pt}, thick, blue!60]
     (conv10.north west) -- (pool12.north east)
     node[midway, above=8pt, font=\scriptsize, blue!80] {Feature extraction stage 1};
 
-\draw[decorate, decoration={brace, amplitude=5pt, raise=3pt}, thick, blue!60]
+\draw[decorate, decoration={brace, amplitude=5pt, raise=4pt}, thick, blue!60]
     (conv20.north west) -- (pool23.north east)
-    node[midway, above=8pt, font=\scriptsize, blue!80] {Feature extraction stage 2};
+    node[midway, above=12pt, font=\scriptsize, blue!80] {Feature extraction stage 2};
 
 \draw[decorate, decoration={brace, amplitude=5pt, raise=3pt}, thick, blue!60]
     (conv30.north west) -- (conv34.north east)
-    node[midway, above=8pt, font=\scriptsize, blue!80] {Deep feature maps};
+    node[midway, above=14pt, font=\scriptsize, blue!80] {Deep feature maps};
 
 \draw[decorate, decoration={brace, amplitude=5pt, raise=3pt}, thick, orange!70]
     (fc1.north west) -- (fc2.north east)
-    node[midway, above=8pt, font=\scriptsize, orange!90] {Classification head};
+    node[midway, above=10pt, font=\scriptsize, orange!90] {Classification head};
 
 \end{tikzpicture}
