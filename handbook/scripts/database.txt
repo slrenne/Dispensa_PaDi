@@ -1,0 +1,1367 @@
+Capitolo 1, Sezione Introduzione: Qual è una delle principali limitazioni della microscopia convenzionale rispetto alla patologia digitale?
+A. I vetrini convenzionali offrono una risoluzione superiore alle WSI.
+B. I vetrini sono oggetti fisici fragili e difficili da trasportare per pareri a distanza.
+C. La microscopia convenzionale non può visualizzare il tessuto in campo chiaro.
+D. La digitalizzazione elimina la necessità di colorazioni speciali.
+E. La patologia digitale non richiede il tessuto fissato.
+ANSWER: B
+
+Capitolo 1, Sezione Introduzione: Cosa consente principalmente l'immagine digitalizzata di un vetrino intero (WSI)?
+A. Eliminare completamente il bisogno di un patologo.
+B. Analizzare computazionalmente, archiviare e trasmettere il vetrino.
+C. Aumentare la dimensione fisica del tessuto.
+D. Ridurre la risoluzione dell'immagine.
+E. Sostituire l'uso dell'ematossilina nell'istologia.
+ANSWER: B
+
+Capitolo 1, Sezione Introduzione: Perché la patologia digitale è considerata più che una semplice comodità tecnologica?
+A. Perché rende i microscopi obsoleti.
+B. Perché cambia fondamentalmente ciò che è possibile nella pratica patologica, nella ricerca e nella didattica.
+C. Perché elimina il bisogno di dati clinici associati.
+D. Perché tutti i vetrini diventano immediatamente accessibili al pubblico.
+E. Perché obbliga tutti i laboratori ad adottare scanner di marca unica.
+ANSWER: B
+
+Capitolo 1, Sezione Introduzione: Quale elemento non è citato come limitazione intrinseca del flusso di lavoro istopatologico convenzionale?
+A. I vetrini sono fragili e si deteriorano.
+B. Il trasporto fisico del materiale per secondi pareri è necessario.
+C. La valutazione visiva è soggettiva.
+D. Le immagini digitali non possono essere archiviate.
+E. I microscopi sono vincolati a una singola postazione.
+ANSWER: D
+
+Capitolo 1, Sezione Introduzione: Cosa ha reso possibile l'adozione clinica della diagnosi primaria mediante WSI?
+A. La semplice disponibilità delle immagini digitali.
+B. Il perfezionamento esclusivo del processo di colorazione E&E.
+C. L'approvazione regolatoria in diverse giurisdizioni.
+D. La riduzione delle dimensioni dei file delle immagini.
+E. L'eliminazione della necessità di un LIS.
+ANSWER: C
+
+Capitolo 1, Sezione Che cos'è la Patologia Digitale?: Quale definizione cattura meglio la patologia digitale?
+A. La produzione di immagini di vetrini solo per la didattica.
+B. L'acquisizione, la gestione, la condivisione e l'interpretazione di informazioni patologiche in formato digitale.
+C. L'uso esclusivo di scanner commerciali per scopi di ricerca.
+D. La sola applicazione di algoritmi di IA alle immagini istologiche.
+E. Il trasferimento di vetrini fisici tra laboratori.
+ANSWER: B
+
+Capitolo 1, Sezione Che cos'è la Patologia Digitale?: Qual è la differenza principale tra patologia digitale e patologia computazionale?
+A. La patologia digitale riguarda solo le immagini, mentre la patologia computazionale riguarda solo i dati clinici.
+B. La patologia digitale è l'intero ecosistema dell'immagine digitale, mentre la patologia computazionale è l'applicazione di metodi quantitativi alle immagini.
+C. La patologia computazionale si occupa delle microscopia classica.
+D. La patologia digitale esclude l'intelligenza artificiale.
+E. La patologia computazionale è sempre manuale.
+ANSWER: B
+
+Capitolo 1, Sezione Che cos'è la Patologia Digitale?: Quale elemento non fa parte dell'ecosistema della patologia digitale?
+A. Sistemi informativi di laboratorio.
+B. Piattaforme di gestione delle immagini.
+C. Annotazioni e dati clinici associati.
+D. Microscopi ottici tradizionali privi di connessione digitale.
+E. Algoritmi di intelligenza artificiale.
+ANSWER: D
+
+Capitolo 1, Sezione Che cos'è la Patologia Digitale?: Quale frase descrive un esempio di patologia computazionale?
+A. L'archiviazione di WSI su un server cloud.
+B. La lettura a occhio di un vetrino al microscopio ottico.
+C. Un modello di apprendimento profondo che rileva figure mitotiche in una WSI.
+D. La stampa di un'immagine digitale.
+E. L'applicazione di una colorazione E&E manuale.
+ANSWER: C
+
+Capitolo 1, Sezione Che cos'è la Patologia Digitale?: Quale campo interseca la patologia digitale con la telepatologia?
+A. Uso esclusivo di scanner a fluorescenza.
+B. Trasmissione remota di immagini patologiche per consulenza a distanza.
+C. Solo la generazione di referti scritti.
+D. Esclusivamente la conservazione dei vetrini fisici.
+E. La produzione di vetrini per l'insegnamento.
+ANSWER: B
+
+Capitolo 1, Sezione Whole Slide Imaging: Qual è la sfida fondamentale nella scansione di un vetrino intero?
+A. L'impossibilità di utilizzare la luce bianca.
+B. Il fatto che il tessuto sia troppo piccolo per essere acquisito.
+C. Il bisogno di acquisire un gran numero di tessere e unirle in un'immagine gigapixel.
+D. La necessità di una fotocamera a scansione lineare per tutte le applicazioni.
+E. La scelta di un mezzo di montaggio trasparente.
+ANSWER: C
+
+Capitolo 1, Sezione Whole Slide Imaging: In quale scenario è più probabile usare uno scanner a scansione lineare?
+A. Quando si acquisiscono solo immagini macro.
+B. Per un vetrino che non richiede alcuna calibrazione.
+C. Per ottenere throughput elevato con qualità costante.
+D. Quando si vuole evitare l'uso di tessere.
+E. Per analizzare campioni citologici in fluorescenza.
+ANSWER: C
+
+Capitolo 1, Sezione Whole Slide Imaging: Perché le immagini a fluorescenza richiedono spesso sensori più sensibili?
+A. Perché la fluorescenza è più brillante della luce trasmessa.
+B. Perché l'emissione di fluorescenza è più debole e richiede tempi di esposizione maggiori.
+C. Perché le immagini di fluorescenza non necessitano di filtri.
+D. Perché la scansione a fluorescenza non produce artefatti.
+E. Perché le fotocamere a scansione lineare non possono essere usate.
+ANSWER: B
+
+Capitolo 1, Sezione Whole Slide Imaging: Quale ingrandimento è generalmente sufficiente per l'istologia di routine in H&E?
+A. 10x.
+B. 20x.
+C. 40x.
+D. 60x.
+E. 100x.
+ANSWER: B
+
+Capitolo 1, Sezione Whole Slide Imaging: Quale azienda è associata al formato SVS?
+A. Philips.
+B. 3DHISTECH.
+C. Hamamatsu.
+D. Aperio (Leica Biosystems).
+E. OpenSlide.
+ANSWER: D
+
+Capitolo 1, Sezione Whole Slide Imaging: Quale software open source fornisce un visualizzatore WSI e strumenti di analisi delle immagini?
+A. OpenSlide.
+B. QuPath.
+C. ImageScope.
+D. IntelliSite.
+E. Pannoramic Viewer.
+ANSWER: B
+
+Capitolo 1, Sezione Formati delle Immagini: Quanti colori possono essere rappresentati con RGB a 8 bit per canale?
+A. 256.
+B. 65.536.
+C. 16.777.216.
+D. 4.294.967.296.
+E. 1.048.576.
+ANSWER: C
+
+Capitolo 1, Sezione Formati delle Immagini: A cosa serve la struttura a piramide di immagini?
+A. A comprimere tutte le tessere in un unico livello.
+B. A consentire la navigazione efficiente caricando solo il livello e le tessere necessarie.
+C. A eliminare i metadati dal file.
+D. A salvare solo un singolo livello ad alta risoluzione.
+E. A convertire l'immagine in bianco e nero.
+ANSWER: B
+
+Capitolo 1, Sezione Formati delle Immagini: Quale formato è uno standard aperto per lo scambio di WSI?
+A. SVS.
+B. NDPI.
+C. OME-TIFF.
+D. MRXS.
+E. iSyntax.
+ANSWER: C
+
+Capitolo 1, Sezione Formati delle Immagini: Cosa rappresenta la risoluzione in micron per pixel?
+A. La dimensione fisica del file compresso.
+B. La dimensione di ogni pixel in unità fisiche del tessuto.
+C. La quantità di memoria richiesta per la WSI.
+D. Il numero di livelli nella piramide.
+E. Il rapporto tra canali RGB.
+ANSWER: B
+
+Capitolo 1, Sezione Formati delle Immagini: Quale elemento non è tipico dei metadati WSI?
+A. Modello dello scanner.
+B. Dimensione fisica del pixel.
+C. Numero di pagina PDF del referto.
+D. Data e ora di acquisizione.
+E. Immagine dell'etichetta del vetrino.
+ANSWER: C
+
+Capitolo 1, Sezione Integrazione con i Sistemi Informativi: Che cosa gestisce principalmente un LIS?
+A. Solo le immagini digitali dei vetrini.
+B. I dati amministrativi e clinici associati ai campioni patologici.
+C. La produzione dei reagenti di colorazione.
+D. La calibrazione ottica dello scanner.
+E. Le approvazioni normative dei dispositivi medici.
+ANSWER: B
+
+Capitolo 1, Sezione Integrazione con i Sistemi Informativi: Perché il codice a barre è importante nella scansione WSI?
+A. Per ridurre la dimensione del file.
+B. Per collegare in modo univoco la WSI al caso corretto nel LIS.
+C. Per migliorare la risoluzione della scansione.
+D. Per attivare la colorazione automatica.
+E. Per memorizzare il motivo diagnostico.
+ANSWER: B
+
+Capitolo 1, Sezione Integrazione con i Sistemi Informativi: Quale standard consente l'interoperabilità con i sistemi PACS radiologici?
+A. HL7.
+B. DICOM.
+C. OME-XML.
+D. XSD.
+E. PDF.
+ANSWER: B
+
+Capitolo 1, Sezione Integrazione con i Sistemi Informativi: Quale messaggistica invia i risultati diagnostici dal LIS ai sistemi clinici?
+A. ORM.
+B. ORU.
+C. DICOM.
+D. JPEG2000.
+E. PACS.
+ANSWER: B
+
+Capitolo 1, Sezione Integrazione con i Sistemi Informativi: Qual è la differenza principale tra LIS e LIMS secondo il testo?
+A. LIS è clinico e gestisce la refertazione; LIMS enfatizza il tracciamento e la gestione dei dati di ricerca.
+B. LIS è solo per immagini radiologiche.
+C. LIMS è solo per i pazienti ambulatoriali.
+D. Non c'è alcuna differenza.
+E. LIMS non può integrare l'IA.
+ANSWER: A
+
+Capitolo 1, Sezione Il Ruolo del Tecnico: Perché la qualità del vetrino è fondamentale anche nella patologia digitale?
+A. Perché le immagini digitali correggono automaticamente i problemi pre-analitici.
+B. Perché nessuna post-elaborazione può recuperare informazioni diagnostiche perse in un vetrino scadente.
+C. Perché i tecnici non controllano i metadati.
+D. Perché gli scanner rilevano automaticamente le bolle d'aria senza conseguenze.
+E. Perché le sezioni possono essere ri-colorate digitalmente.
+ANSWER: B
+
+Capitolo 1, Sezione Il Ruolo del Tecnico: Quale problema è particolarmente problematico per gli scanner automatici?
+A. La presenza di codice a barre leggibile.
+B. Sezioni troppo sottili.
+C. Pieghe del tessuto e bolle d'aria.
+D. Vetrini con etichette colorate.
+E. Campioni macroscopicamente descritti.
+ANSWER: C
+
+Capitolo 1, Sezione Il Ruolo del Tecnico: Cosa devono controllare i tecnici nella fase di pre-scansione?
+A. Solo la correttezza del referto finale.
+B. Che il vetrino sia pulito e che i codici a barre siano leggibili.
+C. Che l'immagine digitale sia compressa correttamente.
+D. Che l'immagine WSI sia già stata annotata.
+E. Che il modello DICOM sia aggiornato.
+ANSWER: B
+
+Capitolo 1, Sezione Il Ruolo del Tecnico: In quale ambito si inserisce la governance dei dati WSI?
+A. Solo nella fase di acquisizione dell'immagine.
+B. Nella gestione dei file, backup, politiche di conservazione e protezione dei dati dei pazienti.
+C. Solo nella scelta dell'obiettivo di scansione.
+D. Solo nella scelta del formato dei file.
+E. Solo nella visualizzazione al patologo.
+ANSWER: B
+
+Capitolo 1, Sezione Il Ruolo del Tecnico: Secondo il testo, l'immagine digitale è considerata parte della cartella del paziente e deve essere conservata per almeno quanti anni nel Regno Unito?
+A. 5 anni.
+B. 10 anni.
+C. 30 anni.
+D. 50 anni.
+E. 75 anni.
+ANSWER: C
+
+Capitolo 2, Sezione Introduzione: Qual è l'affermazione corretta sul controllo qualità (CQ) nella patologia digitale?
+A. Il CQ è opzionale e non influenza l'accuratezza diagnostica.
+B. Il CQ è una disciplina fondamentale che rende l'attività digitalmente sicura e riproducibile.
+C. Il CQ riguarda solo il referto finale.
+D. Il CQ è meno importante della semplice digitalizzazione.
+E. Il CQ può essere ignorato se si usa l'IA.
+ANSWER: B
+
+Capitolo 2, Sezione Introduzione: In quale fase del flusso di lavoro la variabilità pre-analitica ha maggiore influenza?
+A. Solo nella fase di refertazione.
+B. Sulla qualità finale dell'immagine.
+C. Sulla scelta dei codici a barre.
+D. Solo sulla gestione dei dati.
+E. Non influenza affatto l'immagine.
+ANSWER: B
+
+Capitolo 2, Sezione Introduzione: Cosa significa l'aforisma “spazzatura in entrata, spazzatura in uscita” nel contesto della patologia computazionale?
+A. I dati di addestramento errati portano a un modello poco accurato.
+B. Le immagini JPEG sono sempre di bassa qualità.
+C. I vetrini devono essere scansionati solo a 40x.
+D. La digitalizzazione impedisce qualsiasi errore.
+E. Il referto finale è sempre corretto.
+ANSWER: A
+
+Capitolo 2, Sezione Introduzione: Perché un CQ inadeguato può degradare le prestazioni di un algoritmo di IA?
+A. Perché l'IA non usa immagini.
+B. Perché le immagini di scarsa qualità introducono rumore che degrada il modello.
+C. Perché l'IA funziona meglio con immagini sfocate.
+D. Perché la colorazione uniforme è irrilevante.
+E. Perché i modelli di IA non dipendono dai dati.
+ANSWER: B
+
+Capitolo 2, Sezione Introduzione: Quale fase del flusso di lavoro digitale non è menzionata nel testo?
+A. Ricezione del campione.
+B. Processazione tissutale.
+C. Scansione.
+D. Chirurgia del campione.
+E. Refertazione diagnostica.
+ANSWER: D
+
+Capitolo 2, Sezione Fase Pre-analitica: Qual è il fissativo standard in anatomia patologica chirurgica?
+A. Etanolo al 70%.
+B. Formalina neutra tamponata al 10%.
+C. Acetone puro.
+D. Xilene.
+E. Metanolo.
+ANSWER: B
+
+Capitolo 2, Sezione Fase Pre-analitica: Quale intervallo di fissazione è raccomandato per la maggior parte dei campioni chirurgici?
+A. 1-2 ore.
+B. 6-48 ore.
+C. 72-96 ore.
+D. 12-24 minuti.
+E. 5-6 giorni.
+ANSWER: B
+
+Capitolo 2, Sezione Fase Pre-analitica: Quale problema può causare acqua residua nel blocco tissutale?
+A. Sezione troppo sottile.
+B. Sezione che si sbriciola o si lacera durante la microtomia.
+C. Migliore colorazione.
+D. Maggiore trasparenza del vetrino.
+E. Ridotta condensazione del coprioggetto.
+ANSWER: B
+
+Capitolo 2, Sezione Fase Pre-analitica: Quale spessore di sezione è tipico per la microtomia istologica?
+A. 10-12 µm.
+B. 2-4 µm.
+C. 0,1-0,5 µm.
+D. 20-30 µm.
+E. 50-60 µm.
+ANSWER: B
+
+Capitolo 2, Sezione Fase Pre-analitica: Perché il coprioggetto è importante per la scansione digitale?
+A. Perché riduce la dimensione del file.
+B. Perché le bolle d'aria o il coprioggetto non uniforme degradano la messa a fuoco.
+C. Perché sostituisce il mezzo di montaggio.
+D. Perché aumenta il contrasto cromatico.
+E. Perché impedisce la lettura del codice a barre.
+ANSWER: B
+
+Capitolo 2, Sezione Strategie di Campionamento: Come vengono generalmente gestiti i cilindri tissutali delle biopsie ago-tranciante?
+A. Solo una piccola parte viene esaminata.
+B. Tutti i cilindri vengono solitamente inviati per l'esame istologico.
+C. Vengono scansionati solo se il paziente è sintomatico.
+D. Vengono scartati se troppo piccoli.
+E. Si analizza solo il primo livello.
+ANSWER: B
+
+Capitolo 2, Sezione Strategie di Campionamento: Quale tipo di campione richiede solitamente la scansione a 40x?
+A. Campioni di resezione grandi.
+B. Campioni citologici.
+C. Vetrini macroscopici.
+D. Esempi di tessuto sano.
+E. Semplici controlli di colore.
+ANSWER: B
+
+Capitolo 2, Sezione Strategie di Campionamento: Quale area non fa parte del campionamento selettivo in una resezione oncologica?
+A. Centro del tumore.
+B. Margini chirurgici.
+C. Area macroscopicamente anomala.
+D. Parte esterna del contenitore del campione.
+E. Fronte invasivo.
+ANSWER: D
+
+Capitolo 2, Sezione Strategie di Campionamento: Cosa fornisce la fotografia macroscopica nel fascicolo digitale del caso?
+A. Una vista a livello cellulare.
+B. Un riferimento visivo che integra l'immagine microscopica.
+C. Un sostituto del referto.
+D. Il colore preciso del tessuto.
+E. La misurazione dei livelli tumorali.
+ANSWER: B
+
+Capitolo 2, Sezione Strategie di Campionamento: Perché la descrizione macroscopica è importante nel campionamento microscopico?
+A. Perché determina l'algoritmo di compressione della WSI.
+B. Perché guida la selezione dei blocchi tissutali più informativi.
+C. Perché definisce il nome del paziente.
+D. Perché standardizza il formato DICOM.
+E. Perché riduce la necessità di validazione.
+ANSWER: B
+
+Capitolo 2, Sezione Controllo Qualità: Quali sono i tre livelli del controllo qualità nella patologia digitale?
+A. Pre-op, intra-op e post-op.
+B. Pre-scansione, durante la scansione e post-scansione.
+C. Fissazione, colorazione e refertazione.
+D. Manuale, automatico e ibrido.
+E. Diagnosi, trattamento e follow-up.
+ANSWER: B
+
+Capitolo 2, Sezione Controllo Qualità: Quale metrica è citata per valutare la nitidezza di un'immagine?
+A. Valore di Hounsfield.
+B. Varianza del Laplaciano.
+C. Indice di capitale.
+D. Coefficiente di variazione.
+E. Angolo di Sobel.
+ANSWER: B
+
+Capitolo 2, Sezione Controllo Qualità: Quale pipeline open source viene menzionata per il controllo qualità?
+A. QuPath.
+B. HistoQC.
+C. OpenSlide.
+D. DICOM.
+E. CAMELYON.
+ANSWER: B
+
+Capitolo 2, Sezione Controllo Qualità: Quale artefatto non è menzionato come comune nella patologia digitale?
+A. Bolle d'aria.
+B. Pieghe tissutali.
+C. Polvere e detriti.
+D. Corrosione del sensore.
+E. Segni di penna.
+ANSWER: D
+
+Capitolo 2, Sezione Controllo Qualità: Perché bisogna documentare le scansioni non conformi?
+A. Per evitare di contendere il file.
+B. Per audit e identificazione di problemi sistematici.
+C. Per aumentare i tempi di esecuzione.
+D. Per ridurre la qualità del laboratorio.
+E. Per omogeneizzare i dati.
+ANSWER: B
+
+Capitolo 2, Sezione Normalizzazione della Colorazione: Perché la normalizzazione della colorazione è importante per l'IA?
+A. Perché elimina completamente la variabilità del tessuto.
+B. Perché riduce il domain shift cromatico e migliora la generalizzabilità dei modelli.
+C. Perché aumenta le dimensioni dei file.
+D. Perché sostituisce la messa a fuoco.
+E. Perché converte le immagini in bianco e nero.
+ANSWER: B
+
+Capitolo 2, Sezione Normalizzazione della Colorazione: Quale metodo di normalizzazione utilizza la fattorizzazione a matrice non negativa sparsa?
+A. Reinhard.
+B. Macenko.
+C. Vahadane.
+D. Ruifrok-Johnston.
+E. HistoQC.
+ANSWER: C
+
+Capitolo 2, Sezione Normalizzazione della Colorazione: Quale metodo trasferisce le statistiche cromatiche di un'immagine di riferimento nello spazio colore LAB?
+A. Vahadane.
+B. Macenko.
+C. Reinhard.
+D. Otsu.
+E. H&E.
+ANSWER: C
+
+Capitolo 2, Sezione Normalizzazione della Colorazione: Su quale principio si basa la deconvoluzione cromatica di Ruifrok e Johnston?
+A. Trasformata di Fourier.
+B. Legge di Beer-Lambert.
+C. Analisi delle componenti principali.
+D. Soglia di Otsu.
+E. Reti neurali.
+ANSWER: B
+
+Capitolo 2, Sezione Normalizzazione della Colorazione: Quale fonte di variabilità cromatica non è menzionata?
+A. Differenze nei reagenti.
+B. Variazioni dello spessore tissutale.
+C. Cambiamenti nello spettro della luce dello scanner.
+D. Modalità di imaging MRI.
+E. Differenze di colorazione automatizzata.
+ANSWER: D
+
+Capitolo 2, Sezione Collaborazione tra Tecnico e Patologo: Quale affermazione riflette meglio i ruoli complementari?
+A. I tecnici refertano i casi digitali in autonomia.
+B. I patologi sono responsabili dell'interpretazione diagnostica e i tecnici della preparazione dei vetrini.
+C. I tecnici non hanno alcuna responsabilità nel CQ.
+D. I patologi eseguono tutta la scansione.
+E. I tecnici scrivono il software dell'IA.
+ANSWER: B
+
+Capitolo 2, Sezione Collaborazione tra Tecnico e Patologo: Perché il ruolo del tecnico è aumentato nella patologia digitale?
+A. Perché il patologo può regolare la messa a fuoco da remoto.
+B. Perché il patologo dipende dalla qualità dell'immagine scansionata e non può correggere i problemi durante la visione digitale.
+C. Perché i tecnici devono ora scrivere referti.
+D. Perché gli scanner eliminano la necessità di QC.
+E. Perché i tecnici scelgono i biomarcatori.
+ANSWER: B
+
+Capitolo 2, Sezione Collaborazione tra Tecnico e Patologo: Cosa deve includere una segnalazione di un problema di qualità?
+A. Solo il numero di vetrino.
+B. Descrizione del problema, vetrini interessati e valutazione dell'influenza diagnostica.
+C. Un referto alternativo.
+D. Un'immagine in bianco e nero.
+E. Solo l'orario di ricezione.
+ANSWER: B
+
+Capitolo 2, Sezione Collaborazione tra Tecnico e Patologo: Quale documento di standardizzazione è citato per la descrizione macroscopica?
+A. Le linee guida ISO per scanner.
+B. I moduli pubblicati dal Royal College of Pathologists o dal CAP.
+C. Il manuale del produttore dello scanner.
+D. Il regolamento UE sull'IA.
+E. Il database TCGA.
+ANSWER: B
+
+Capitolo 2, Sezione Collaborazione tra Tecnico e Patologo: Quale funzione riesce a svolgere il patologo dialogando con il tecnico nella patologia digitale?
+A. Validare retrospettivamente i metadati solo dopo anni.
+B. Accettare o rifiutare le immagini come idonee alla diagnosi.
+C. Sostituire l'etichettatura dei vetrini.
+D. Aumentare la compressione delle immagini.
+E. Eliminare il bisogno di scan.
+ANSWER: B
+
+Capitolo 2, Sezione Documentazione e Tracciabilità: Che cosa identifica la catena di custodia?
+A. La qualità del colore.
+B. Il percorso documentato del campione e dei dati associati durante tutto il ciclo di vita.
+C. Il tipo di scanner utilizzato.
+D. Il modello di intelligenza artificiale impiegato.
+E. Il numero di views della WSI.
+ANSWER: B
+
+Capitolo 2, Sezione Documentazione e Tracciabilità: Quale tecnologia aiuta a garantire l'identificazione digitale dei vetrini?
+A. Blockchain.
+B. Codici a barre.
+C. Codici QR solo su monitor.
+D. Connettività Wi-Fi.
+E. Sistemi PACS solo radiologia.
+ANSWER: B
+
+Capitolo 2, Sezione Documentazione e Tracciabilità: Che cosa rappresenta un audit trail digitale?
+A. Un referto di colore.
+B. Una registrazione di accesso e modifica dei dati nel sistema.
+C. Un diagramma del flusso di lavoro.
+D. Un'immagine a bassa risoluzione.
+E. Un algoritmo di normalizzazione.
+ANSWER: B
+
+Capitolo 2, Sezione Documentazione e Tracciabilità: Quale requisito normativo è correlato alla tracciabilità e conservazione dei dati?
+A. Solo le linee guida H&E.
+B. I requisiti normativi del laboratorio e la legge sulla protezione dei dati.
+C. Il protocollo di colorazione.
+D. Le metriche di nitidezza.
+E. Lo standard DICOM.
+ANSWER: B
+
+Capitolo 2, Sezione Documentazione e Tracciabilità: Perché è importante documentare le scansioni non conformi?
+A. Per garantire che gli errori non vengano mai corretti.
+B. Per facilitare audit, identificare problemi sistemici e tracciare le azioni correttive.
+C. Per ridurre il numero dei vetrini prodotti.
+D. Per aumentare lo spazio di archiviazione richiesto.
+E. Per evitare l'uso dei codici a barre.
+ANSWER: B
+
+Capitolo 3, Sezione Introduzione: Quale è il compito fondamentale del patologo secondo il testo?
+A. Produrre vetrini digitali.
+B. Estrarre un segnale significativo da dati visivi e molecolari complessi.
+C. Sviluppare scanner per vetrini.
+D. Annotare dataset per altre discipline.
+E. Validare i modelli AI senza capirli.
+ANSWER: B
+
+Capitolo 3, Sezione Introduzione: Quale elemento non appartiene alla storia dell'IA in medicina?
+A. I primi conteggi cellulari negli anni Sessanta.
+B. I sistemi esperti come MYCIN.
+C. L'analisi delle immagini basata su regole.
+D. L'uso esclusivo di modelli trasparenti nel 1960.
+E. L'ascesa dell'apprendimento profondo negli ultimi anni.
+ANSWER: D
+
+Capitolo 3, Sezione Introduzione: Quale passaggio ha consentito la rivoluzione dell'apprendimento profondo in patologia?
+A. L'eliminazione delle immagini digitali.
+B. Lavorare solo con dati manuali.
+C. L'adozione degli scanner WSI, delle GPU e dei dataset ampi.
+D. L'uso esclusivo di algoritmi di regressione lineare.
+E. La riduzione dei metadati.
+ANSWER: C
+
+Capitolo 3, Sezione Introduzione: Cosa significa che la patologia è fondata sul riconoscimento di pattern?
+A. Che le diagnosi si basano esclusivamente su test molecolari.
+B. Che il compito del patologo è identificare pattern morfologici rilevanti nei tessuti.
+C. Che solo i computer possono eseguire diagnosi.
+D. Che il riconoscimento di pattern non è rilevante.
+E. Che la patologia utilizza solo immagini radiologiche.
+ANSWER: B
+
+Capitolo 3, Sezione Introduzione: Per quale motivo l'esperienza umana rimane importante nell'era dell'IA?
+A. Perché i patologi supervisionano la qualità e interpretano i casi ambigui.
+B. Perché gli scanner possono sostituire completamente gli esseri umani.
+C. Perché l'IA elimina la variabilità.
+D. Perché l'IA non funziona con le WSI.
+E. Perché i patologi devono scrivere codice Python.
+ANSWER: A
+
+Capitolo 3, Sezione Definizioni e Tassonomia: Qual è la relazione corretta tra IA, ML e DL?
+A. ML è un sottoinsieme di DL, e DL è un sottoinsieme di IA.
+B. DL è un sottoinsieme di ML, e ML è un sottoinsieme di IA.
+C. IA e ML sono disgiunti.
+D. DL esclude l'apprendimento automatico.
+E. ML è indipendente dall'IA.
+ANSWER: B
+
+Capitolo 3, Sezione Definizioni e Tassonomia: Quale affermazione descrive l'IA generale?
+A. Un sistema che esegue un solo compito specifico.
+B. Un sistema capace di svolgere qualsiasi compito intellettuale umano.
+C. Un sistema limitato alle immagini istopatologiche.
+D. Un sistema privo di capacità di apprendimento.
+E. Un sistema che non richiede dati.
+ANSWER: B
+
+Capitolo 3, Sezione Definizioni e Tassonomia: Cosa è una caratteristica nel ML?
+A. Il modello addestrato.
+B. Una proprietà misurabile dei dati di input usata per predire un output.
+C. Una metrica di performance.
+D. Il tag del file immagine.
+E. La funzione di perdita.
+ANSWER: B
+
+Capitolo 3, Sezione Definizioni e Tassonomia: Quale termine si riferisce a un modello matematico parametrizzato appreso dai dati?
+A. Algoritmo.
+B. Caratteristica.
+C. Modello.
+D. Etichetta.
+E. Dato.
+ANSWER: C
+
+Capitolo 3, Sezione Definizioni e Tassonomia: Quale approccio non è un esempio di apprendimento supervisionato?
+A. Classificazione.
+B. Regressione.
+C. Clustering.
+D. Valutazione con perdita.
+E. Uso di etichette per l'addestramento.
+ANSWER: C
+
+Capitolo 3, Sezione IA Simbolica: In un sistema esperto, cosa rappresenta la base di conoscenza?
+A. L'hardware su cui gira il sistema.
+B. L'insieme di regole specifiche del dominio.
+C. Il referto finale.
+D. Il dataset di addestramento non etichettato.
+E. Il manuale utente dello scanner.
+ANSWER: B
+
+Capitolo 3, Sezione IA Simbolica: Quale esempio illustra meglio un sistema basato su regole nella patologia?
+A. Una CNN che impara dai pixel.
+B. Un algoritmo che segmenta i nuclei con soglie esplicite e classifica i nuclei in base all'intensità.
+C. Un modello transformer.
+D. Un LLM che genera referti.
+E. Un metodo di clustering non supervisionato.
+ANSWER: B
+
+Capitolo 3, Sezione IA Simbolica: Qual è un vantaggio chiave dei sistemi basati su regole?
+A. Sono completamente privi di errori.
+B. Sono interpretabili e deterministici.
+C. Possono imparare automaticamente dai dati non etichettati.
+D. Non richiedono alcuna validazione.
+E. Sono sempre più accurati delle CNN.
+ANSWER: B
+
+Capitolo 3, Sezione IA Simbolica: Quale limitazione rende i sistemi basati su regole fragili?
+A. La necessità di grandi dataset etichettati.
+B. Piccole variazioni nella colorazione o nel tessuto possono causare errori.
+C. La capacità di apprendere scorciatoie dai dati.
+D. L'uso di modelli a grande scala.
+E. L'inabilità a fornire spiegazioni.
+ANSWER: B
+
+Capitolo 3, Sezione IA Simbolica: Nel calcolo dell'indice Ki-67, quale passaggio segue la segmentazione nucleare?
+A. La conversione in spazio colore LAB.
+B. Il calcolo della densità ottica media del DAB per ogni nucleo.
+C. L'addestramento di un modello transformer.
+D. La generazione di una mappa di attenzione.
+E. La compressione JPEG2000.
+ANSWER: B
+
+Capitolo 3, Sezione Apprendimento Automatico: Quale tipo di apprendimento sfrutta etichette fornite da esperti?
+A. Apprendimento non supervisionato.
+B. Apprendimento supervisionato.
+C. Apprendimento semi-supervisionato.
+D. Apprendimento per rinforzo.
+E. Apprendimento auto-supervisionato.
+ANSWER: B
+
+Capitolo 3, Sezione Apprendimento Automatico: Quale algoritmo classico è descritto come robusto e fornisce importanza delle caratteristiche?
+A. Rete neurale.
+B. Foresta casuale.
+C. Transformer.
+D. GAN.
+E. LLM.
+ANSWER: B
+
+Capitolo 3, Sezione Apprendimento Automatico: Quale tecnica riduce l'overfitting penalizzando la complessità del modello?
+A. Convoluzione.
+B. Batch normalization.
+C. Regolarizzazione.
+D. Softmax.
+E. Pooling.
+ANSWER: C
+
+Capitolo 3, Sezione Apprendimento Automatico: Perché la validazione incrociata deve essere eseguita a livello di paziente in patologia?
+A. Perché i pixel di un immagine sono sempre indipendenti.
+B. Per evitare che casi dello stesso paziente compaiano sia nel training sia nel test.
+C. Per ridurre il numero di fold.
+D. Per aumentare la complessità computazionale.
+E. Per splitare le immagini in modo casuale.
+ANSWER: B
+
+Capitolo 3, Sezione Apprendimento Automatico: Quale di questi non è un compito di regressione?
+A. Predire l'indice Ki-67.
+B. Stimare la probabilità di malignità.
+C. Classificare un'immagine come tumorale o non tumorale.
+D. Stimare la percentuale di cellularità tumorale.
+E. Prevedere un tempo di sopravvivenza.
+ANSWER: C
+
+Capitolo 3, Sezione Reti Bayesiane: Quale formula è il teorema di Bayes?
+A. P(H|E)=P(H)P(E).
+B. P(H|E)=P(E|H)P(H)/P(E).
+C. P(H|E)=P(H)/P(E|H).
+D. P(H|E)=P(E)-P(H).
+E. P(H|E)=P(E|H)+P(H).
+ANSWER: B
+
+Capitolo 3, Sezione Reti Bayesiane: In una rete bayesiana, cosa rappresentano i nodi?
+A. Funzioni obiettivo.
+B. Sistemi di file.
+C. Variabili casuali e le loro dipendenze condizionali.
+D. Pesi del modello.
+E. Risultati numerici di test.
+ANSWER: C
+
+Capitolo 3, Sezione Reti Bayesiane: Quale è un vantaggio delle reti bayesiane?
+A. Non richiedono conoscenza a priori.
+B. Gestiscono elegantemente i dati mancanti.
+C. Sono sempre più semplici delle reti neurali.
+D. Non richiedono alcuna inferenza.
+E. Non hanno limiti di scalabilità.
+ANSWER: B
+
+Capitolo 3, Sezione Reti Bayesiane: Quale è una limitazione delle reti bayesiane?
+A. Sono intrinsecamente interpretabili.
+B. La scalabilità diventa difficile con molte variabili.
+C. Non possono rappresentare dipendenze condizionali.
+D. Possono sempre ottenere inferenze esatte rapidamente.
+E. Non possono incorporare conoscenza a priori.
+ANSWER: B
+
+Capitolo 3, Sezione Reti Bayesiane: In un modello diagnostico per il cancro al seno, quale elemento potrebbe essere un nodo della rete bayesiana?
+A. La dimensione del database.
+B. Lo stato del recettore degli estrogeni.
+C. Il nome del software di scansione.
+D. La risoluzione dello scanner.
+E. Il tempo di esposizione.
+ANSWER: B
+
+Capitolo 3, Sezione Dalle Caratteristiche: Quale è la differenza principale tra caratteristiche costruite manualmente e quelle apprese dall'apprendimento profondo?
+A. Le caratteristiche manuali sono più costose computazionalmente.
+B. Le caratteristiche apprese vengono estratte automaticamente dai dati grezzi.
+C. Le caratteristiche manuali non sono interpretate.
+D. Le caratteristiche apprese non possono essere usate per la classificazione.
+E. Le caratteristiche manuali sono sempre superiori.
+ANSWER: B
+
+Capitolo 3, Sezione Dalle Caratteristiche: Cosa rappresenta un neurone artificiale in una rete?
+A. Un pixel dell'immagine.
+B. Un'unità computazionale che somma input pesati e applica una funzione di attivazione.
+C. Un dato clinico.
+D. Un parametro di normalizzazione cromatica.
+E. Una funzione di perdita.
+ANSWER: B
+
+Capitolo 3, Sezione Dalle Caratteristiche: Quale funzione di attivazione è la più comune nelle CNN moderne?
+A. Sigmoide.
+B. Tanh.
+C. ReLU.
+D. Softmax.
+E. Linear.
+ANSWER: C
+
+Capitolo 3, Sezione Dalle Caratteristiche: Cosa comporta il trasferimento di apprendimento (transfer learning)?
+A. Addestrare un modello da zero su un piccolo dataset.
+B. Inizializzare una rete con pesi pre-addestrati su un dataset diverso e adattarla al compito target.
+C. Usare solo dati non etichettati.
+D. Eliminare gli strati convoluzionali.
+E. Aumentare la risoluzione dell'immagine.
+ANSWER: B
+
+Capitolo 3, Sezione Dalle Caratteristiche: Quale tipo di funzione è comunemente usata in un modello di classificazione binaria come funzione di perdita?
+A. Errore quadratico medio.
+B. Cross-entropy.
+C. Indice di Jaccard.
+D. Inversa della varianza.
+E. Percentuale di colore.
+ANSWER: B
+
+Capitolo 3, Sezione Il Ruolo del Tecnico: Cosa significa “uomo nel ciclo” (HITL) nella patologia assistita dall'IA?
+A. L'IA decide tutto senza supervisione.
+B. L'integrazione del giudizio umano in punti critici del flusso di lavoro dell'IA.
+C. L'uso esclusivo di operatori umani senza IA.
+D. L'automazione completa dei referti.
+E. La sola supervisione del software.
+ANSWER: B
+
+Capitolo 3, Sezione Il Ruolo del Tecnico: Perché le annotazioni devono seguire linee guida chiare?
+A. Per rendere il processo più lento.
+B. Per ridurre la variabilità inter-annotatore e migliorare la qualità dei dati di training.
+C. Per eliminare la necessità di patologi.
+D. Per aumentare la dimensione dei file.
+E. Per evitare la colorazione E&E.
+ANSWER: B
+
+Capitolo 3, Sezione Il Ruolo del Tecnico: Quale è un compito di QC dei dati di addestramento?
+A. Aggiungere rumore intenzionale.
+B. Identificare artefatti di processo e referti errati prima dell'addestramento.
+C. Rimuovere metadati importanti.
+D. Convertire tutte le immagini in bianco e nero.
+E. Ignorare i disaccordi degli annotatori.
+ANSWER: B
+
+Capitolo 3, Sezione Il Ruolo del Tecnico: Che cosa include la validazione clinica dei sistemi di IA?
+A. L'uso di qualsiasi metrica disponibile.
+B. La preparazione del dataset di validazione e il confronto con lo standard di riferimento dei patologi.
+C. L'ottimizzazione del tempo di scansione.
+D. L'esecuzione solo su dati di addestramento.
+E. L'uso esclusivo di immagini generiche.
+ANSWER: B
+
+Capitolo 3, Sezione Il Ruolo del Tecnico: Perché è importante comprendere i limiti dell'IA?
+A. Perché i modelli sono sempre perfetti.
+B. Per identificare potenziali modalità di fallimento e mantenere la supervisione critica.
+C. Per eliminare l'uso del patologo.
+D. Per ridurre l'uso dei dati.
+E. Per aumentare i tempi di elaborazione.
+ANSWER: B
+
+Capitolo 4, Sezione Introduzione: Quale combinazione di fattori ha reso possibile la maturazione dell'apprendimento profondo in patologia?
+A. Adozione di scanner WSI, GPU potenti e dataset aperti.
+B. Eliminazione della necessità di dati clinici.
+C. Uso esclusivo di microscopia convenzionale.
+D. Solo la disponibilità di scanner a bassa risoluzione.
+E. Limitazione dei dataset ai laboratori locali.
+ANSWER: A
+
+Capitolo 4, Sezione Introduzione: Perché l'apprendimento profondo è preferito rispetto agli approcci con caratteristiche manuali?
+A. Perché richiede meno dati.
+B. Perché può apprendere rappresentazioni direttamente dai dati grezzi.
+C. Perché non richiede alcuna validazione.
+D. Perché è sempre interpretabile.
+E. Perché non usa GPU.
+ANSWER: B
+
+Capitolo 4, Sezione Introduzione: Quale compito non è menzionato come raggiunto da modelli di apprendimento profondo nella patologia?
+A. Rilevamento delle metastasi linfonodali.
+B. Classificazione del cancro alla prostata.
+C. Predizione del risultato della chemio.
+D. Classificazione delle immagini radiologiche generiche.
+E. Predizione dei sottotipi molecolari.
+ANSWER: D
+
+Capitolo 4, Sezione Introduzione: Cosa consente il framework MIL per le WSI?
+A. Elaborare intere WSI su una singola GPU senza suddivisione.
+B. Addestrare modelli usando solo etichette a livello di vetrino.
+C. Eliminare la necessità di annotazioni.
+D. Convertire tutti i dati in testo.
+E. Usare esclusivamente il modello DICOM.
+ANSWER: B
+
+Capitolo 4, Sezione Introduzione: Cosa rappresenta un modello fondazionale in patologia?
+A. Un dispositivo hardware per scanner.
+B. Un grande modello pre-addestrato su vasti dataset per compiti multipli.
+C. Un insieme di regole basate su soglie.
+D. Un test diagnostico standard.
+E. Un archivio di referti.
+ANSWER: B
+
+Capitolo 4, Sezione Reti Neurali Convoluzionali: Che cosa fa uno strato convoluzionale?
+A. Ordina le etichette.
+B. Applica un filtro a una patch locale dell'immagine per produrre mappe delle caratteristiche.
+C. Aggiunge metadati all'immagine.
+D. Calcola la profondità dello strato.
+E. Visualizza l'immagine in 3D.
+ANSWER: B
+
+Capitolo 4, Sezione Reti Neurali Convoluzionali: Quale funzione di pooling è la più comune?
+A. Min-pooling.
+B. Max-pooling.
+C. Mediana-pooling.
+D. Soft-pooling.
+E. Identity-pooling.
+ANSWER: B
+
+Capitolo 4, Sezione Reti Neurali Convoluzionali: Perché la batch normalization viene utilizzata?
+A. Per aumentare la dimensione del modello.
+B. Per normalizzare le attivazioni e accelerare l'addestramento.
+C. Per eliminare il dropout.
+D. Per ridurre la dimensione delle immagini.
+E. Per convertire le immagini in bianco e nero.
+ANSWER: B
+
+Capitolo 4, Sezione Reti Neurali Convoluzionali: Quale sfida è stata affrontata dalle sfide CAMELYON e PANDA?
+A. Validazione dei formati OME-TIFF.
+B. Rilevamento di metastasi linfonodali e classificazione di Gleason.
+C. Standardizzazione dei codici a barre.
+D. Produzione di modelli DICOM.
+E. Generazione di referti sinottici.
+ANSWER: B
+
+Capitolo 4, Sezione Reti Neurali Convoluzionali: Cosa implica il transfer learning?
+A. Addestrare un modello senza dati.
+B. Usare una rete pre-addestrata su un dataset generale e adattarla al dominio patologico.
+C. Addestrare solo gli strati iniziali.
+D. Convertire tutti gli input in testo.
+E. Usare esclusivamente modelli non neurali.
+ANSWER: B
+
+Capitolo 4, Sezione Apprendimento Multi-Istanza: Qual è il problema principale delle WSI gigapixel?
+A. Sono troppo semplici da analizzare.
+B. Nessuna GPU ha memoria sufficiente per elaborare l'intera immagine come singolo tensore.
+C. Non contengono informazioni utili.
+D. Sono sempre in bianco e nero.
+E. Non possono essere salvate in formato TIFF.
+ANSWER: B
+
+Capitolo 4, Sezione Apprendimento Multi-Istanza: Che cosa assume il MIL standard per un bag positivo?
+A. Che tutte le istanze siano negative.
+B. Che almeno una delle istanze è positiva.
+C. Che nessuna istanza è positiva.
+D. Che il bag ha esattamente due istanze.
+E. Che le istanze siano indipendenti.
+ANSWER: B
+
+Capitolo 4, Sezione Apprendimento Multi-Istanza: Quale meccanismo aggiunge interpretabilità al MIL?
+A. Pooling medio.
+B. Pooling massimo.
+C. Aggregazione basata sull'attenzione.
+D. Batch normalization.
+E. Softmax.
+ANSWER: C
+
+Capitolo 4, Sezione Apprendimento Multi-Istanza: Quale compito clinico è stato applicato con successo al MIL?
+A. Generazione di referti in linguaggio naturale.
+B. Predizione della sopravvivenza e dei sottotipi molecolari.
+C. Sintesi di fiale di reagente.
+D. Identificazione dei metadati DICOM.
+E. Compressione lossless.
+ANSWER: B
+
+Capitolo 4, Sezione Apprendimento Multi-Istanza: Perché i patch a multi-scala sono utili?
+A. Perché riducono la dimensione del file.
+B. Perché integrano informazioni a diverse scale spaziali.
+C. Perché eliminano la necessità di un encoder.
+D. Perché rendono le immagini più scure.
+E. Perché evitano il bisogno di attenzione.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Transformer: Qual è l'innovazione centrale del transformer?
+A. L'uso di convoluzioni 3x3.
+B. Il meccanismo di auto-attenzione che connette ogni elemento della sequenza a tutti gli altri.
+C. La normalizzazione batch.
+D. Il pooling globale.
+E. Il dropout.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Transformer: Come viene suddivisa un'immagine in un Vision Transformer?
+A. In un unico blocco.
+B. In patch non sovrapposti.
+C. In canali RGB separati.
+D. In livelli di piramide.
+E. In scansioni lineari.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Transformer: Qual è il principale limite computazionale del ViT?
+A. Uso minimo di parametri.
+B. Complessità quadratica con la lunghezza della sequenza.
+C. Mancanza di precisione.
+D. Impossibilità di approssimare l'attenzione.
+E. Uso esclusivo di hardware CPU.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Transformer: Quale modello fondazionale è stato addestrato su WSI e dati accoppiati immagine-testo?
+A. UNI.
+B. CONCH.
+C. Prov-GigaPath.
+D. BERT.
+E. GPT-3.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Transformer: Quale modello è stato sviluppato da Microsoft Research e Providence Health?
+A. UNI.
+B. CONCH.
+C. Prov-GigaPath.
+D. Swift.
+E. ResNet.
+ANSWER: C
+
+Capitolo 4, Sezione Modelli Linguistici: Che cosa è un LLM?
+A. Un software di generazione di immagini.
+B. Un modello linguistico di grandi dimensioni basato su transformer.
+C. Un algoritmo di segmentazione delle immagini.
+D. Un protocollo di comunicazione HL7.
+E. Un tipo di scanner WSI.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Linguistici: Quale parametro controlla la diversità del testo generato da un LLM?
+A. La profondità.
+B. La temperatura.
+C. Il numero di patch.
+D. Il tasso di regressione.
+E. Il batch size.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Linguistici: Qual è una preoccupazione chiave nell'uso di LLM per i referti?
+A. L'LMM è sempre preciso.
+B. L'allucinazione di affermazioni plausibili ma errate.
+C. L'impossibilità di generare testo fluente.
+D. L'incapacità di leggere immagini.
+E. La scarsa velocità di calcolo.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Linguistici: In quale modalità un LLM può estrarre informazioni dai referti patologici in testo libero?
+A. Modalità di imaging.
+B. Elaborazione del linguaggio naturale (NLP).
+C. Classificazione patch.
+D. Normalizzazione della colorazione.
+E. Compressione JPEG.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Linguistici: Quale è un vantaggio dei modelli visione-linguaggio?
+A. Possono elaborare solo testo.
+B. Possono generare risposte testuali in base a immagini istopatologiche.
+C. Eliminano i metadati.
+D. Non richiedono dati.
+E. Sono sempre regolamentati.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Multimodali: Perché integrare immagini con dati clinici o genomici?
+A. Per ridurre i costi di archiviazione.
+B. Per produrre previsioni più accurate e clinicamente azionabili.
+C. Per eliminare la necessità di WSI.
+D. Per convertire le immagini in testo.
+E. Per standardizzare i codici a barre.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Multimodali: Quale studio ha dimostrato la predizione delle mutazioni in adenocarcinoma polmonare da immagini E&E?
+A. CAMELYON.
+B. PANDA.
+C. Coudray et al.
+D. TCGA.
+E. HistoQC.
+ANSWER: C
+
+Capitolo 4, Sezione Modelli Multimodali: Quale strategia combina rappresentazioni specifiche delle modalità in uno strato intermedio?
+A. Fusione precoce.
+B. Fusione tardiva.
+C. Fusione intermedia.
+D. Pooling massimo.
+E. Softmax.
+ANSWER: C
+
+Capitolo 4, Sezione Modelli Multimodali: Cosa migliora l'integrazione di istologia e genomica nella predizione della sopravvivenza?
+A. L'uso esclusivo di immagini.
+B. La combinazione di segnali morfologici e molecolari complementari.
+C. La riduzione del numero di correlati.
+D. Il trasferimento dei metadati.
+E. L'adozione di un solo tipo di scanner.
+ANSWER: B
+
+Capitolo 4, Sezione Modelli Multimodali: Quale strategia di fusione è robusta alle modalità mancanti?
+A. Fusione precoce.
+B. Fusione tardiva.
+C. Fusione intermedia.
+D. Pooling di attenzione.
+E. Deconvoluzione.
+ANSWER: B
+
+Capitolo 5, Sezione Introduzione: Quale aspetto non è trattato nel capitolo sulle sfide e l'etica?
+A. Limitazioni tecniche dell'IA.
+B. Dimensioni filosofiche della diagnosi automatica.
+C. Etica e governance.
+D. Metodi di colorazione E&E.
+E. Prospettive future della patologia digitale.
+ANSWER: D
+
+Capitolo 5, Sezione Introduzione: Che cosa si intende quando si dice che l'IA in patologia è un fenomeno sociotecnico?
+A. Che riguarda solo la tecnologia.
+B. Che coinvolge relazioni tra persone, istituzioni e strumenti.
+C. Che è indipendente da contesti sociali.
+D. Che è esclusivamente tecnico.
+E. Che non ha implicazioni etiche.
+ANSWER: B
+
+Capitolo 5, Sezione Introduzione: Qual è il tono principale del capitolo rispetto alla traiettoria dell'IA?
+A. Progressista senza dubbi.
+B. Critico e riflessivo sulle difficoltà e i rischi.
+C. Indifferente.
+D. Unicamente ottimistico.
+E. Privo di riferimenti scientifici.
+ANSWER: B
+
+Capitolo 5, Sezione Introduzione: Perché è importante comprendere le dimensioni etiche dell'IA in patologia?
+A. Perché l'IA è sempre neutrale.
+B. Per evitare di rispettare i pazienti.
+C. Per implementarla responsabilmente nella pratica clinica.
+D. Per ridurre le performance dei modelli.
+E. Per ignorare la governance.
+ANSWER: C
+
+Capitolo 5, Sezione Introduzione: Quale competenza è indicata come fondamentale per chi lavorerà con l'IA in patologia?
+A. Solo la capacità di programmare in C++.
+B. Consapevolezza critica delle limitazioni, etica e governance.
+C. Solo la conoscenza delle linee guida radiologiche.
+D. Solo l'uso di scanner tradizionali.
+E. Nessuna competenza aggiuntiva.
+ANSWER: B
+
+Capitolo 5, Sezione Limitazioni: Qual è un esempio di spostamento del dominio?
+A. Un modello che generalizza perfettamente.
+B. Un modello addestrato su uno scanner che degrada su immagini di un altro scanner.
+C. Un modello che non usa dati.
+D. Un modello sempre interpretabile.
+E. Un modello che non richiede validazione.
+ANSWER: B
+
+Capitolo 5, Sezione Limitazioni: Quale causa non è associata allo spostamento del dominio?
+A. Differenze di scanner.
+B. Variazioni nei protocolli di colorazione.
+C. Cambiamenti nelle linee guida diagnostiche.
+D. Stessa popolazione e condizioni di acquisizione.
+E. Differenze nei reagenti.
+ANSWER: D
+
+Capitolo 5, Sezione Limitazioni: Perché la validazione su un solo sito esterno è insufficiente?
+A. Perché i dati sono sempre simili.
+B. Perché non garantisce generalizzabilità attraverso la diversità del mondo reale.
+C. Perché l'IA non necessita di validazione.
+D. Perché i modelli non utilizzano scanner.
+E. Perché i dati pubblici non esistono.
+ANSWER: B
+
+Capitolo 5, Sezione Limitazioni: Quale pratica può aiutare a ridurre lo spostamento del dominio?
+A. Ignorare la differenza tra scanner.
+B. Normalizzazione della colorazione e adattamento del dominio.
+C. Ridurre la risoluzione delle immagini.
+D. Aumentare il rumore nei dati.
+E. Eliminare i metadati.
+ANSWER: B
+
+Capitolo 5, Sezione Limitazioni: Cosa richiede la sorveglianza post-commercializzazione?
+A. Nessuna azione dopo l'implementazione.
+B. Monitoraggio continuo delle prestazioni del modello in ambiente reale.
+C. Solo l'addestramento iniziale.
+D. L'uso di scanner analogici.
+E. La pubblicazione di un articolo.
+ANSWER: B
+
+Capitolo 5, Sezione Bias: Che cosa è il bias algoritmico?
+A. Un errore casuale.
+B. Un errore sistematico che produce risultati ingiusti per gruppi particolari.
+C. Una caratteristica del software di scansione.
+D. Una normale variazione biologica.
+E. Un'espressione della risoluzione dell'immagine.
+ANSWER: B
+
+Capitolo 5, Sezione Bias: Quale dataset noto è citato come soggetto a bias specifici del sito?
+A. CAMELYON.
+B. TCGA.
+C. HistoQC.
+D. OpenSlide.
+E. DICOM.
+ANSWER: B
+
+Capitolo 5, Sezione Bias: Cosa è il bias delle etichette?
+A. Il bias causato dallo scanner.
+B. La variabilità sistematica nelle annotazioni umane.
+C. Il tipo di compressione dell'immagine.
+D. Il formato del file.
+E. La dimensione del batch.
+ANSWER: B
+
+Capitolo 5, Sezione Bias: Come si manifesta il bias di misurazione in patologia?
+A. Come variazioni nel protocollo HL7.
+B. Come differenze di scanner e colorazione correlate all'esito.
+C. Come problemi nella validazione normativa.
+D. Come variazioni nella documentazione.
+E. Come disaccordo tra patologi.
+ANSWER: B
+
+Capitolo 5, Sezione Bias: Quale strategia non è citata come necessaria per l'equità dell'IA?
+A. Analisi delle prestazioni dei sottogruppi.
+B. Inclusione di dati diversi nello sviluppo.
+C. Ignorare i gruppi sottorappresentati.
+D. Coinvolgimento delle comunità interessate.
+E. Requisiti normativi per la validazione dell'equità.
+ANSWER: C
+
+Capitolo 5, Sezione Interpretabilità: Qual è il problema della scatola nera?
+A. La difficoltà di spiegare perché un modello ha prodotto una specifica previsione.
+B. L'assenza di un file ZIP.
+C. L'uso di modelli lineari.
+D. La mancanza di dati.
+E. La saturazione cromatica.
+ANSWER: A
+
+Capitolo 5, Sezione Interpretabilità: Quale metodo XAI utilizza il gradiente per generare mappe di calore?
+A. SHAP.
+B. Grad-CAM.
+C. Otsu.
+D. PCA.
+E. Max-pooling.
+ANSWER: B
+
+Capitolo 5, Sezione Interpretabilità: Cosa sono le mappe di attenzione nei modelli basati sull'attenzione?
+A. Rappresentazioni delle prestazioni del modello.
+B. Pesi che indicano l'importanza delle regioni dell'immagine per la previsione.
+C. Documenti legali dell'IA.
+D. File immagine compressi.
+E. Codici a barre.
+ANSWER: B
+
+Capitolo 5, Sezione Interpretabilità: Quale metodo si basa sulla teoria dei giochi per attribuire il contributo delle caratteristiche?
+A. Grad-CAM.
+B. SHAP.
+C. Batch normalization.
+D. Softmax.
+E. Deconvoluzione.
+ANSWER: B
+
+Capitolo 5, Sezione Interpretabilità: Quale linee guida riguardano la relazione della ricerca clinica sull'IA?
+A. ISO 9001.
+B. SPIRIT-AI e CONSORT-AI.
+C. HL7 FHIR.
+D. DICOM.
+E. GDPR.
+ANSWER: B
+
+Capitolo 5, Sezione Filosofia: Secondo il testo, cosa distingue una macchina dal patologo nella diagnosi?
+A. Il patologo lavora solo con dati molecolari.
+B. Il patologo possiede comprensione e responsabilità che la macchina non ha.
+C. La macchina è capace di compiti intellettuali flessibili.
+D. Il patologo non può usare strumenti.
+E. La macchina ha conoscenza tacita.
+ANSWER: B
+
+Capitolo 5, Sezione Filosofia: Che cosa è la conoscenza tacita?
+A. Conoscenza completamente formalizzata in regole.
+B. Expertise incorporata nella pratica e non completamente articolabile.
+C. Un modello matematico.
+D. Un tipo di metadato.
+E. Un codice a barre su un vetrino.
+ANSWER: B
+
+Capitolo 5, Sezione Filosofia: Cosa implica il concetto di cognizione distribuita?
+A. Che la diagnosi è fatta solo dal singolo patologo.
+B. Che i compiti cognitivi sono distribuiti tra persone e strumenti.
+C. Che l'IA non ha nessun ruolo.
+D. Che solo il software è responsabile.
+E. Che le persone non interagiscono con strumenti.
+ANSWER: B
+
+Capitolo 5, Sezione Filosofia: Che cosa significa controllo umano significativo?
+A. Che un essere umano è presente ma non capisce l'IA.
+B. Che l'essere umano ha comprensione sufficiente per esercitare controllo informato.
+C. Che l'essere umano approva automaticamente tutti gli output.
+D. Che non c'è supervisione umana.
+E. Che il modello è completamente autonomo.
+ANSWER: B
+
+Capitolo 5, Sezione Filosofia: Quale problema epistemologico riguarda l'IA in patologia?
+A. La definizione dei codici a barre.
+B. La natura e la giustificazione della conoscenza diagnostica assistita dall'IA.
+C. La compressione delle immagini.
+D. L'uso del formato OME-TIFF.
+E. La scelta del modello DICOM.
+ANSWER: B
+
+Capitolo 5, Sezione Etica: Quale informazione dovrebbe essere comunicata ai pazienti riguardo all'IA?
+A. Nessuna informazione.
+B. Che l'IA è utilizzata, il suo scopo e i limiti noti.
+C. I dettagli matematici del modello.
+D. Solo il tipo di scanner.
+E. La dimensione del file WSI.
+ANSWER: B
+
+Capitolo 5, Sezione Etica: Quale diritto del paziente è coinvolto nell'uso dei dati di WSI per addestrare l'IA?
+A. Il diritto di usare scanner specifici.
+B. Il diritto alla privacy e al consenso informato.
+C. Il diritto di sviluppare il modello.
+D. Il diritto a un referto in bianco e nero.
+E. Il diritto a vedere il codice del modello.
+ANSWER: B
+
+Capitolo 5, Sezione Etica: Quale tipo di incertezza giuridica riguarda la proprietà intellettuale dei modelli di IA?
+A. Se un paziente può brevettare un modello.
+B. Chi possiede il modello addestrato sui dati dei pazienti.
+C. Se i referti sono stampabili.
+D. Se i dati sono in formato TIFF.
+E. Se i biohackers possono usare il software.
+ANSWER: B
+
+Capitolo 5, Sezione Etica: Cosa richiede il quadro normativo UE sull'IA per i sistemi ad alto rischio in sanità?
+A. Nessuna registrazione.
+B. Documentazione tecnica, registrazione pubblica e sorveglianza post-commercializzazione.
+C. Solo un'applicazione mobile.
+D. Solo l'approvazione del laboratorio.
+E. Solo la generazione di report.
+ANSWER: B
+
+Capitolo 5, Sezione Etica: Qual è un obbligo professionale dei patologi nell'era dell'IA?
+A. Accettare ogni output dell'IA senza verifica.
+B. Comprendere capacità e limiti degli strumenti e mantenere la supervisione critica.
+C. Sviluppare tutti i modelli internamente.
+D. Ignorare la governance normativa.
+E. Rifiutare qualsiasi tecnologia nuova.
+ANSWER: B
+
+Capitolo 5, Sezione Robotica: Quale compito robotico è citato come possibile nel laboratorio di patologia?
+A. Sostituire il patologo nel referto.
+B. Esame macroscopico e sezionatura dei campioni.
+C. Aggiungere manualmente i codici a barre.
+D. Scrivere i paper scientifici.
+E. Inviare referti ai clinici.
+ANSWER: B
+
+Capitolo 5, Sezione Robotica: Perché la diagnosi autonoma tramite IA è controversa?
+A. Perché è già ampiamente adottata.
+B. Perché solleva questioni di responsabilità e supervisione umana.
+C. Perché l'IA non funziona con le WSI.
+D. Perché è economica.
+E. Perché elimina la necessità di dati.
+ANSWER: B
+
+Capitolo 5, Sezione Robotica: Quale barriera non normativa ostacola la piena automazione?
+A. La mancanza di scanner.
+B. L'importanza del giudizio clinico e delle componenti morali della medicina.
+C. L'assenza di metadati.
+D. Il formato OME-TIFF.
+E. L'intensità della colorazione.
+ANSWER: B
+
+Capitolo 5, Sezione Robotica: Quale fonte evidenzia il rischio che l'automazione aumenti le disuguaglianze sanitarie?
+A. Unicamente i codici a barre.
+B. L'accesso limitato all'infrastruttura computazionale nei paesi meno dotati.
+C. L'uso di DICOM.
+D. La standardizzazione delle etichette.
+E. Il formato PDF.
+ANSWER: B
+
+Capitolo 5, Sezione Robotica: Quale tecnologia non è direttamente coinvolta nella processazione automatizzata del tessuto?
+A. Bracci robotici.
+B. Visione artificiale.
+C. Protocollo HL7.
+D. Sistemi di taglio guidati dall'IA.
+E. Automazione della colorazione.
+ANSWER: C
+
+Capitolo 5, Sezione Il Futuro Ruolo del Tecnico: Cosa succede al ruolo del tecnico con l'IA e l'automazione?
+A. Viene completamente eliminato.
+B. Viene trasformato e arricchito con nuove responsabilità.
+C. Resta identico.
+D. Diventa meno importante.
+E. Si concentra solo su compiti manuali semplici.
+ANSWER: B
+
+Capitolo 5, Sezione Il Futuro Ruolo del Tecnico: Quale competenza è definita essenziale per il tecnico del futuro?
+A. Solo la preparazione dei reagenti.
+B. Alfabetizzazione ai dati e comprensione dei sistemi di IA.
+C. Solo l'uso dei codici a barre.
+D. Solo la colorazione manuale.
+E. Solo il montaggio dei vetrini.
+ANSWER: B
+
+Capitolo 5, Sezione Il Futuro Ruolo del Tecnico: Quale ruolo del tecnico è associato alla validazione dell'IA?
+A. Nessun ruolo.
+B. Preparare dataset di validazione e registrare output per il confronto.
+C. Sviluppare il codice del modello.
+D. Determinare il prezzo del software.
+E. Scrivere i referti finali.
+ANSWER: B
+
+Capitolo 5, Sezione Il Futuro Ruolo del Tecnico: Cosa include lo sviluppo professionale continuo per il tecnico?
+A. Solo il riposo.
+B. L'apprendimento di competenze digitali e IA e la partecipazione a percorsi di carriera.
+C. L'uso esclusivo di linee guida tradizionali.
+D. L'isolamento dai colleghi.
+E. Il rifiuto delle nuove tecnologie.
+ANSWER: B
+
+Capitolo 5, Sezione Il Futuro Ruolo del Tecnico: Perché la supervisione umana rimane fondamentale?
+A. Perché i modelli di IA non possono mai fallire.
+B. Per rilevare e correggere gli errori dell'IA e garantire un controllo informato.
+C. Per sostituire il modello ogni ora.
+D. Per ridurre la qualità dei referti.
+E. Per escludere i pazienti dalle decisioni.
+ANSWER: B
